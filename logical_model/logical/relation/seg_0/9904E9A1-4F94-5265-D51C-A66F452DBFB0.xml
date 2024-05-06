@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Event_sport" directorySegmentName="seg_0" id="9904E9A1-4F94-5265-D51C-A66F452DBFB0">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:16:00 UTC</createdTime>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<sourcePk>DCD6B1E2-E2C6-498C-4073-1C88F3D59593</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>is done in</nameOnSource>
+<nameOnTarget>is about</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>252F4573-10F1-885E-31B1-D5D27010517D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>93DE3CDC-F253-08F5-C7E2-625094FFF716</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
