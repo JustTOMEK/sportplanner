@@ -71,6 +71,19 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="description" id="6E82D225-4677-3D35-A3E0-D120D21766C8">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:54:43 UTC</createdTime>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="B84F18FA-41C6-1B74-C0F6-0501EAD14136" name="Event PK">
@@ -83,6 +96,7 @@
 <pk>true</pk>
 <usedAttributes>
 <attributeRef>61F82C8E-418F-61A3-A81B-AD63D33133CC</attributeRef>
+<attributeRef>9D93EBD6-7629-3539-5B37-263F890086B6</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>
