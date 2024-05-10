@@ -9,9 +9,9 @@
 <sourcePk>F565C900-2A0D-4716-99AB-3F935E56BEBF</sourcePk>
 <identifying>false</identifying>
 <nameOnSource>owns</nameOnSource>
-<nameOnTarget>is_owned</nameOnTarget>
-<optionalSource>false</optionalSource>
-<optionalTarget>true</optionalTarget>
+<nameOnTarget>is owned</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>B0158174-D89F-C949-A35B-8108C2940AB0</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
