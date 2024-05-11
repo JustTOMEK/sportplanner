@@ -41,20 +41,6 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="id2" id="9B97CA00-178B-5012-43CF-16F5A814A0DE">
-<createdBy>piotr</createdBy>
-<createdTime>2024-04-24 10:20:06 UTC</createdTime>
-<generatorID>434D27B1-5A62-CD53-2D12-8FD69578B4D5</generatorID>
-<ownerDesignName>logical_model</ownerDesignName>
-<engineerTo>
-<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
-</engineerTo>
-<referedAttribute>FB3D2EDE-F471-8848-D807-3D2F10B21A7A</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="id3" id="F7823862-86D7-561F-5922-4A9C7EFAD051">
 <createdBy>piotr</createdBy>
 <createdTime>2024-05-06 07:16:00 UTC</createdTime>
@@ -80,6 +66,21 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id2" id="3B75D929-15AC-8E11-70DE-7187BD586EC3">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-11 18:02:34 UTC</createdTime>
+<generatorID>434D27B1-5A62-CD53-2D12-8FD69578B4D5</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>D70BBED3-9DCF-3919-4F66-8D083A6D2AE0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>

@@ -104,19 +104,6 @@
 <dataTypeSize>50 CHAR</dataTypeSize>
 <ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="description" id="31575F2A-CCCD-561E-CF60-810498598FF0">
-<createdBy>dominika</createdBy>
-<createdTime>2024-05-11 17:35:11 UTC</createdTime>
-<ownerDesignName>logical_model</ownerDesignName>
-<engineerTo>
-<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT040</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="5DBABA22-6467-ED98-1CAA-C807A58DE549" name="Adress PK">
