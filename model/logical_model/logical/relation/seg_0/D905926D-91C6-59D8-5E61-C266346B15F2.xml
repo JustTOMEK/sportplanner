@@ -1,17 +1,18 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Participation" directorySegmentName="seg_0" id="6FBC6341-A4C2-F03D-81A7-244F5E5554A5">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Ownership" directorySegmentName="seg_0" id="D905926D-91C6-59D8-5E61-C266346B15F2">
 <createdBy>piotr</createdBy>
-<createdTime>2024-04-24 09:51:08 UTC</createdTime>
+<createdTime>2024-04-24 10:17:45 UTC</createdTime>
 <ownerDesignName>logical_model</ownerDesignName>
 <engineerTo>
 <item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
 </engineerTo>
+<sourcePk>F565C900-2A0D-4716-99AB-3F935E56BEBF</sourcePk>
 <identifying>false</identifying>
-<nameOnSource>participates</nameOnSource>
-<nameOnTarget>includes</nameOnTarget>
+<nameOnSource>owns</nameOnSource>
+<nameOnTarget>is owned</nameOnTarget>
 <optionalSource>true</optionalSource>
-<optionalTarget>true</optionalTarget>
-<sourceCardinality>*</sourceCardinality>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
 <sourceEntity>B0158174-D89F-C949-A35B-8108C2940AB0</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>
 <targetEntity>93DE3CDC-F253-08F5-C7E2-625094FFF716</targetEntity>
