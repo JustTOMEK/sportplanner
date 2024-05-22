@@ -18,6 +18,19 @@ pip install mysql-connector-python
 python src/check_db_connection.py
 ```
 
+### Spring backend
+#### Budowanie
+```sh
+mvn package
+```
+
+#### Uruchomienie
+```sh
+java -jar target/SportTogether-0.0.1.jar
+```
+
+API jest dostępne na: <http://localhost:8080/api/>
+
 ## Członkowie zespołu
 - Dominika Boguszewska
 - Piotr Lenczewski
