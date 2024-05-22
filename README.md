@@ -15,7 +15,7 @@ pip install mysql-connector-python
 ```
 
 ```sh
-python src/check_db_connection.py
+python check_db_connection.py
 ```
 
 ### Spring backend
