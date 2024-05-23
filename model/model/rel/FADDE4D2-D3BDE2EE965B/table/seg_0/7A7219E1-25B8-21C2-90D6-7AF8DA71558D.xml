@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7A7219E1-25B8-21C2-90D6-7AF8DA71558D" name="Coordinates">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>510A9F0E-17F8-0EBA-0629-12C9E46FECDE</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="A0B4525D-5A54-E837-523A-F404F6390B04">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>FB3D2EDE-F471-8848-D807-3D2F10B21A7A</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="latitude" id="3FF59324-111B-8BCB-D1D2-F5C6B9D620CF">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>439E464B-6B57-75DE-DF3C-CF9BF3E0691B</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="longitude" id="25C5FC78-112C-9D71-A0E3-16C22DEF05E6">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>634F1C65-B7FA-0270-10D9-36D0F8256748</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FCCD7500-3543-FF14-B9C7-E470928242C3" name="Coordinates_PK">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>26E74330-EAAC-E0EA-6DE8-0AE5FB1E03E6</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A0B4525D-5A54-E837-523A-F404F6390B04"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Participation Event FK" directorySegmentName="seg_0" id="82926D59-09FE-609A-9480-2B369B2ED997">
+<createdBy>dominika</createdBy>
+<createdTime>2024-05-10 21:52:40 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<sourcePk>B84F18FA-41C6-1B74-C0F6-0501EAD14136</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>includes</nameOnSource>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>93DE3CDC-F253-08F5-C7E2-625094FFF716</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>6226B696-E663-4CDF-65DA-B55FF739A3BD</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

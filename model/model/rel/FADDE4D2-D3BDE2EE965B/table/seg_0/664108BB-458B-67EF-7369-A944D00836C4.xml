@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="664108BB-458B-67EF-7369-A944D00836C4" name="Address">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>1CF4C458-85F7-A8CB-6E26-D0ABD3E62705</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="F8577401-7C65-7C26-0BDD-8BE2FD448C01">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>D70BBED3-9DCF-3919-4F66-8D083A6D2AE0</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="country" id="A701D4A3-1B10-6203-B664-C734151E7BE1">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>8A789D6D-5BCA-67B6-1640-F7D16F980F50</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="city" id="1A0758CE-C3D9-C988-D37B-D28782C3CB38">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>F5098D31-6F76-C467-1408-176D2F70A392</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="street" id="2833111A-D620-0936-5E9F-B43511EF4995">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>B6F4FF29-BEE4-A757-827B-FFC6D6587954</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="building_number" id="B5E35A76-1DEA-0739-416D-9EB7174A80D1">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>FF479540-FD13-6B15-F5B6-A9AA3343A848</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="flat_number" id="C2E8B201-2000-131F-227F-6AAB02A3CC51">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>C0BEF651-0E1C-AAEC-0D36-190AB623625C</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="postal_code" id="0EE65964-0A0B-22C9-9881-49DBB13815A7">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>E98FD876-EA96-F956-1F5E-B7EC6D8658EF</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0E23FBDC-6704-C965-940F-B92DEB7A833B" name="Address_PK">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>5DBABA22-6467-ED98-1CAA-C807A58DE549</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F8577401-7C65-7C26-0BDD-8BE2FD448C01"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
