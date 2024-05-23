@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DF31C3EA-C240-7B5C-EE08-2314C9C20E2D" name="User">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>B0158174-D89F-C949-A35B-8108C2940AB0</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="0632E27E-9508-C9F1-6B92-33FED68ECE40">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>E3E1B133-C571-B90A-6F45-5C66942F67F5</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="username" id="85A5BDF0-E8B3-6CD2-FD80-9D037F3BD9A1">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>99E51E07-DDB2-E067-C556-CCFD00C027B3</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="B230585A-DC3C-894B-852C-58BE034D8AF5">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>D00BBBFD-EAD7-D474-A2FB-61156832FA2D</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="password_hash" id="EE0160F2-1265-03EE-81BB-59F18E00770B">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>7890D162-5F93-84E0-FD0E-1144DE596587</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>512</dataTypeSize>
+<ownDataTypeParameters>512,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EA722931-E881-B55B-9118-DB072D722697" name="User_PK">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>F565C900-2A0D-4716-99AB-3F935E56BEBF</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0632E27E-9508-C9F1-6B92-33FED68ECE40"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
