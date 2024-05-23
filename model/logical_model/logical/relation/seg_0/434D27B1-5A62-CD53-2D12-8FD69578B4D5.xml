@@ -10,8 +10,8 @@
 <identifying>false</identifying>
 <nameOnSource>is in</nameOnSource>
 <nameOnTarget>happens in</nameOnTarget>
-<optionalSource>true</optionalSource>
-<optionalTarget>true</optionalTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>1CF4C458-85F7-A8CB-6E26-D0ABD3E62705</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>

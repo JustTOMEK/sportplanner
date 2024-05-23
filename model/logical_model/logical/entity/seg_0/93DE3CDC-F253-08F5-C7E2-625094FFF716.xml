@@ -76,8 +76,22 @@
 <engineerTo>
 <item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <referedAttribute>D70BBED3-9DCF-3919-4F66-8D083A6D2AE0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id4" id="D64E2B90-B99A-5A63-0D21-7798C578AC94">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:33:05 UTC</createdTime>
+<generatorID>10470CBD-997F-B47A-E235-47FAEEE7488F</generatorID>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>FB3D2EDE-F471-8848-D807-3D2F10B21A7A</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>

@@ -27,6 +27,32 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="country" id="8A789D6D-5BCA-67B6-1640-F7D16F980F50">
+<createdBy>dominika</createdBy>
+<createdTime>2024-05-11 17:38:55 UTC</createdTime>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="city" id="F5098D31-6F76-C467-1408-176D2F70A392">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:51:55 UTC</createdTime>
+<ownerDesignName>logical_model</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="street" id="B6F4FF29-BEE4-A757-827B-FFC6D6587954">
 <createdBy>piotr</createdBy>
 <createdTime>2024-05-06 07:49:29 UTC</createdTime>
@@ -65,19 +91,6 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="city" id="F5098D31-6F76-C467-1408-176D2F70A392">
-<createdBy>piotr</createdBy>
-<createdTime>2024-05-06 07:51:55 UTC</createdTime>
-<ownerDesignName>logical_model</ownerDesignName>
-<engineerTo>
-<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>50 CHAR</dataTypeSize>
-<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="postal_code" id="E98FD876-EA96-F956-1F5E-B7EC6D8658EF">
 <createdBy>piotr</createdBy>
 <createdTime>2024-05-06 07:52:48 UTC</createdTime>
@@ -85,24 +98,12 @@
 <engineerTo>
 <item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>10 CHAR</dataTypeSize>
 <ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="country" id="8A789D6D-5BCA-67B6-1640-F7D16F980F50">
-<createdBy>dominika</createdBy>
-<createdTime>2024-05-11 17:38:55 UTC</createdTime>
-<ownerDesignName>logical_model</ownerDesignName>
-<engineerTo>
-<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>50 CHAR</dataTypeSize>
-<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
