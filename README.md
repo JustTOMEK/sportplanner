@@ -1,5 +1,5 @@
 # Projekt BD2 – SportTogether
-## Model ER
+## Modele ER i relacyjny
 W celu otworzenia modelu należy uruchomić Oracle SQL Developer, a następnie otworzyć model poprzez File -> Data Modeler -> Open
 
 ## Uruchamianie
