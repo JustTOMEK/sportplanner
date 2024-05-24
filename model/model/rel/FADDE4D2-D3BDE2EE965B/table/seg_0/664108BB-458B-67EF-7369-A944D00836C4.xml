@@ -48,6 +48,7 @@
 <createdTime>2024-05-23 13:39:48 UTC</createdTime>
 <generatorID>B6F4FF29-BEE4-A757-827B-FFC6D6587954</generatorID>
 <ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -60,6 +61,7 @@
 <createdTime>2024-05-23 13:39:48 UTC</createdTime>
 <generatorID>FF479540-FD13-6B15-F5B6-A9AA3343A848</generatorID>
 <ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>

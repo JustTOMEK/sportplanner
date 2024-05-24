@@ -60,25 +60,27 @@
 <engineerTo>
 <item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>50 CHAR</dataTypeSize>
 <ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="building_number" id="FF479540-FD13-6B15-F5B6-A9AA3343A848">
+<Attribute name="building number" id="FF479540-FD13-6B15-F5B6-A9AA3343A848">
 <createdBy>piotr</createdBy>
 <createdTime>2024-05-06 07:50:02 UTC</createdTime>
 <ownerDesignName>model</ownerDesignName>
 <engineerTo>
 <item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
 </engineerTo>
+<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="flat_number" id="C0BEF651-0E1C-AAEC-0D36-190AB623625C">
+<Attribute name="flat number" id="C0BEF651-0E1C-AAEC-0D36-190AB623625C">
 <createdBy>piotr</createdBy>
 <createdTime>2024-05-06 07:51:25 UTC</createdTime>
 <ownerDesignName>model</ownerDesignName>
@@ -91,7 +93,7 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="postal_code" id="E98FD876-EA96-F956-1F5E-B7EC6D8658EF">
+<Attribute name="postal code" id="E98FD876-EA96-F956-1F5E-B7EC6D8658EF">
 <createdBy>piotr</createdBy>
 <createdTime>2024-05-06 07:52:48 UTC</createdTime>
 <ownerDesignName>model</ownerDesignName>

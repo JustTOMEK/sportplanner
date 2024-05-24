@@ -53,7 +53,7 @@
 <dataTypeSize>50</dataTypeSize>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="password_hash" id="7890D162-5F93-84E0-FD0E-1144DE596587">
+<Attribute name="password hash" id="7890D162-5F93-84E0-FD0E-1144DE596587">
 <createdBy>dominika</createdBy>
 <createdTime>2024-05-10 17:38:15 UTC</createdTime>
 <ownerDesignName>model</ownerDesignName>
