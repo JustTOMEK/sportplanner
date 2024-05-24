@@ -2,7 +2,7 @@ package pw.bd2.SportTogether.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pw.bd2.SportTogether.model.User;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserService {
     private UserRepository userRepository;
 
