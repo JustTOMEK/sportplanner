@@ -19,6 +19,18 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="title" id="CFD13332-D2DB-09CC-61FB-3FD1C31407B0">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-24 15:15:50 UTC</createdTime>
+<generatorID>1D797DD2-AC5D-0899-2B7B-891544B99EDD</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="User_id" id="95E6603E-8714-CD89-2027-61C0876C1F02">
 <createdBy>shark</createdBy>
 <createdTime>2024-05-23 13:39:48 UTC</createdTime>
@@ -34,6 +46,18 @@
 <colAssociation fkAssociation="10B96A92-326C-EC6A-FD5A-48E6EEB17915" referredColumn="0632E27E-9508-C9F1-6B92-33FED68ECE40"/>
 </associations>
 </Column>
+<Column name="description" id="CC7D3500-34CF-1B6F-A5D2-0C39942B1BE4">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>6E82D225-4677-3D35-A3E0-D120D21766C8</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="Sport_id" id="BA0A526F-5EB1-C73C-49B0-BA9AB5B40BF0">
 <createdBy>shark</createdBy>
 <createdTime>2024-05-23 13:39:48 UTC</createdTime>
@@ -48,18 +72,6 @@
 <associations>
 <colAssociation fkAssociation="5E00888C-9730-360C-2D31-2100D4A16BA3" referredColumn="11B7D6D4-E5BC-340B-896E-8FF7797CF076"/>
 </associations>
-</Column>
-<Column name="description" id="CC7D3500-34CF-1B6F-A5D2-0C39942B1BE4">
-<createdBy>shark</createdBy>
-<createdTime>2024-05-23 13:39:48 UTC</createdTime>
-<generatorID>6E82D225-4677-3D35-A3E0-D120D21766C8</generatorID>
-<ownerDesignName>model</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT040</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="Address_id" id="8C8D9AFF-72CC-4873-EFB1-16834A6757ED">
 <createdBy>shark</createdBy>
