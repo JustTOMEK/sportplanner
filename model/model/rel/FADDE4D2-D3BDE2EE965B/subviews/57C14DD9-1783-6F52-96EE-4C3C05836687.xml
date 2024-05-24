@@ -45,7 +45,7 @@
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="269" y="431"/>
+<point x="269" y="446"/>
 <point x="365" y="431"/>
 </points>
 </Connector>
@@ -72,7 +72,7 @@
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="259" y="376"/>
+<point x="244" y="376"/>
 <point x="259" y="284"/>
 </points>
 </Connector>
