@@ -17,7 +17,7 @@ import java.util.Optional;
 @Transactional(rollbackOn = Exception.class)
 @RequiredArgsConstructor
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public User register(String username, String password) {
         if (username.isBlank()) {
