@@ -17,8 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserServiceTests {
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
 
     @Test
     @Transactional
@@ -28,7 +26,7 @@ public class UserServiceTests {
         String password = "reallySecurePassword";
         User registeredUser = userService.register(username, password);
 
-        User userInDatabase = userRepository.findByUsername(username);
+        User userInDatabase = userService.findByUsername(username);
         assertNotNull(userInDatabase);
         assertEquals(userInDatabase, registeredUser);
 

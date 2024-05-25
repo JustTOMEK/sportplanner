@@ -36,12 +36,16 @@ public class UserService {
     }
 
     public User login(String username, String enteredPassword) {
-        User user = userRepository.findByUsername(username);
+        User user = findByUsername(username);
 
         if (authenticateUser(user, enteredPassword)) {
             return user;
         }
         throw new IllegalArgumentException("Wrong password");
+    }
+
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
     }
 
     private String generateRandomSalt() {
