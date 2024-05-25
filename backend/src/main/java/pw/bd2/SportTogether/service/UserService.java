@@ -36,21 +36,12 @@ public class UserService {
     }
 
     public User login(String username, String enteredPassword) {
-        User user = findByUsername(username)
-                .orElseThrow(() -> new EntityNotFoundException("User not in database"));
+        User user = userRepository.findByUsername(username);
 
         if (authenticateUser(user, enteredPassword)) {
             return user;
         }
         throw new IllegalArgumentException("Wrong password");
-    }
-
-    public Optional<User> findByUsername(String username) {
-        for(User user : userRepository.findAll())
-            if(user.getUsername().equals(username)){
-                return Optional.of(user);
-            }
-        return Optional.empty();
     }
 
     private String generateRandomSalt() {

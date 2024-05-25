@@ -8,6 +8,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import pw.bd2.SportTogether.model.User;
+import pw.bd2.SportTogether.repository.UserRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserServiceTests {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @Test
     @Transactional
@@ -25,7 +28,7 @@ public class UserServiceTests {
         String password = "reallySecurePassword";
         User registeredUser = userService.register(username, password);
 
-        User userInDatabase = userService.findByUsername(username).orElse(null);
+        User userInDatabase = userRepository.findByUsername(username);
         assertNotNull(userInDatabase);
         assertEquals(userInDatabase, registeredUser);
 
@@ -49,7 +52,7 @@ public class UserServiceTests {
     @Transactional
     @Rollback
     public void testLoginUserNotInDatabase() {
-        assertThrows(EntityNotFoundException.class, () -> userService.login("testBob", "Password"));
+        assertThrows(NullPointerException.class, () -> userService.login("testBob", "Password"));
     }
 
     @Test

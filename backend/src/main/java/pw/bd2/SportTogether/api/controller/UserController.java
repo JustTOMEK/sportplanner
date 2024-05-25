@@ -19,14 +19,14 @@ import pw.bd2.SportTogether.service.UserService;
 @RequiredArgsConstructor
 public class UserController {
     @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<User> loginUser(@RequestBody UserCredentialsDTO userCredentialsDTO) {
         try {
             User user = userService.login(userCredentialsDTO.getUsername(), userCredentialsDTO.getPassword());
             return ResponseEntity.ok(user);
-        } catch (EntityNotFoundException e) {
+        } catch (NullPointerException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
