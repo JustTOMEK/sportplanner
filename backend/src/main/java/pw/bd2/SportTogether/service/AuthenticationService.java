@@ -1,5 +1,6 @@
 package pw.bd2.SportTogether.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,7 @@ import pw.bd2.SportTogether.dto.RegisterRequest;
 import pw.bd2.SportTogether.repository.UserRepository;
 
 @Service
+@Transactional(rollbackOn = Exception.class)
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final UserRepository userRepository;
