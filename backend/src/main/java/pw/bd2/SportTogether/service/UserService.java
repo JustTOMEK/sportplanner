@@ -19,55 +19,7 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
 
-    public User register(String username, String password) {
-        if (username.isBlank()) {
-            throw new IllegalArgumentException("Empty username is not allowed");
-        }
-        if (password.isBlank()) {
-            throw new IllegalArgumentException("Empty password is not allowed");
-        }
-
-        String salt = generateRandomSalt();
-        String hashedPassword = hashPasswordWithSalt(password, salt);
-        LocalDateTime currentDate = LocalDateTime.now();
-        User user = new User(username, hashedPassword, salt);
-        userRepository.save(user);
-        return user;
-    }
-
-    public User login(String username, String enteredPassword) {
-        User user = findByUsername(username);
-
-        if (authenticateUser(user, enteredPassword)) {
-            return user;
-        }
-        throw new IllegalArgumentException("Wrong password");
-    }
-
-    public User findByUsername(String username){
+    public Optional<User> findByUsername(String username){
         return userRepository.findByUsername(username);
-    }
-
-    private String generateRandomSalt() {
-        SecureRandom random = new SecureRandom();
-        byte[] saltBytes = new byte[16];
-        random.nextBytes(saltBytes);
-
-        return Base64.getEncoder().encodeToString(saltBytes);
-    }
-
-    private String hashPassword(String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.encode(password);
-    }
-
-    private String hashPasswordWithSalt(String password, String salt) {
-        String saltedPassword = password + salt;
-        return hashPassword(saltedPassword);
-    }
-
-    public boolean authenticateUser(User user, String enteredPassword) {
-        String saltedPassword = enteredPassword + user.getSalt();
-        return new BCryptPasswordEncoder().matches(saltedPassword, user.getPasswordHash());
     }
 }
