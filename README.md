@@ -19,6 +19,8 @@ python check_db_connection.py
 ```
 
 ### Spring backend
+Katalog `backend/`
+
 #### Budowanie
 ```sh
 mvn package
@@ -30,6 +32,21 @@ java -jar target/SportTogether-0.0.1.jar
 ```
 
 API jest dostępne na: <http://localhost:8080/api/>
+
+### React frontend
+Katalog `frontend/`
+
+#### Instalacja zależności
+```sh
+npm install
+```
+
+#### Uruchomienie
+```sh
+npm start
+```
+
+Strona jest dostępna na: <http://localhost:3000/>
 
 ## Członkowie zespołu
 - Dominika Boguszewska
