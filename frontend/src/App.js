@@ -5,7 +5,7 @@ import Login from './Components/Login';
 import HomePage from './Pages/HomePage';
 import WelcomePage from './Pages/WelcomePage';
 
-const App = ({ onRegister }) => {
+const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState();
 
