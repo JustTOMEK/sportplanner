@@ -1,23 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function App() {
+
+const App = ({ onRegister }) => {
+  const [newUserName, setNewUserName] = useState("");
+  const [newUserPassword, setNewUserPassword] = useState("");
+
+  const handleRegisterUser = (e) => {
+  e.preventDefault();
+  const newUser = { name: newUserName, password: newUserPassword };
+  axios.post("http://localhost:8080/api/auth/register", newUser)
+      .then(response => {
+        alert('User added successfully!');
+        onRegister(response.data);
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 409) {
+          alert("User with this name exists");
+        } else {
+          alert("Error adding user");
+          console.error("Error adding user:", error);
+        }
+      });
+};
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <h2 className="text-3xl text-white mb-2">Register</h2>
+      <form onSubmit={handleRegisterUser} className="w-full flex flex-col">
+        <input
+            className="myinput mb-3"
+            autoFocus
+            required
+            type="text"
+            placeholder="Username"
+            value={newUserName}
+            onChange={(e) => setNewUserName(e.target.value)}
+        />
+        <input
+            className="myinput mb-3"
+            required
+            type="password"
+            placeholder="Password"
+            value={newUserPassword}
+            onChange={(e) => setNewUserPassword(e.target.value)}
+        />
+        <button
+            type="submit"
+            className="loginbutton loginbutton-submit"
         >
-          Learn React
-        </a>
-      </header>
+          Register
+        </button>
+      </form>
     </div>
   );
 }
