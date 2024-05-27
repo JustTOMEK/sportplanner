@@ -34,29 +34,29 @@ public class AuthenticationService {
             throw new EntityExistsException("User with the same name already in the database");
         }
 
-         var user = User.builder()
-                 .username(request.getUsername())
-                 .password(passwordEncoder.encode(request.getPassword()))
-                 .role(Role.USER)
-                 .build();
-         userRepository.save(user);
-         var jwt = jwtService.generateToken(user);
-         return AuthenticationResponse.builder()
-                 .token(jwt)
-                 .build();
+        var user = User.builder()
+            .username(request.getUsername())
+            .password(passwordEncoder.encode(request.getPassword()))
+            .role(Role.USER)
+            .build();
+        userRepository.save(user);
+        var jwt = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+            .token(jwt)
+            .build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getUsername(), request.getPassword()
-                )
-        );
+                    request.getUsername(), request.getPassword()
+                    )
+                );
         var user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         var jwt = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
-                .token(jwt)
-                .build();
+            .token(jwt)
+            .build();
     }
 }
