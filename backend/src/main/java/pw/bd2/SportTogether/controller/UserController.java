@@ -16,6 +16,7 @@ public class UserController {
     private final JwtService jwtService;
     @GetMapping
     public ResponseEntity<String> sayHello(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+        jwt = jwt.substring(7);
         return ResponseEntity.ok(jwtService.extractUsername(jwt));
     }
 }
