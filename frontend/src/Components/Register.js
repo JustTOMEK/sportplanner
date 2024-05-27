@@ -9,7 +9,7 @@ const Register = ({ onRegister }) => {
     const navigate = useNavigate();
     const handleRegisterUser = (e) => {
         e.preventDefault();
-        const newUser = { name: newUserName, password: newUserPassword };
+        const newUser = { username: newUserName, password: newUserPassword };
         axios.post("http://localhost:8080/api/auth/register", newUser)
             .then(response => {
                 alert('User added successfully!');

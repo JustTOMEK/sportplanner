@@ -17,7 +17,7 @@ function Login({ onLogin }) {
 
         try {
             const requestBody = {
-                name: username,
+                username: username,
                 password: password,
             };
 
