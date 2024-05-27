@@ -1,57 +1,35 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
+import { BrowserRouter as Router, Routes, Route, Navigate  } from 'react-router-dom';
+import Register from './Components/Register';
+import Login from './Components/Login';
+import HomePage from './Pages/HomePage';
+import WelcomePage from './Pages/WelcomePage';
 
 const App = ({ onRegister }) => {
-  const [newUserName, setNewUserName] = useState("");
-  const [newUserPassword, setNewUserPassword] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState();
 
-  const handleRegisterUser = (e) => {
-  e.preventDefault();
-  const newUser = { name: newUserName, password: newUserPassword };
-  axios.post("http://localhost:8080/api/auth/register", newUser)
-      .then(response => {
-        alert('User added successfully!');
-        onRegister(response.data);
-      })
-      .catch(error => {
-        if (error.response && error.response.status === 409) {
-          alert("User with this name exists");
-        } else {
-          alert("Error adding user");
-          console.error("Error adding user:", error);
-        }
-      });
-};
+    const handleLogin = (user) => {
+        setUser(user);
+        setIsLoggedIn(true);
+    };
+    
+    const handleRegister = (user) => {
+        setUser(user);
+        setIsLoggedIn(true);
+    };
 
   return (
     <div className="App">
-      <h2 className="text-3xl text-white mb-2">Register</h2>
-      <form onSubmit={handleRegisterUser} className="w-full flex flex-col">
-        <input
-            className="myinput mb-3"
-            autoFocus
-            required
-            type="text"
-            placeholder="Username"
-            value={newUserName}
-            onChange={(e) => setNewUserName(e.target.value)}
-        />
-        <input
-            className="myinput mb-3"
-            required
-            type="password"
-            placeholder="Password"
-            value={newUserPassword}
-            onChange={(e) => setNewUserPassword(e.target.value)}
-        />
-        <button
-            type="submit"
-            className="loginbutton loginbutton-submit"
-        >
-          Register
-        </button>
-      </form>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Navigate to="/welcome"/>}/>
+                <Route path="/welcome" element={<WelcomePage/>}/>
+                <Route path="/login" element={<Login onLogin={handleLogin}/>}/>
+                <Route path="/register" element={<Register onRegister={handleRegister}/>}/>
+                <Route path="/home" element={isLoggedIn ? <HomePage user={user}  /> : <Navigate to="/login"/>}/>
+            </Routes>
+        </Router>
     </div>
   );
 }
