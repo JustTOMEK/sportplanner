@@ -1,7 +1,11 @@
 package pw.bd2.SportTogether.service;
 
+import jakarta.persistence.EntityExistsException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,6 +28,12 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        Optional<User> optionalUser = userRepository.findByUsername(request.getUsername());
+
+        if (optionalUser.isPresent()) {
+            throw new EntityExistsException("User with the same name already in the database");
+        }
+
          var user = User.builder()
                  .username(request.getUsername())
                  .password(passwordEncoder.encode(request.getPassword()))
