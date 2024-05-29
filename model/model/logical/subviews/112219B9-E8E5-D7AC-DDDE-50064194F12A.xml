@@ -36,7 +36,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="B0158174-D89F-C949-A35B-8108C2940AB0" otype="Entity" vid="D4A79104-A348-E094-313A-81DB7AD368C0">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="38" y="376" width="235" height="121"/>
+<bounds x="38" y="393" width="235" height="108"/>
 </OView>
 </objectViews>
 <connectors>
@@ -66,8 +66,8 @@
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="263" y="376"/>
-<point x="263" y="284"/>
+<point x="248" y="393"/>
+<point x="248" y="284"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="434D27B1-5A62-CD53-2D12-8FD69578B4D5" otype="Relation" vid_source="4359D36B-258F-CF93-3F35-C796846BC59F" vid_target="B2375AC7-1CBA-34E7-90E4-D1B04FDF5A36">
@@ -106,13 +106,13 @@
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="491" y="597" width="62" height="19"/>
+<labelBounds x="491" y="589" width="62" height="19"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="491" y="664" width="52" height="30"/>
+<labelBounds x="491" y="704" width="52" height="30"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
@@ -127,19 +127,19 @@
 <lineWidth>1</lineWidth>
 <sourceLabel class="oracle.dbtools.crest.model.design.Label">
 <site>0</site>
-<labelBounds x="283" y="428" width="39" height="23"/>
+<labelBounds x="283" y="424" width="39" height="23"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </sourceLabel>
 <targetLabel class="oracle.dbtools.crest.model.design.Label">
 <site>2</site>
-<labelBounds x="304" y="454" width="59" height="31"/>
+<labelBounds x="304" y="450" width="59" height="31"/>
 <noBackgroundColor>true</noBackgroundColor>
 <noForegroundColor>true</noForegroundColor>
 </targetLabel>
 <points>
-<point x="273" y="451"/>
-<point x="369" y="451"/>
+<point x="273" y="447"/>
+<point x="369" y="447"/>
 </points>
 </Connector>
 </connectors>

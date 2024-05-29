@@ -54,19 +54,6 @@
 <dataTypeSize>50</dataTypeSize>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="password salt" id="0553BC4D-DEBD-CCD1-C1F9-EDFC144FEAF1">
-<createdBy>shark</createdBy>
-<createdTime>2024-05-24 15:28:18 UTC</createdTime>
-<ownerDesignName>model</ownerDesignName>
-<engineerTo>
-<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>512</dataTypeSize>
-<ownDataTypeParameters>512,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="password hash" id="7890D162-5F93-84E0-FD0E-1144DE596587">
 <createdBy>dominika</createdBy>
 <createdTime>2024-05-10 17:38:15 UTC</createdTime>
