@@ -1,5 +1,5 @@
 CREATE TABLE address (
-    id              INTEGER NOT NULL,
+    id              INTEGER AUTO_INCREMENT CONSTRAINT address_pk PRIMARY KEY,
     country         VARCHAR(50) NOT NULL,
     city            VARCHAR(50) NOT NULL,
     street          VARCHAR(50),
@@ -8,10 +8,8 @@ CREATE TABLE address (
     postal_code     VARCHAR(10)
 );
 
-ALTER TABLE address ADD CONSTRAINT address_pk PRIMARY KEY (id);
-
 CREATE TABLE event (
-    id          INTEGER NOT NULL,
+    id          INTEGER AUTO_INCREMENT CONSTRAINT event_pk PRIMARY KEY,
     title       VARCHAR(50) NOT NULL,
     description TEXT,
     owner_id    INTEGER NOT NULL,
@@ -21,31 +19,23 @@ CREATE TABLE event (
     longitude   DOUBLE
 );
 
-ALTER TABLE event ADD CONSTRAINT event_pk PRIMARY KEY (id);
-
 CREATE TABLE participation (
-    id       INTEGER NOT NULL,
+    id       INTEGER AUTO_INCREMENT CONSTRAINT participation_pk PRIMARY KEY,
     user_id  INTEGER NOT NULL,
     event_id INTEGER NOT NULL
 );
 
-ALTER TABLE participation ADD CONSTRAINT participation_pk PRIMARY KEY (id);
-
 CREATE TABLE sport (
-    id   INTEGER NOT NULL,
+    id   INTEGER AUTO_INCREMENT CONSTRAINT sport_pk PRIMARY KEY,
     name VARCHAR(20) NOT NULL
 );
 
-ALTER TABLE sport ADD CONSTRAINT sport_pk PRIMARY KEY (id);
-
 CREATE TABLE user (
-    id            INTEGER NOT NULL,
+    id            INTEGER AUTO_INCREMENT CONSTRAINT user_pk PRIMARY KEY,
     username      VARCHAR(20) NOT NULL,
     email         VARCHAR(50),
     password_hash VARCHAR(512) NOT NULL
 );
-
-ALTER TABLE user ADD CONSTRAINT user_pk PRIMARY KEY (id);
 
 ALTER TABLE event
     ADD CONSTRAINT event_address_fk FOREIGN KEY (address_id)
