@@ -1,0 +1,126 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1CF4C458-85F7-A8CB-6E26-D0ABD3E62705" name="Address">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:26:41 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="D70BBED3-9DCF-3919-4F66-8D083A6D2AE0">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:26:55 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="country" id="8A789D6D-5BCA-67B6-1640-F7D16F980F50">
+<createdBy>dominika</createdBy>
+<createdTime>2024-05-11 17:38:55 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="city" id="F5098D31-6F76-C467-1408-176D2F70A392">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:51:55 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="street" id="B6F4FF29-BEE4-A757-827B-FFC6D6587954">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:49:29 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="building number" id="FF479540-FD13-6B15-F5B6-A9AA3343A848">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:50:02 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="flat number" id="C0BEF651-0E1C-AAEC-0D36-190AB623625C">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:51:25 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="postal code" id="E98FD876-EA96-F956-1F5E-B7EC6D8658EF">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:52:48 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5DBABA22-6467-ED98-1CAA-C807A58DE549" name="Address_PK">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:27:04 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D70BBED3-9DCF-3919-4F66-8D083A6D2AE0</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

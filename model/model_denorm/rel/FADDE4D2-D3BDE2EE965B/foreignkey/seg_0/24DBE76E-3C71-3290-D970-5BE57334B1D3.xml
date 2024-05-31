@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="24DBE76E-3C71-3290-D970-5BE57334B1D3" containerWithKeyObject="A3664B77-E38F-43C8-77B1-DCA892857B90" localFKIndex="85254DBB-4BD4-F926-7B78-1907C04B9701" name="Event_Address_FK">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>434D27B1-5A62-CD53-2D12-8FD69578B4D5</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<referredTableLongName>Address</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>664108BB-458B-67EF-7369-A944D00836C4</referredTableID>
+<keyObject>0E23FBDC-6704-C965-940F-B92DEB7A833B</keyObject>
+<referredKeyID>0E23FBDC-6704-C965-940F-B92DEB7A833B</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="252F4573-10F1-885E-31B1-D5D27010517D" name="Sport">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:14:23 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="C6580223-74C5-4FCA-CC76-97AB8A47EA40">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:14:46 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="15C90926-5DB6-9840-B74B-5492E8187E52">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:33:06 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="DCD6B1E2-E2C6-498C-4073-1C88F3D59593" name="Sport PK">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:15:01 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C6580223-74C5-4FCA-CC76-97AB8A47EA40</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

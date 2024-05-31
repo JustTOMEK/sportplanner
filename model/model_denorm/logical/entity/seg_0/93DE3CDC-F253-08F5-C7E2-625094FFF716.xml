@@ -1,0 +1,129 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="93DE3CDC-F253-08F5-C7E2-625094FFF716" name="Event">
+<createdBy>piotr</createdBy>
+<createdTime>2024-04-24 09:50:04 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="61F82C8E-418F-61A3-A81B-AD63D33133CC">
+<createdBy>piotr</createdBy>
+<createdTime>2024-04-24 09:50:15 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="title" id="1D797DD2-AC5D-0899-2B7B-891544B99EDD">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-24 15:14:08 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="description" id="6E82D225-4677-3D35-A3E0-D120D21766C8">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:54:43 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Owner id" id="E599843C-462F-ADD0-6A03-D651109C78AE">
+<createdBy>piotr</createdBy>
+<createdTime>2024-04-24 10:17:45 UTC</createdTime>
+<generatorID>D905926D-91C6-59D8-5E61-C266346B15F2</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<referedAttribute>E3E1B133-C571-B90A-6F45-5C66942F67F5</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Sport id" id="F7823862-86D7-561F-5922-4A9C7EFAD051">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-06 07:16:00 UTC</createdTime>
+<generatorID>9904E9A1-4F94-5265-D51C-A66F452DBFB0</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<referedAttribute>C6580223-74C5-4FCA-CC76-97AB8A47EA40</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Address id" id="3B75D929-15AC-8E11-70DE-7187BD586EC3">
+<createdBy>piotr</createdBy>
+<createdTime>2024-05-11 18:02:34 UTC</createdTime>
+<generatorID>434D27B1-5A62-CD53-2D12-8FD69578B4D5</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<referedAttribute>D70BBED3-9DCF-3919-4F66-8D083A6D2AE0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Coordinates id" id="D64E2B90-B99A-5A63-0D21-7798C578AC94">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:33:05 UTC</createdTime>
+<generatorID>10470CBD-997F-B47A-E235-47FAEEE7488F</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>FB3D2EDE-F471-8848-D807-3D2F10B21A7A</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B84F18FA-41C6-1B74-C0F6-0501EAD14136" name="Event PK">
+<createdBy>piotr</createdBy>
+<createdTime>2024-04-24 09:50:24 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>61F82C8E-418F-61A3-A81B-AD63D33133CC</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

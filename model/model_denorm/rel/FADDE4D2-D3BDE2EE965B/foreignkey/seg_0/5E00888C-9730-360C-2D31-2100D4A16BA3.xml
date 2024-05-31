@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="5E00888C-9730-360C-2D31-2100D4A16BA3" containerWithKeyObject="A3664B77-E38F-43C8-77B1-DCA892857B90" localFKIndex="9C7B8C86-F56D-FDBC-6ABD-08D760277ED2" name="Event_Sport_FK">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>9904E9A1-4F94-5265-D51C-A66F452DBFB0</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<referredTableLongName>Sport</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>9FC8060F-2354-1564-07D8-9432B0FEAEDE</referredTableID>
+<keyObject>9581437C-8D54-9ECE-7265-1EA2818AF262</keyObject>
+<referredKeyID>9581437C-8D54-9ECE-7265-1EA2818AF262</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

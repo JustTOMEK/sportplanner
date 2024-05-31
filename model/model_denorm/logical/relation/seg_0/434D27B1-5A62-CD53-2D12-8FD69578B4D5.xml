@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Event Address FK" directorySegmentName="seg_0" id="434D27B1-5A62-CD53-2D12-8FD69578B4D5">
+<createdBy>piotr</createdBy>
+<createdTime>2024-04-24 10:20:06 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<sourcePk>5DBABA22-6467-ED98-1CAA-C807A58DE549</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>is in</nameOnSource>
+<nameOnTarget>happens in</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>1CF4C458-85F7-A8CB-6E26-D0ABD3E62705</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>93DE3CDC-F253-08F5-C7E2-625094FFF716</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

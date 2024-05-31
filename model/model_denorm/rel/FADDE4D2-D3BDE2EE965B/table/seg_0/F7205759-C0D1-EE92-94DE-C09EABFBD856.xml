@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F7205759-C0D1-EE92-94DE-C09EABFBD856" name="Participation">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>6226B696-E663-4CDF-65DA-B55FF739A3BD</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="CBCB8547-D4C0-7F73-3AE7-27A2FE7590C0">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>B5B871CE-671E-1DDE-C1AB-B2D3F655E7CD</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="User_id" id="6924DE09-DFE6-76ED-D8AF-444126B2A663">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>A2C1245E-2153-3E40-0A7F-FB03A3B65B10</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="49F63012-32EA-4C04-FBE6-0F27230FE270" referredColumn="0632E27E-9508-C9F1-6B92-33FED68ECE40"/>
+</associations>
+</Column>
+<Column name="Event_id" id="D3814AC4-D46C-38E7-A4A1-9F62471D5E89">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>62DABB3F-0935-5C1B-A130-FD0CEDD01234</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7C7056F0-3BC4-8599-DF23-837158810B97" referredColumn="80F86FDA-0191-0A5F-8E37-6567B44EA416"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1D9A7EC9-26A0-E48A-588E-3B1E21DEE555" name="Participation_PK">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>96AC9459-CA63-C96C-5E70-DD0C82F11279</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CBCB8547-D4C0-7F73-3AE7-27A2FE7590C0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DD3CC253-94C5-BA8C-3B07-12676ACFA54F" name="Participation_Event_FK">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>82926D59-09FE-609A-9480-2B369B2ED997</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D3814AC4-D46C-38E7-A4A1-9F62471D5E89"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="45EA580F-3EA4-A52E-3F3C-D229567D814C" name="Participation_User_FK">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-23 13:39:48 UTC</createdTime>
+<generatorID>1CFE4657-8F36-CC73-9487-767F3A1864CA</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6924DE09-DFE6-76ED-D8AF-444126B2A663"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
