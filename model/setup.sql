@@ -32,8 +32,8 @@ CREATE TABLE sport (
 
 CREATE TABLE user (
     id            INTEGER AUTO_INCREMENT CONSTRAINT user_pk PRIMARY KEY,
-    username      VARCHAR(20) NOT NULL,
-    email         VARCHAR(50),
+    username      VARCHAR(20) NOT NULL CONSTRAINT username_uq UNIQUE,
+    email         VARCHAR(50) CONSTRAINT email_uq UNIQUE,
     password_hash VARCHAR(512) NOT NULL
 );
 
