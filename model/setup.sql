@@ -34,7 +34,8 @@ CREATE TABLE user (
     id       INTEGER AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(20) NOT NULL UNIQUE,
     email    VARCHAR(50) UNIQUE,
-    password VARCHAR(512) NOT NULL
+    password VARCHAR(512) NOT NULL,
+    role     ENUM('USER','ADMIN')
 );
 
 ALTER TABLE event
