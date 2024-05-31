@@ -1,24 +1,24 @@
 CREATE TABLE address (
     id              INTEGER NOT NULL,
-    country         VARCHAR2(50 CHAR) NOT NULL,
-    city            VARCHAR2(50 CHAR) NOT NULL,
-    street          VARCHAR2(50 CHAR),
+    country         VARCHAR(50) NOT NULL,
+    city            VARCHAR(50) NOT NULL,
+    street          VARCHAR(50),
     building_number INTEGER,
     flat_number     INTEGER,
-    postal_code     VARCHAR2(10 CHAR)
+    postal_code     VARCHAR(10)
 );
 
 ALTER TABLE address ADD CONSTRAINT address_pk PRIMARY KEY (id);
 
 CREATE TABLE event (
     id          INTEGER NOT NULL,
-    title       VARCHAR2(50) NOT NULL,
-    description CLOB,
+    title       VARCHAR(50) NOT NULL,
+    description TEXT,
     owner_id    INTEGER NOT NULL,
     sport_id    INTEGER NOT NULL,
     address_id  INTEGER NOT NULL,
-    latitude    NUMBER,
-    longitude   NUMBER
+    latitude    DOUBLE,
+    longitude   DOUBLE
 );
 
 ALTER TABLE event ADD CONSTRAINT event_pk PRIMARY KEY (id);
@@ -33,16 +33,16 @@ ALTER TABLE participation ADD CONSTRAINT participation_pk PRIMARY KEY (id);
 
 CREATE TABLE sport (
     id   INTEGER NOT NULL,
-    name VARCHAR2(20) NOT NULL
+    name VARCHAR(20) NOT NULL
 );
 
 ALTER TABLE sport ADD CONSTRAINT sport_pk PRIMARY KEY (id);
 
 CREATE TABLE user (
     id            INTEGER NOT NULL,
-    username      VARCHAR2(20) NOT NULL,
-    email         VARCHAR2(50),
-    password_hash VARCHAR2(512) NOT NULL
+    username      VARCHAR(20) NOT NULL,
+    email         VARCHAR(50),
+    password_hash VARCHAR(512) NOT NULL
 );
 
 ALTER TABLE user ADD CONSTRAINT user_pk PRIMARY KEY (id);
