@@ -31,10 +31,10 @@ CREATE TABLE sport (
 );
 
 CREATE TABLE user (
-    id            INTEGER AUTO_INCREMENT PRIMARY KEY,
-    username      VARCHAR(20) NOT NULL UNIQUE,
-    email         VARCHAR(50) UNIQUE,
-    password_hash VARCHAR(512) NOT NULL
+    id       INTEGER AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(20) NOT NULL UNIQUE,
+    email    VARCHAR(50) UNIQUE,
+    password VARCHAR(512) NOT NULL
 );
 
 ALTER TABLE event
