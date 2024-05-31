@@ -88,21 +88,29 @@
 <colAssociation fkAssociation="24DBE76E-3C71-3290-D970-5BE57334B1D3" referredColumn="F8577401-7C65-7C26-0BDD-8BE2FD448C01"/>
 </associations>
 </Column>
-<Column name="Coordinates_id" id="20093D40-73FC-324C-23D5-168ED2EA73D6">
+<Column name="latitude" id="4C1964B1-E5FA-5C5F-EAAD-485A39CC47BD">
 <createdBy>shark</createdBy>
-<createdTime>2024-05-23 13:39:48 UTC</createdTime>
-<generatorID>D64E2B90-B99A-5A63-0D21-7798C578AC94</generatorID>
+<createdTime>2024-05-31 14:49:03 UTC</createdTime>
+<generatorID>52D569CF-D76D-7349-7B80-D12F9A1319D0</generatorID>
 <ownerDesignName>model_denorm</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
+<logicalDatatype>LOGDT020</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="2D3FDA07-FE55-0160-7D36-A1AB8821D27B" referredColumn="A0B4525D-5A54-E837-523A-F404F6390B04"/>
-</associations>
+</Column>
+<Column name="longitude" id="EBCA243B-DF5F-78B7-D683-F67B180BD857">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-31 14:49:03 UTC</createdTime>
+<generatorID>12D35852-B74E-1BC1-6193-27DCA43151DB</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
@@ -116,17 +124,6 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="80F86FDA-0191-0A5F-8E37-6567B44EA416"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="D076F340-A7B5-046A-1715-9231712D5261" name="Event_Coordinates_FK">
-<createdBy>shark</createdBy>
-<createdTime>2024-05-23 13:39:48 UTC</createdTime>
-<generatorID>10470CBD-997F-B47A-E235-47FAEEE7488F</generatorID>
-<ownerDesignName>model_denorm</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="20093D40-73FC-324C-23D5-168ED2EA73D6"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="85254DBB-4BD4-F926-7B78-1907C04B9701" name="Event_Address_FK">

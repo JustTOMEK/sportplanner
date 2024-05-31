@@ -53,6 +53,32 @@
 <logicalDatatype>LOGDT040</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="latitude" id="52D569CF-D76D-7349-7B80-D12F9A1319D0">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-31 14:48:23 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="longitude" id="12D35852-B74E-1BC1-6193-27DCA43151DB">
+<createdBy>shark</createdBy>
+<createdTime>2024-05-31 14:48:45 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="Owner id" id="E599843C-462F-ADD0-6A03-D651109C78AE">
 <createdBy>piotr</createdBy>
 <createdTime>2024-04-24 10:17:45 UTC</createdTime>
@@ -90,21 +116,6 @@
 <item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
 </engineerTo>
 <referedAttribute>D70BBED3-9DCF-3919-4F66-8D083A6D2AE0</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="Coordinates id" id="D64E2B90-B99A-5A63-0D21-7798C578AC94">
-<createdBy>shark</createdBy>
-<createdTime>2024-05-23 13:33:05 UTC</createdTime>
-<generatorID>10470CBD-997F-B47A-E235-47FAEEE7488F</generatorID>
-<ownerDesignName>model_denorm</ownerDesignName>
-<engineerTo>
-<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<referedAttribute>FB3D2EDE-F471-8848-D807-3D2F10B21A7A</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
