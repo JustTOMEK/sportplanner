@@ -3,15 +3,28 @@
 W celu otworzenia modelu należy uruchomić Oracle SQL Developer, a następnie otworzyć model poprzez File -> Data Modeler -> Open
 
 ## Uruchamianie
-### Zmienne środowiskowe – dane dostępowe
+### Ustawienie danych dostępowych
+#### Sposób 1 – `.env`
+`backend/.env`:
+
 ```sh
-export DB_HOST=… DB_PORT=… DB_NAME=… DB_USER=… DB_PASSWORD=…
+DB_HOST=...
+DB_PORT=...
+DB_NAME=...
+TEST_DB_NAME=...
+DB_USER=...
+DB_PASSWORD=...
+```
+
+#### Sposób 2 – ręczne ustawienie
+```sh
+export DB_HOST=… DB_PORT=… DB_NAME=… TEST_DB_NAME=… DB_USER=… DB_PASSWORD=…
 ```
 
 ### MySQL
 #### Testowanie połączenia
 ```sh
-pip install mysql-connector-python
+pip install python-dotenv mysql-connector-python
 ```
 
 ```sh

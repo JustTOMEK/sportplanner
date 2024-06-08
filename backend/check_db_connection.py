@@ -2,15 +2,19 @@
 
 import os
 
+from dotenv import load_dotenv
 import mysql.connector
 
 
+# Load environment variables from .env file
+load_dotenv()
+
 credentials = {
-    "host": os.environ["DB_HOST"],
-    "port": os.environ["DB_PORT"],
-    "database": os.environ["DB_NAME"],
-    "user": os.environ["DB_USER"],
-    "password": os.environ["DB_PASSWORD"],
+    "host": os.getenv("DB_HOST"),
+    "port": os.getenv("DB_PORT"),
+    "database": os.getenv("DB_NAME"),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
 }
 
 with mysql.connector.connect(**credentials) as connection, connection.cursor() as cursor:
