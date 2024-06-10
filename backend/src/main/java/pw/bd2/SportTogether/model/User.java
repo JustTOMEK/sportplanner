@@ -51,4 +51,7 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @OneToOne(mappedBy = "owner_id")
+    private Event event;
 }

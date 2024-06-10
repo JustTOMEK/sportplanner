@@ -32,4 +32,7 @@ public class Address {
 
     @Column(length = 10)
     private String postal_code;
+
+    @OneToOne(mappedBy = "address_id")
+    private Event event;
 }
