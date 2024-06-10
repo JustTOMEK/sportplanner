@@ -2,7 +2,6 @@ package pw.bd2.SportTogether.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pw.bd2.SportTogether.model.Participation;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,25 +22,19 @@ public class Event {
 
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "owner_id")
-    @Column(nullable = false)
-    private Integer owner_id;
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    private User owner;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "sport_id")
-    @Column(nullable = false)
-    private Integer sport_id;
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    private Sport sport;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "address_id")
-    @Column(nullable = false)
-    private Integer address_id;
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    private Address address;
 
     private Double latitude;
 
     private Double longitude;
-
-    @OneToOne(mappedBy = "event_id")
-    private Participation participation;
 }

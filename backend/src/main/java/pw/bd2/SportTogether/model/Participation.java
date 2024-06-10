@@ -17,13 +17,11 @@ public class Participation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "user_id")
-    @Column(nullable = false)
-    private Integer user_id;
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    private User user;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "event_id")
-    @Column(nullable = false)
-    private Integer event_id;
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    private Event event;
 }

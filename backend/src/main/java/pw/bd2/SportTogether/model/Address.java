@@ -2,7 +2,6 @@ package pw.bd2.SportTogether.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pw.bd2.SportTogether.model.Event;
 
 import java.util.Collection;
 import java.util.List;
@@ -33,7 +32,4 @@ public class Address {
 
     @Column(length = 10)
     private String postal_code;
-
-    @OneToOne(mappedBy = "address_id")
-    private Event event;
 }
