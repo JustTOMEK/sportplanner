@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/adresses")
+@RequestMapping("/api/addresses")
 public class AddressController {
     @Autowired
     private AddressService addressService;
