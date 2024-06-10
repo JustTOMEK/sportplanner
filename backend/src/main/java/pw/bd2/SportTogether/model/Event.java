@@ -17,7 +17,6 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 50)
     private String title;
 
     private String description;
