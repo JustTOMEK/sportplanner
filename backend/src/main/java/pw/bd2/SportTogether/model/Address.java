@@ -2,6 +2,7 @@ package pw.bd2.SportTogether.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import pw.bd2.SportTogether.model.Event;
 
 import java.util.Collection;
 import java.util.List;

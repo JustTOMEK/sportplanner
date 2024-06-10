@@ -2,6 +2,7 @@ package pw.bd2.SportTogether.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import pw.bd2.SportTogether.model.Participation;
 
 import java.util.Collection;
 import java.util.List;
@@ -40,4 +41,7 @@ public class Event {
     private Double latitude;
 
     private Double longitude;
+
+    @OneToOne(mappedBy = "event_id")
+    private Participation participation;
 }
