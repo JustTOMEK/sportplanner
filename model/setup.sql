@@ -9,14 +9,15 @@ CREATE TABLE address (
 );
 
 CREATE TABLE event (
-    id          INTEGER AUTO_INCREMENT PRIMARY KEY,
-    title       VARCHAR(50) NOT NULL,
-    description TEXT,
-    owner_id    INTEGER NOT NULL,
-    sport_id    INTEGER NOT NULL,
-    address_id  INTEGER NOT NULL,
-    latitude    DOUBLE,
-    longitude   DOUBLE
+    id                INTEGER AUTO_INCREMENT PRIMARY KEY,
+    title             VARCHAR(50) NOT NULL,
+    description       TEXT,
+    owner_id          INTEGER NOT NULL,
+    sport_id          INTEGER NOT NULL,
+    address_id        INTEGER NOT NULL,
+    latitude          DOUBLE,
+    longitude         DOUBLE,
+    modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE participation (
@@ -27,7 +28,7 @@ CREATE TABLE participation (
 
 CREATE TABLE sport (
     id   INTEGER AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(20) NOT NULL
+    name VARCHAR(20) NOT NULL UNIQUE
 );
 
 CREATE TABLE user (
@@ -57,4 +58,27 @@ ALTER TABLE participation
 ALTER TABLE participation
     ADD CONSTRAINT participation_user_fk FOREIGN KEY (user_id)
         REFERENCES user (id);
+
+
+DELIMITER //
+
+CREATE TRIGGER before_sport_delete
+BEFORE DELETE ON sport
+FOR EACH ROW
+BEGIN
+    DECLARE other_sport_id INT;
+
+    -- Get the id of the sport 'Other'
+    SELECT id INTO other_sport_id
+    FROM sport
+    WHERE name = 'Other'
+    LIMIT 1;
+
+    -- Update the sport_id in event table to 'Other' sport id
+    UPDATE event
+    SET sport_id = other_sport_id
+    WHERE sport_id = OLD.id;
+END //
+
+DELIMITER ;
 
