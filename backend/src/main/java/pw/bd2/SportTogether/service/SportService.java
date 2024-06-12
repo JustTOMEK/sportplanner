@@ -34,12 +34,8 @@ public class SportService {
     public List<Sport> getAllSports() {return sportRepository.findAll();}
 
     public Sport createSport(String sportName, String username) {
-        User user = userRepository.findByUsername(username).orElseThrow(
-                () -> new EntityNotFoundException("User not in database"));
-        if (user.getRole().equals(Role.ADMIN)){
-            return sportRepository.save(new Sport(sportName));
-        }
-        throw new AccessDeniedException("User does not have permission to create a sport");
+        adminOnly(username);
+        return sportRepository.save(new Sport(sportName));
     }
 
     public Optional<Sport> getSportById(Integer id) {
@@ -52,5 +48,15 @@ public class SportService {
 
     public void deleteSport(Integer id) {
         sportRepository.deleteById(id);
+    }
+
+    public void adminOnly(String username) {
+        User user = userRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new EntityNotFoundException("User not in database"));
+
+        if (!user.getRole().equals(Role.ADMIN)) {
+            throw new AccessDeniedException("User does not have permission to perform this action");
+        }
     }
 }
