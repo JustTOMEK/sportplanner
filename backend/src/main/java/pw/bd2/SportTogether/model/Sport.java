@@ -18,4 +18,8 @@ public class Sport {
     private Integer id;
 
     private String name;
+
+    public Sport(String name) {
+        this.name = name;
+    }
 }
