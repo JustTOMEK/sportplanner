@@ -6,5 +6,5 @@ INSERT INTO sport (name) VALUES ('Football');
 
 INSERT INTO address (country, city) VALUES ('Poland', 'Warsaw');
 
-INSERT INTO event (title, owner_id, sport_id, address_id) VALUES ('Test event', 2, 2, 1);
+INSERT INTO event (title, description, owner_id, sport_id, address_id) VALUES ('Test event', 'Example description', 2, 2, 1);
 
