@@ -21,12 +21,6 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
 
-    public Boolean isAdmin(String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return user.getRole().equals(Role.ADMIN);
-    }
-
     public Optional<User> findByUsername(String username){
         return userRepository.findByUsername(username);
     }
