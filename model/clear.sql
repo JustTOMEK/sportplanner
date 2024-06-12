@@ -6,5 +6,5 @@ DROP TABLE IF EXISTS `sport`;
 DROP TABLE IF EXISTS `user`;
 SET FOREIGN_KEY_CHECKS = 1;
 
-DROP TRIGGER before_sport_delete;
+DROP TRIGGER IF EXISTS before_sport_delete;
 
