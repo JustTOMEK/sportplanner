@@ -40,7 +40,6 @@ public class SportController {
     @PostMapping("/create")
     public ResponseEntity<Sport> createSport(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody String sportName) {
         try {
-            System.out.println(sportName);
             Sport sport =  sportService.createSport(sportName, jwtService.extractUsername(jwt));
             return ResponseEntity.status(HttpStatus.CREATED).body(sport);
         } catch (UsernameNotFoundException e) {
