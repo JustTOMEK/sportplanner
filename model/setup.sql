@@ -9,14 +9,15 @@ CREATE TABLE address (
 );
 
 CREATE TABLE event (
-    id          INTEGER AUTO_INCREMENT PRIMARY KEY,
-    title       VARCHAR(50) NOT NULL,
-    description TEXT,
-    owner_id    INTEGER NOT NULL,
-    sport_id    INTEGER NOT NULL,
-    address_id  INTEGER NOT NULL,
-    latitude    DOUBLE,
-    longitude   DOUBLE
+    id                INTEGER AUTO_INCREMENT PRIMARY KEY,
+    title             VARCHAR(50) NOT NULL,
+    description       TEXT,
+    owner_id          INTEGER NOT NULL,
+    sport_id          INTEGER NOT NULL,
+    address_id        INTEGER NOT NULL,
+    latitude          DOUBLE,
+    longitude         DOUBLE,
+    modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE participation (
