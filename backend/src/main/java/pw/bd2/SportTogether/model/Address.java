@@ -28,4 +28,13 @@ public class Address {
     private Integer flat_number;
 
     private String postal_code;
+
+    public Address(String country, String city, String street, Integer building_number, Integer flat_number, String postal_code) {
+        this.country = country;
+        this.city = city;
+        this.street = street;
+        this.building_number = building_number;
+        this.flat_number = flat_number;
+        this.postal_code = postal_code;
+    }
 }

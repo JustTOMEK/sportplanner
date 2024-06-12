@@ -36,4 +36,14 @@ public class Event {
     private Double latitude;
 
     private Double longitude;
+
+    public Event(String title, String description, User owner, Sport sport, Address address, Double latitude, Double longitude) {
+        this.title = title;
+        this.description = description;
+        this.owner = owner;
+        this.sport = sport;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 }
