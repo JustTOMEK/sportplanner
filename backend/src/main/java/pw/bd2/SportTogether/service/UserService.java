@@ -3,8 +3,10 @@ package pw.bd2.SportTogether.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pw.bd2.SportTogether.model.Role;
 import pw.bd2.SportTogether.model.User;
 import pw.bd2.SportTogether.repository.UserRepository;
 
@@ -18,6 +20,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
+    public Boolean isAdmin(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return user.getRole().equals(Role.ADMIN);
+    }
 
     public Optional<User> findByUsername(String username){
         return userRepository.findByUsername(username);
