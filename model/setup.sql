@@ -59,3 +59,26 @@ ALTER TABLE participation
     ADD CONSTRAINT participation_user_fk FOREIGN KEY (user_id)
         REFERENCES user (id);
 
+
+DELIMITER //
+
+CREATE TRIGGER before_sport_delete
+BEFORE DELETE ON sport
+FOR EACH ROW
+BEGIN
+    DECLARE other_sport_id INT;
+
+    -- Get the id of the sport 'Other'
+    SELECT id INTO other_sport_id
+    FROM sport
+    WHERE name = 'Other'
+    LIMIT 1;
+
+    -- Update the sport_id in event table to 'Other' sport id
+    UPDATE event
+    SET sport_id = other_sport_id
+    WHERE sport_id = OLD.id;
+END //
+
+DELIMITER ;
+
