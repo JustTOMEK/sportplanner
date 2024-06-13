@@ -112,6 +112,18 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="modification_date" id="DF6A958A-FE25-A0AE-84D6-406499268D39">
+<createdBy>shark</createdBy>
+<createdTime>2024-06-13 09:03:19 UTC</createdTime>
+<generatorID>12D35852-B74E-1BC1-6193-27DCA43151DB</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="214E9C98-E852-3BAC-257C-F20ECA96C69A" name="Event_PK">

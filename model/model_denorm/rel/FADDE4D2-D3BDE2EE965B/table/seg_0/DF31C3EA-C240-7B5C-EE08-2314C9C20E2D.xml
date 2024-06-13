@@ -56,6 +56,17 @@
 <ownDataTypeParameters>512,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="role" id="F0BE32E2-2B91-8E39-158C-371249443920">
+<createdBy>shark</createdBy>
+<createdTime>2024-06-13 08:57:54 UTC</createdTime>
+<generatorID>7890D162-5F93-84E0-FD0E-1144DE596587</generatorID>
+<ownerDesignName>model_denorm</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="EA722931-E881-B55B-9118-DB072D722697" name="User_PK">

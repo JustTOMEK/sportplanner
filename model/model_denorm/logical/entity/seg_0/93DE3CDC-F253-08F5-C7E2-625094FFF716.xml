@@ -66,7 +66,20 @@
 <logicalDatatype>LOGDT020</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="longitude" id="12D35852-B74E-1BC1-6193-27DCA43151DB">
+<Attribute name="longitude" id="430ED717-F2D4-E58E-89E6-519C6A3A00ED">
+<createdBy>shark</createdBy>
+<createdTime>2024-06-13 09:05:10 UTC</createdTime>
+<ownerDesignName>model_denorm</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="modification date" id="12D35852-B74E-1BC1-6193-27DCA43151DB">
 <createdBy>shark</createdBy>
 <createdTime>2024-05-31 14:48:45 UTC</createdTime>
 <ownerDesignName>model_denorm</ownerDesignName>
@@ -76,7 +89,7 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT020</logicalDatatype>
+<logicalDatatype>LOGDT015</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Owner id" id="E599843C-462F-ADD0-6A03-D651109C78AE">

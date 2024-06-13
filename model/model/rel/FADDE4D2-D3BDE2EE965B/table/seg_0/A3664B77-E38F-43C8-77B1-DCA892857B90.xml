@@ -104,6 +104,19 @@
 <colAssociation fkAssociation="2D3FDA07-FE55-0160-7D36-A1AB8821D27B" referredColumn="A0B4525D-5A54-E837-523A-F404F6390B04"/>
 </associations>
 </Column>
+<Column name="modification_date" id="2884090C-C13E-8C19-A95E-B4DE7E6AA2B7">
+<createdBy>shark</createdBy>
+<createdTime>2024-06-13 09:04:05 UTC</createdTime>
+<generatorID>D64E2B90-B99A-5A63-0D21-7798C578AC94</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="214E9C98-E852-3BAC-257C-F20ECA96C69A" name="Event_PK">

@@ -110,6 +110,20 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="modification date" id="5728E587-8836-4F4B-D712-AE6081DC2FCF">
+<createdBy>shark</createdBy>
+<createdTime>2024-06-13 09:04:35 UTC</createdTime>
+<generatorID>10470CBD-997F-B47A-E235-47FAEEE7488F</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<engineerTo>
+<item key="FADDE4D2-002D-FB74-E273-D3BDE2EE965B" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="B84F18FA-41C6-1B74-C0F6-0501EAD14136" name="Event PK">

@@ -56,6 +56,17 @@
 <ownDataTypeParameters>512,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="role" id="12BB0FD1-0483-326B-136F-9349E6FDF57B">
+<createdBy>shark</createdBy>
+<createdTime>2024-06-13 08:59:15 UTC</createdTime>
+<generatorID>7890D162-5F93-84E0-FD0E-1144DE596587</generatorID>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="EA722931-E881-B55B-9118-DB072D722697" name="User_PK">
