@@ -40,6 +40,17 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    public List<Event> getFilteredEvents(Integer sportId, String city) {
+        List<Event> events = eventRepository.findAll();
+        if (sportId != null){
+            events.removeIf(event -> !event.getSport().getId().equals(sportId));
+        }
+        if (city != null) {
+            events.removeIf(event -> !event.getAddress().getCity().equals(city));
+        }
+        return events;
+    }
+
     public Event createEvent(String username,
                              String title,
                              String description,
