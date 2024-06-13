@@ -33,6 +33,12 @@ public class EventController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Event>> getFilteredEvents(@RequestBody EventDto eventDto) {
+        List<Event> events = eventService.getFilteredEvents(eventDto.getSportId(), eventDto.getCity());
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Event> createSport(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody EventDto eventDto) {
         try {
