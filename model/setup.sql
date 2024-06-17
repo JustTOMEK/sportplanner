@@ -82,3 +82,58 @@ END //
 
 DELIMITER ;
 
+DELIMITER //
+
+CREATE TRIGGER prevent_duplicate_participation
+BEFORE INSERT ON participation
+FOR EACH ROW
+BEGIN
+    DECLARE rowcount INT;
+    DECLARE msg VARCHAR(255);
+
+    SELECT COUNT(*)
+    INTO rowcount
+    FROM participation
+    WHERE event_id = NEW.event_id AND user_id = NEW.user_id;
+
+    IF rowcount > 0 THEN
+        SET msg = 'A user cannot sign up for the same event more than once.';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg;
+    END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER prevent_owner_participation
+BEFORE INSERT ON participation
+FOR EACH ROW
+BEGIN
+    DECLARE rowcount INT;
+    DECLARE msg VARCHAR(255);
+
+    SELECT COUNT(*)
+    INTO rowcount
+    FROM event
+    WHERE id = NEW.event_id AND owner_id = NEW.user_id;
+
+    IF rowcount > 0 THEN
+        SET msg = 'A user cannot sign up for the event that they own.';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg;
+    END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER update_modification_date
+BEFORE UPDATE ON event
+FOR EACH ROW
+BEGIN
+    SET NEW.modification_date = CURRENT_TIMESTAMP;
+END //
+
+DELIMITER ;
+

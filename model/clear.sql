@@ -7,4 +7,6 @@ DROP TABLE IF EXISTS `user`;
 SET FOREIGN_KEY_CHECKS = 1;
 
 DROP TRIGGER IF EXISTS before_sport_delete;
-
+DROP TRIGGER IF EXISTS prevent_duplicate_participation;
+DROP TRIGGER IF EXISTS prevent_owner_participation;
+DROP TRIGGER IF EXISTS update_modification_date;
