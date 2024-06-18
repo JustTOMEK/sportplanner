@@ -23,7 +23,8 @@ CREATE TABLE event (
 CREATE TABLE participation (
     id       INTEGER AUTO_INCREMENT PRIMARY KEY,
     user_id  INTEGER NOT NULL,
-    event_id INTEGER NOT NULL
+    event_id INTEGER NOT NULL,
+    UNIQUE (user_id, event_id)
 );
 
 CREATE TABLE sport (
@@ -78,28 +79,6 @@ BEGIN
     UPDATE event
     SET sport_id = other_sport_id
     WHERE sport_id = OLD.id;
-END //
-
-DELIMITER ;
-
-DELIMITER //
-
-CREATE TRIGGER prevent_duplicate_participation
-BEFORE INSERT ON participation
-FOR EACH ROW
-BEGIN
-    DECLARE rowcount INT;
-    DECLARE msg VARCHAR(255);
-
-    SELECT COUNT(*)
-    INTO rowcount
-    FROM participation
-    WHERE event_id = NEW.event_id AND user_id = NEW.user_id;
-
-    IF rowcount > 0 THEN
-        SET msg = 'A user cannot sign up for the same event more than once.';
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg;
-    END IF;
 END //
 
 DELIMITER ;
