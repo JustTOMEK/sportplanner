@@ -81,10 +81,6 @@ BEGIN
     WHERE sport_id = OLD.id;
 END //
 
-DELIMITER ;
-
-DELIMITER //
-
 CREATE TRIGGER prevent_owner_participation
 BEFORE INSERT ON participation
 FOR EACH ROW
@@ -105,4 +101,3 @@ END //
 
 DELIMITER ;
 
-DELIMITER //
