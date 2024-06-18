@@ -127,13 +127,3 @@ END //
 DELIMITER ;
 
 DELIMITER //
-
-CREATE TRIGGER update_modification_date
-BEFORE UPDATE ON event
-FOR EACH ROW
-BEGIN
-    SET NEW.modification_date = CURRENT_TIMESTAMP;
-END //
-
-DELIMITER ;
-
