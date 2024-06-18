@@ -1,27 +1,44 @@
+'use client';
+
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 export default function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const router = useRouter();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Implement registration logic here
-    console.log('Register with', { email, password });
-    // After registration, redirect to sign-in page
-    router.push('/auth/signin');
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError(null);
+
+    try {
+      const response = await axios.post('http://localhost:8080/api/auth/register', {
+        username,
+        password,
+      });
+
+      if (response.status === 200) {
+        // Handle successful registration
+        console.log('Registration successful', response.data);
+        // Redirect to the sign-in page after registration
+        router.push('/auth/signin');
+      }
+    } catch (error) {
+      setError('Registration failed. Please try again.');
+    }
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-brand-secondary">
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
         <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
           required
           className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
         />
@@ -37,6 +54,7 @@ export default function Register() {
           Register
         </button>
       </form>
+      {error && <p className="text-red-500">{error}</p>}
       <button
         onClick={() => router.push('/auth/signin')}
         className="p-2 bg-brand-tertiary text-brand-primary rounded-md w-80"
