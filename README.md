@@ -46,7 +46,7 @@ java -jar target/SportTogether-0.0.1.jar
 
 API jest dostępne na: <http://localhost:8080/api/>
 
-### React frontend
+### Next.js frontend
 Katalog `frontend/`
 
 #### Instalacja zależności
@@ -54,9 +54,14 @@ Katalog `frontend/`
 npm install
 ```
 
+#### Wyłączenie telemetrii
+```sh
+npx next telemetry disable
+```
+
 #### Uruchomienie
 ```sh
-npm start
+npm run dev
 ```
 
 Strona jest dostępna na: <http://localhost:3000/>
