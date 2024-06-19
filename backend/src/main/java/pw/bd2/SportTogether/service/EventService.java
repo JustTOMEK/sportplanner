@@ -7,11 +7,8 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pw.bd2.SportTogether.model.*;
-import pw.bd2.SportTogether.repository.AddressRepository;
-import pw.bd2.SportTogether.repository.EventRepository;
+import pw.bd2.SportTogether.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import pw.bd2.SportTogether.repository.SportRepository;
-import pw.bd2.SportTogether.repository.UserRepository;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -35,6 +32,9 @@ public class EventService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ParticipationRepository participationRepository;
 
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
@@ -69,6 +69,14 @@ public class EventService {
         Sport sport = sportRepository.findById(sportId).orElseThrow(
                 () -> new EntityNotFoundException("No such sport in the database"));
         return eventRepository.save(new Event(title, description, owner, sport, address, latitude, longitude));
+    }
+
+    public void addParticipant(String username, Integer eventId){
+        User participant = userRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
+        Event event = eventRepository.findById(eventId).orElseThrow(
+                () -> new EntityNotFoundException("Event not in database"));
+        participationRepository.save(new Participation(participant, event));
     }
 
     public Optional<Event> getEventById(Integer id) {

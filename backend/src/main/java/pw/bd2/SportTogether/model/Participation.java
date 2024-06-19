@@ -24,4 +24,9 @@ public class Participation {
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Event event;
+
+    public Participation(User user, Event event) {
+        this.user = user;
+        this.event = event;
+    }
 }
