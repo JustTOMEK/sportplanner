@@ -71,13 +71,17 @@ public class EventService {
         return eventRepository.save(new Event(title, description, owner, sport, address, latitude, longitude));
     }
 
-    public void addParticipant(String username, Integer eventId){
+    public Participation addParticipant(String username, Integer eventId){
         User participant = userRepository.findByUsername(username).orElseThrow(
                 () -> new EntityNotFoundException("User not in database"));
         Event event = eventRepository.findById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Event not in database"));
-        participationRepository.save(new Participation(participant, event));
+        return participationRepository.save(new Participation(participant, event));
     }
+
+//    public void removeParticipant(String username, Integer eventId){
+//        participationRepository.
+//    }
 
     public Optional<Event> getEventById(Integer id) {
         return eventRepository.findById(id);
