@@ -8,12 +8,15 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import pw.bd2.SportTogether.dto.EventDto;
+import pw.bd2.SportTogether.dto.ParticipationDTO;
+import pw.bd2.SportTogether.model.Participation;
 import pw.bd2.SportTogether.model.Sport;
 import pw.bd2.SportTogether.service.JwtService;
 import pw.bd2.SportTogether.model.Event;
 import pw.bd2.SportTogether.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -40,7 +43,7 @@ public class EventController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Event> createSport(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody EventDto eventDto) {
+    public ResponseEntity<Event> createEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody EventDto eventDto) {
         try {
             Event event =  eventService.createEvent(jwtService.extractUsername(jwt),
                     eventDto.getTitle(),
@@ -57,6 +60,16 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.CREATED).body(event);
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @PostMapping("/addParticipant")
+    public ResponseEntity<Participation> addParticipant(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO) {
+        try {
+            Participation participation = eventService.addParticipant(jwtService.extractUsername(jwt), participationDTO.getEventId());
+            return new ResponseEntity<>(participation, HttpStatus.OK);
+        } catch (SQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 }

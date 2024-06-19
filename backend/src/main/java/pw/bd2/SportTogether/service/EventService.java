@@ -11,6 +11,7 @@ import pw.bd2.SportTogether.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.security.SecureRandom;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Optional;
@@ -71,7 +72,7 @@ public class EventService {
         return eventRepository.save(new Event(title, description, owner, sport, address, latitude, longitude));
     }
 
-    public Participation addParticipant(String username, Integer eventId){
+    public Participation addParticipant(String username, Integer eventId) throws SQLException{
         User participant = userRepository.findByUsername(username).orElseThrow(
                 () -> new EntityNotFoundException("User not in database"));
         Event event = eventRepository.findById(eventId).orElseThrow(
