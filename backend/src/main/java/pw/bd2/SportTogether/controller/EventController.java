@@ -72,4 +72,14 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @DeleteMapping ("/removeParticipant")
+    public ResponseEntity<Participation> removeParticipant(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO) {
+        try {
+            Participation participation = eventService.removeParticipant(jwtService.extractUsername(jwt), participationDTO.getParticipationId());
+            return new ResponseEntity<>(participation, HttpStatus.OK);
+        } catch (AccessDeniedException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        }
+    }
 }

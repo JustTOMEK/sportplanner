@@ -80,9 +80,17 @@ public class EventService {
         return participationRepository.save(new Participation(participant, event));
     }
 
-//    public void removeParticipant(String username, Integer eventId){
-//        participationRepository.
-//    }
+    public Participation removeParticipant(String username, Integer participationId){
+        User remover = userRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
+        Participation participation = participationRepository.findById(participationId).orElseThrow(
+                () -> new EntityNotFoundException("Participation not in database"));
+        if (participation.getUser().getId().equals(remover.getId()) || participation.getEvent().getOwner().getId().equals(remover.getId())) {
+            participationRepository.delete(participation);
+            return participation;
+        }
+        throw new AccessDeniedException("User is not allowed to remove this participant.");
+    }
 
     public Optional<Event> getEventById(Integer id) {
         return eventRepository.findById(id);
