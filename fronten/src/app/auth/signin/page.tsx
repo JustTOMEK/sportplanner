@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 
 export default function SignIn() {
   const router = useRouter();
@@ -12,17 +11,23 @@ export default function SignIn() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/authenticate', {
-        username,
-        password,
+      const response = await fetch('http://localhost:8080/api/auth/authenticate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
       });
 
-      if (response.status === 200) {
+      if (response.ok) {
+        const data = await response.json();
         // Store the JWT token or handle successful login
-        // Example: localStorage.setItem('token', response.data.token);
-        console.log('Login successful', response.data);
-        // Redirect to the desired page after login
-        router.push('/');
+        localStorage.setItem('token', data.token);
+        console.log('Login successful', data);
+        // Redirect to the landing page after login
+        router.push('/landing');
+      } else {
+        setError('Invalid username or password');
       }
     } catch (error) {
       setError('Invalid username or password');

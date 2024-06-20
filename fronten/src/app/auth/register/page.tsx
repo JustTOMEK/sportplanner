@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 
 export default function Register() {
   const router = useRouter();
@@ -15,16 +14,36 @@ export default function Register() {
     setError(null);
 
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/register', {
-        username,
-        password,
+      const registerResponse = await fetch('http://localhost:8080/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
       });
 
-      if (response.status === 200) {
-        // Handle successful registration
-        console.log('Registration successful', response.data);
-        // Redirect to the sign-in page after registration
-        router.push('/auth/signin');
+      if (registerResponse.ok) {
+        // Registration successful, now authenticate
+        const loginResponse = await fetch('http://localhost:8080/api/auth/authenticate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, password }),
+        });
+
+        if (loginResponse.ok) {
+          const data = await loginResponse.json();
+          // Store the JWT token
+          localStorage.setItem('token', data.token);
+          console.log('Login successful', data);
+          // Redirect to the landing page after login
+          router.push('/landing');
+        } else {
+          setError('Authentication failed after registration.');
+        }
+      } else {
+        setError('Registration failed. Please try again.');
       }
     } catch (error) {
       setError('Registration failed. Please try again.');
