@@ -9,7 +9,10 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = async () => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError(null);
+
     try {
       const response = await fetch('http://localhost:8080/api/auth/authenticate', {
         method: 'POST',
@@ -36,27 +39,29 @@ export default function SignIn() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-brand-secondary">
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
-      />
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      <button
-        onClick={handleLogin}
-        className="mb-4 p-2 bg-brand-quaternary text-white rounded-md w-80"
-      >
-        Login
-      </button>
+      <form onSubmit={handleLogin} className="flex flex-col items-center">
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
+        />
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        <button
+          type="submit"
+          className="mb-4 p-2 bg-brand-quaternary text-white rounded-md w-80"
+        >
+          Login
+        </button>
+      </form>
       <button
         onClick={() => router.push('/auth/register')}
         className="mb-4 p-2 bg-brand-primary text-white rounded-md w-80"
