@@ -23,7 +23,7 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Address>> getAllAddresses() {
         List<Address> addresses = addressService.getAllAddresses();
         return new ResponseEntity<>(addresses, HttpStatus.OK);
