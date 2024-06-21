@@ -1,42 +1,105 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "../../Styles/SearchPage.css";
 
-const sportsCategories = ['Football', 'Basketball', 'Volleyball', 'Tennis', 'Running'];
+interface Event {
+    id: number;
+    name: string;
+    city: string;
+}
 
-const mockEvents = [
-    { id: 1, name: 'Football Match', city: 'Warsaw' },
-    { id: 2, name: 'Basketball Game', city: 'Krakow' },
-    { id: 3, name: 'Tennis Tournament', city: 'Gdansk' },
-    // Add more mock events as needed
-];
+interface Sport {
+    id: number;
+    name: string;
+}
 
-function SearchPage() {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+const SearchPage = () => {
+    const [sportsCategories, setSportsCategories] = useState<Sport[]>([]);
+    const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [city, setCity] = useState('');
-    const [filteredEvents, setFilteredEvents] = useState(mockEvents);
+    const [events, setEvents] = useState<Event[]>([]);
+    const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const [token, setToken] = useState<string | null>(null);
 
-    // get all unique categories from backend
-    const getCategories = async (event: React.FormEvent<HTMLFormElement>) => {
-        // fetch categories
-        try {
-            const response = await fetch('http://localhost:8080/api/sport/all', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-        } catch (error) {
-            console.error('Failed to fetch categories');
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            setToken(storedToken);
         }
-    }
+    }, []);
 
-    const handleCategoryChange = (category: string) => {
+    // Pobieranie kategorii sportowych z backendu
+    useEffect(() => {
+        const fetchCategories = async () => {
+            setError(null);
+            if (!token) {
+                setError('No token found');
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:8080/api/sports/all', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setSportsCategories(data);
+                } else {
+                    setError('Failed to fetch categories');
+                }
+            } catch (error) {
+                console.error('Failed to fetch categories', error);
+                setError('Failed to fetch categories');
+            }
+        };
+
+        fetchCategories();
+    }, [token]);
+
+    // Pobieranie wydarzeń z backendu
+    useEffect(() => {
+        const fetchEvents = async () => {
+            setError(null);
+            if (!token) {
+                setError('No token found');
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:8080/api/events', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setEvents(data);
+                    setFilteredEvents(data);
+                } else {
+                    setError('Failed to fetch events');
+                }
+            } catch (error) {
+                console.error('Failed to fetch events', error);
+                setError('Failed to fetch events');
+            }
+        };
+
+        fetchEvents();
+    }, [token]);
+
+    const handleCategoryChange = (categoryId: number) => {
         setSelectedCategories((prevSelectedCategories) =>
-            prevSelectedCategories.includes(category)
-                ? prevSelectedCategories.filter((c) => c !== category)
-                : [...prevSelectedCategories, category]
+            prevSelectedCategories.includes(categoryId)
+                ? prevSelectedCategories.filter((id) => id !== categoryId)
+                : [...prevSelectedCategories, categoryId]
         );
     };
 
@@ -44,14 +107,35 @@ function SearchPage() {
         setCity(event.target.value);
     };
 
-    const filterEvents = () => {
-        setFilteredEvents(
-            mockEvents.filter(
-                (event) =>
-                    (city === '' || event.city.toLowerCase().includes(city.toLowerCase())) &&
-                    (selectedCategories.length === 0 || selectedCategories.includes(event.name.split(' ')[0]))
-            )
-        );
+    const filterEvents = async () => {
+        setError(null);
+        if (!token) {
+            setError('No token found');
+            return;
+        }
+        try {
+            const response = await fetch('http://localhost:8080/api/events/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    city: city,
+                    sportId: selectedCategories.length > 0 ? selectedCategories[0] : null, // Assuming only one sport category for simplicity
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setFilteredEvents(data);
+            } else {
+                setError('Failed to fetch filtered events');
+            }
+        } catch (error) {
+            console.error('Failed to fetch filtered events', error);
+            setError('Failed to fetch filtered events');
+        }
     };
 
     return (
@@ -68,18 +152,19 @@ function SearchPage() {
                 <h2>Categories</h2>
                 <div className="categories-list">
                     {sportsCategories.map((category) => (
-                        <div key={category} className="category-item">
+                        <div key={category.id} className="category-item">
                             <input
                                 type="checkbox"
-                                id={category}
-                                value={category}
-                                checked={selectedCategories.includes(category)}
-                                onChange={() => handleCategoryChange(category)}
+                                id={category.name}
+                                value={category.id}
+                                checked={selectedCategories.includes(category.id)}
+                                onChange={() => handleCategoryChange(category.id)}
                             />
-                            <label htmlFor={category}>{category}</label>
+                            <label htmlFor={category.name}>{category.name}</label>
                         </div>
                     ))}
                 </div>
+                {error && <p className="error-message">{error}</p>}
                 <button onClick={filterEvents} className="filter-button">Filter</button>
             </div>
             <div className="events-list">
