@@ -36,7 +36,7 @@ public class EventController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<List<Event>> getFilteredEvents(@RequestBody EventDto eventDto) {
         List<Event> events = eventService.getFilteredEvents(eventDto.getSportId(), eventDto.getCity());
         return new ResponseEntity<>(events, HttpStatus.OK);
