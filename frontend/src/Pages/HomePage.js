@@ -1,9 +1,10 @@
+import React from "react";
 
-function HomePage() {
-
+function HomePage({ onLogout }) {
     return (
         <div>
-            <h1>Welcome to the HomePage</h1>
+            <h1>Welcome to the HomePage!</h1>
+            <button onClick={onLogout}>Logout</button>
         </div>
     );
 }
