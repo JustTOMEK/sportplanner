@@ -24,8 +24,8 @@ export default function SignIn() {
         // Store the JWT token or handle successful login
         localStorage.setItem('token', data.token);
         console.log('Login successful', data);
-        // Redirect to the landing page after login
-        router.push('/landing');
+        // Redirect to the home page after login
+        router.push('/home');
       } else {
         setError('Invalid username or password');
       }
