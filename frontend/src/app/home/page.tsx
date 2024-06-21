@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const HomePage = () => {
+    const router = useRouter();
   const [hasToken, setHasToken] = useState(false);
 
   useEffect(() => {
@@ -11,6 +13,14 @@ const HomePage = () => {
       setHasToken(true);
     }
   }, []);
+
+    const handleLogout = () => {
+        // setUser(null);
+        // setIsLoggedIn(false);
+        localStorage.removeItem('token');
+        alert('User logged out');
+        router.push('/auth/singin');
+    };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-brand-secondary">
@@ -22,6 +32,12 @@ const HomePage = () => {
         ) : (
           <h1 className="text-2xl font-bold text-brand-primary">No token found</h1>
         )}
+        <button
+            className="mybutton"
+            onClick={(e) => handleLogout()}
+        >
+            Sign out
+        </button>
     </div>
   );
 };
