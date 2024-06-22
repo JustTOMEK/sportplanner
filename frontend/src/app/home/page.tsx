@@ -12,6 +12,7 @@ interface Event {
 const HomePage = () => {
     const router = useRouter();
     const [participantEvents, setParticipantEvents] = useState<Event[]>([]);
+    const [ownedEvents, setOwnedEvents] = useState<Event[]>([]);
     const [hasToken, setHasToken] = useState(false);
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const HomePage = () => {
         if (token) {
             setHasToken(true);
             fetchParticipantEvents(token);
+            fetchOwnedEvents(token);
         }
     }, []);
 
@@ -47,6 +49,26 @@ const HomePage = () => {
             }
         } catch (error) {
             console.error('Failed to fetch participating events', error);
+        }
+    };
+
+    const fetchOwnedEvents = async (token: string) => {
+        try {
+            const response = await fetch('http://localhost:8080/api/events/owned', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (response.ok) {
+                const eventsData = await response.json();
+                setOwnedEvents(eventsData);
+            } else {
+                console.error('Failed to fetch owned events');
+            }
+        } catch (error) {
+            console.error('Failed to fetch owned events', error);
         }
     };
 
@@ -97,6 +119,17 @@ const HomePage = () => {
                 </div>
                 <div className="events-header events-header_2">
                     <h2>Events you are hosting:</h2>
+                    {ownedEvents.length > 0 ? (
+                        <ul className="owned-events-list">
+                            {ownedEvents.map(event => (
+                                <li key={event.id}>
+                                    {event.title}
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No events found.</p>
+                    )}
                     <button
                         className="create_event_button"
                         onClick={() => handleCreateEvent()}
