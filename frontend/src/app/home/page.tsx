@@ -136,7 +136,7 @@ const HomePage = () => {
                     <h2>Events you are hosting:</h2>
                     {ownedEvents.length > 0 ? (
                         <div className="mylist-container">
-                            {participantEvents.map(event => (
+                            {ownedEvents.map(event => (
                                 <div className="mylist-entry">
                                     <span>
                                         {event.title}
