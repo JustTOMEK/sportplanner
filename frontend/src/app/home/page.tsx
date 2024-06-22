@@ -115,7 +115,12 @@ const HomePage = () => {
                                     <tr key={event.id}>
                                         <td>{event.title}</td>
                                         <td>
-                                            <button onClick={() => handleMoreInfo(event.id)} className="more-info-button">More Info</button>
+                                            <button
+                                                onClick={() => handleMoreInfo(event.id)}
+                                                className="mybutton-green"
+                                            >
+                                                More Info
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}
@@ -134,7 +139,11 @@ const HomePage = () => {
                                     <tr key={event.id}>
                                         <td>{event.title}</td>
                                         <td>
-                                            <button onClick={() => handleMoreInfo(event.id)} className="more-info-button">More Info</button>
+                                            <button
+                                                onClick={() => handleMoreInfo(event.id)}
+                                                className="mybutton-green">
+                                                More Info
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}
