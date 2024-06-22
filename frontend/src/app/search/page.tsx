@@ -158,7 +158,7 @@ const SearchPage = () => {
                 <input
                     type="text"
                     placeholder="Search cities"
-                    value={city}
+                    value={city || ""}
                     onChange={handleCityChange}
                     onFocus={fetchCities}
                     onClick={() => setShowCityDropdown(true)}
