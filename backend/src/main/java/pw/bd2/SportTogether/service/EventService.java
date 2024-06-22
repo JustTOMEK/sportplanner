@@ -8,6 +8,7 @@ import pw.bd2.SportTogether.model.*;
 import pw.bd2.SportTogether.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.nio.file.AccessDeniedException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -104,7 +105,15 @@ public class EventService {
     }
 
 
-    public void deleteEvent(Integer id) {
-        eventRepository.deleteById(id);
+    public void deleteEvent(String username, Integer eventId) throws AccessDeniedException {
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
+        Event event = eventRepository.findById(eventId).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
+        if (event.getOwner().equals(user)) {
+            eventRepository.deleteById(eventId);
+        } else {
+            throw new AccessDeniedException("Only owner allowed to delete event.");
+        }
     }
 }

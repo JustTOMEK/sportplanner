@@ -18,6 +18,7 @@ import pw.bd2.SportTogether.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -104,8 +105,14 @@ public class EventController {
         }
     }
 
-//    @DeleteMapping ("/delete")
-//    public void deleteEvent(Integer eventId) {
-//        eventService.deleteEvent(eventId);
-//    }
+    @DeleteMapping ("/delete")
+    public void deleteEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody Integer eventId, HttpServletResponse response) throws IOException {
+        try {
+            eventService.deleteEvent(jwtService.extractUsername(jwt), eventId);
+        } catch (EntityNotFoundException e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        } catch (AccessDeniedException e) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+        }
+    }
 }
