@@ -73,6 +73,11 @@ const SearchPage = () => {
         fetchCategories();
     }, [token]);
 
+    // Załadowanie na początek listy wszystkich wydarzeń (wyszukiwanie z pustymi kryteriami)
+    useEffect(() => {
+        filterEvents();
+    }, [token]);
+
 
     // Pobieranie miast z backendu
     const fetchCities = async () => {
