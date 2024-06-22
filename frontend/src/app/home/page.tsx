@@ -83,16 +83,16 @@ const HomePage = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-brand-secondary">
-            <h1 className="header">Home page</h1>
+            <h1>Home page</h1>
             <button
-                className="logout_button"
+                className="mybutton-blue absolute top-3 right-3"
                 onClick={() => handleLogout()}
             >
                 Sign out
             </button>
 
             <button
-                className="search_button"
+                className="mybutton-blue absolute top-3 left-3"
                 onClick={() => router.push('/search')}
             >
                 Search events
@@ -137,7 +137,7 @@ const HomePage = () => {
                         <p>No events found.</p>
                     )}
                     <button
-                        className="create_event_button"
+                        className="mybutton-blue absolute bottom-3 right-3"
                         onClick={() => handleCreateEvent()}
                     >
                         Create event

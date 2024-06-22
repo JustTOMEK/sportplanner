@@ -1,40 +1,5 @@
 /* HomePage.css */
 
-.header {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
-}
-
-.logout_button, .search_button, .create_event_button {
-    padding: 10px 20px;
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.logout_button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-.search_button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.create_event_button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-}
-
 .events-container {
     display: flex;
     justify-content: space-between;
@@ -93,5 +58,4 @@
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
 }

@@ -1,0 +1,15 @@
+.mybutton {
+    @apply text-white rounded px-4 py-2 transition duration-150 ease-in-out;
+}
+
+.mybutton-blue {
+    @apply mybutton bg-[#3498db] hover:bg-[#2980b9]
+}
+
+.mybutton-green {
+    @apply mybutton bg-green-500 hover:bg-green-700
+}
+
+.mybutton-red {
+    @apply mybutton bg-red-500 hover:bg-red-700
+}
