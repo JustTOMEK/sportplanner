@@ -55,12 +55,13 @@ public class EventService {
     }
 
     public List<Event> getFilteredEvents(List<Integer> sportIds, String city) {
+        final String city_lowercase = city.toLowerCase();
         List<Event> events = eventRepository.findAll();
         if (sportIds != null){
             events.removeIf(event -> !sportIds.contains(event.getSport().getId()));
         }
         if (city != null) {
-            events.removeIf(event -> !event.getAddress().getCity().equals(city));
+            events.removeIf(event -> !event.getAddress().getCity().toLowerCase().equals(city_lowercase));
         }
         return events;
     }
