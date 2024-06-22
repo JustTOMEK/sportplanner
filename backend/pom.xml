@@ -5,7 +5,7 @@
     <artifactId>SportTogether</artifactId>
     <version>0.0.1</version>
     <name>SportTogether</name>
-    <description>Web application</description>
+    <description>Find sport events</description>
 
     <properties>
         <java.version>21</java.version>
