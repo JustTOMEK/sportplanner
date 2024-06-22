@@ -31,6 +31,8 @@ CREATE TABLE event (
     latitude          DOUBLE,
     longitude         DOUBLE,
     modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    start_date        TIMESTAMP NOT NULL,
+    end_date          TIMESTAMP NOT NULL,
     CONSTRAINT event_user_fk FOREIGN KEY (owner_id) REFERENCES user (id),
     CONSTRAINT event_sport_fk FOREIGN KEY (sport_id) REFERENCES sport (id),
     CONSTRAINT event_address_fk FOREIGN KEY (address_id) REFERENCES address (id)
@@ -91,5 +93,52 @@ BEGIN
     DELETE FROM address WHERE id = OLD.address_id;
 END //
 
-DELIMITER ;
+CREATE TRIGGER prevent_start_date_after_end_date_insert
+BEFORE INSERT ON event
+FOR EACH ROW
+BEGIN
+    CALL prevent_start_date_after_end_date_procedure(NEW.start_date, NEW.end_date);
+END //
 
+CREATE TRIGGER prevent_start_date_after_end_date_update
+BEFORE UPDATE ON event
+FOR EACH ROW
+BEGIN
+    CALL prevent_start_date_after_end_date_procedure(NEW.start_date, NEW.end_date);
+END //
+
+CREATE TRIGGER prevent_creation_of_past_events_insert
+BEFORE INSERT ON event
+FOR EACH ROW
+BEGIN
+    CALL prevent_creation_of_past_events_procedure(NEW.end_date);
+END //
+
+CREATE TRIGGER prevent_creation_of_past_events_update
+BEFORE UPDATE ON event
+FOR EACH ROW
+BEGIN
+    CALL prevent_creation_of_past_events_procedure(NEW.end_date);
+END //
+
+CREATE PROCEDURE prevent_start_date_after_end_date_procedure(IN new_start_date TIMESTAMP, IN new_end_date TIMESTAMP)
+BEGIN
+    DECLARE msg VARCHAR(255);
+
+    IF new_start_date > new_end_date THEN
+        SET msg = 'An event cannot start after it ended.';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg;
+    END IF;
+END //
+
+CREATE PROCEDURE prevent_creation_of_past_events_procedure(IN end_date TIMESTAMP)
+BEGIN
+    DECLARE msg VARCHAR(255);
+
+    IF end_date <= CURRENT_TIMESTAMP THEN
+        SET msg = 'An event that ended cannot be created.';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg;
+    END IF;
+END //
+
+DELIMITER ;
