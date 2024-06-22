@@ -3,25 +3,21 @@
 import { useState, useEffect } from 'react';
 import "../../Styles/SearchPage.css";
 
-interface Event {
-    id: number;
-    title: string;
-    address: {
-        city: string;
-
-    }
-
-}
-
-
 interface Sport {
     id: number;
     name: string;
 }
 
-interface City {
+interface Address {
     id: number;
     city: string;
+}
+
+interface Event {
+    id: number;
+    title: string;
+    description: string;
+    address: Address;
 }
 
 const SearchPage = () => {
@@ -29,7 +25,7 @@ const SearchPage = () => {
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [city, setCity] = useState<string | null>(null);
     const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
-    const [cities, setCities] = useState<City[]>([]);
+    const [cities, setCities] = useState<Address[]>([]);
     const [showCityDropdown, setShowCityDropdown] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
