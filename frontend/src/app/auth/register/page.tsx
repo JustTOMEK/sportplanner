@@ -69,14 +69,14 @@ export default function Register() {
           required
           className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
         />
-        <button type="submit" className="mb-4 p-2 bg-brand-primary text-white rounded-md w-80">
+        <button type="submit" className="mb-4 p-2 bg-brand-quaternary text-white rounded-md w-80">
           Register
         </button>
       </form>
       {error && <p className="text-red-500">{error}</p>}
       <button
         onClick={() => router.push('/auth/signin')}
-        className="p-2 bg-brand-tertiary text-brand-primary rounded-md w-80"
+        className="mb-4 p-2 bg-brand-primary text-white rounded-md w-80"
       >
         Already have an account? Sign In
       </button>
