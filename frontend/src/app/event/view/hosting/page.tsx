@@ -101,7 +101,7 @@ const ViewHostingEventPage = () => {
             }
 
             try {
-                const response = await fetch(`http://localhost:8080/api/events/participants?id=${eventId}`, {
+                const response = await fetch(`http://localhost:8080/api/events/${eventId}/participants`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
