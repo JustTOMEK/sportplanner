@@ -49,6 +49,16 @@ public class EventService {
         return events;
     }
 
+    public List<User> getParticipantsFromEvent(Integer eventId) {
+        Event event = eventRepository.findById(eventId).orElseThrow(
+                () -> new EntityNotFoundException("Event not in database"));
+        List<Participation> participations = participationRepository.findByEvent(event);
+        return participations.stream()
+                .map(Participation::getUser)
+                .collect(Collectors.toList());
+    }
+
+
     public List<Event> getParticipantEvents(String username) {
         User participant = userRepository.findByUsername(username).orElseThrow(
                 () -> new EntityNotFoundException("User not in database"));
