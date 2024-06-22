@@ -14,26 +14,35 @@ const HomePage = () => {
     const router = useRouter();
     const [participantEvents, setParticipantEvents] = useState<Event[]>([]);
     const [ownedEvents, setOwnedEvents] = useState<Event[]>([]);
-    const [hasToken, setHasToken] = useState(false);
+    const [token, setToken] = useState<string | null>(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            setHasToken(true);
-            fetchParticipantEvents(token);
-            fetchOwnedEvents(token);
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            setToken(storedToken);
+            fetchParticipantEvents();
+            fetchOwnedEvents();
         }
     }, []);
 
-    const handleLogout = () => {
-        // setUser(null);
-        // setIsLoggedIn(false);
-        localStorage.removeItem('token');
-        alert('User logged out');
-        router.push('/auth/signin');
+    const handleLogout = async () => {
+        const response = await fetch('http://localhost:8080/api/auth/logout', {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (response.ok) {
+            localStorage.removeItem('token');
+            alert("User logged out");
+            router.push('/auth/signin');
+        } else {
+            alert("Failed to logout");
+        }
     };
 
-    const fetchParticipantEvents = async (token: string) => {
+    const fetchParticipantEvents = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/events/participating', {
                 method: 'GET',
@@ -53,7 +62,7 @@ const HomePage = () => {
         }
     };
 
-    const fetchOwnedEvents = async (token: string) => {
+    const fetchOwnedEvents = async () => {
         try {
             const response = await fetch('http://localhost:8080/api/events/owned', {
                 method: 'GET',
