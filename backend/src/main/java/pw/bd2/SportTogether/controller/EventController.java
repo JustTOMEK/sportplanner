@@ -48,7 +48,7 @@ public class EventController {
         }
     }
 
-    @GetMapping("participating")
+    @GetMapping("/participating")
     public ResponseEntity<List<Event>> getParticipantEvents(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
         try {
             List<Event> events = eventService.getParticipantEvents(jwtService.extractUsername(jwt));
@@ -103,4 +103,9 @@ public class EventController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
+
+//    @DeleteMapping ("/delete")
+//    public void deleteEvent(Integer eventId) {
+//        eventService.deleteEvent(eventId);
+//    }
 }
