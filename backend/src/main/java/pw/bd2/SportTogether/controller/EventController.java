@@ -46,10 +46,10 @@ public class EventController {
         }
     }
 
-    @GetMapping("/participants")
-    public ResponseEntity<List<User>> getParticipantsFromEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody Integer eventId) {
+    @GetMapping("/{id}/participants")
+    public ResponseEntity<List<User>> getParticipantsFromEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @PathVariable Integer id) {
         try {
-            List<User> users = eventService.getParticipantsFromEvent(jwtService.extractUsername(jwt), eventId);
+            List<User> users = eventService.getParticipantsFromEvent(jwtService.extractUsername(jwt), id);
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
