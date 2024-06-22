@@ -63,13 +63,15 @@ public class EventService {
                              String flat_number,
                              String postal_code,
                              Double latitude,
-                             Double longitude) {
+                             Double longitude,
+                             LocalDateTime start_date,
+                             LocalDateTime end_date) {
         User owner = userRepository.findByUsername(username).orElseThrow(
                 () -> new EntityNotFoundException("User not in database"));
         Address address = addressRepository.save(new Address(country, city, street, building_number, flat_number, postal_code));
         Sport sport = sportRepository.findById(sportId).orElseThrow(
                 () -> new EntityNotFoundException("No such sport in the database"));
-        return eventRepository.save(new Event(title, description, owner, sport, address, latitude, longitude));
+        return eventRepository.save(new Event(title, description, owner, sport, address, latitude, longitude, start_date, end_date));
     }
 
     public Participation addParticipant(String username, Integer eventId) throws SQLException{

@@ -2,6 +2,8 @@ package pw.bd2.SportTogether.dto;
 
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Getter
 public class EventDto {
     private String title;
@@ -25,4 +27,8 @@ public class EventDto {
     private Double latitude;
 
     private Double longitude;
+
+    private LocalDateTime start_date;
+
+    private LocalDateTime end_date;
 }

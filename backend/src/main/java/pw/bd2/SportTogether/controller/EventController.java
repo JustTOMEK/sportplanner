@@ -57,7 +57,9 @@ public class EventController {
                     eventDto.getFlat_number(),
                     eventDto.getPostal_code(),
                     eventDto.getLatitude(),
-                    eventDto.getLongitude());
+                    eventDto.getLongitude(),
+                    eventDto.getStart_date(),
+                    eventDto.getEnd_date());
             return ResponseEntity.status(HttpStatus.CREATED).body(event);
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
