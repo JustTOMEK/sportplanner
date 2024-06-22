@@ -20,4 +20,4 @@ function WelcomePage({ onLogout }) {
     );
 }
 
-export default withAuth(WelcomePage);
+export default WelcomePage;
