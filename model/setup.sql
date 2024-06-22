@@ -33,7 +33,7 @@ CREATE TABLE event (
     modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT event_user_fk FOREIGN KEY (owner_id) REFERENCES user (id),
     CONSTRAINT event_sport_fk FOREIGN KEY (sport_id) REFERENCES sport (id),
-    CONSTRAINT event_address_fk FOREIGN KEY (address_id) REFERENCES address (id)
+    CONSTRAINT event_address_fk FOREIGN KEY (address_id) REFERENCES address (id) ON DELETE CASCADE
 );
 
 CREATE TABLE participation (
@@ -42,7 +42,7 @@ CREATE TABLE participation (
     event_id INTEGER NOT NULL,
     UNIQUE (user_id, event_id),
     CONSTRAINT participation_user_fk FOREIGN KEY (user_id) REFERENCES user (id),
-    CONSTRAINT participation_event_fk FOREIGN KEY (event_id) REFERENCES event (id)
+    CONSTRAINT participation_event_fk FOREIGN KEY (event_id) REFERENCES event (id) ON DELETE CASCADE
 );
 
 
