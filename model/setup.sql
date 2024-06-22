@@ -30,7 +30,7 @@ CREATE TABLE event (
     address_id        INTEGER NOT NULL,
     latitude          DOUBLE,
     longitude         DOUBLE,
-    modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    modification_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     start_date        TIMESTAMP NOT NULL,
     end_date          TIMESTAMP NOT NULL,
     CONSTRAINT event_user_fk FOREIGN KEY (owner_id) REFERENCES user (id),
