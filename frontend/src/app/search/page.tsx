@@ -75,34 +75,6 @@ const SearchPage = () => {
     }, [token]);
 
 
-    // Pobieranie miast z backendu
-    const fetchCities = async () => {
-        setError(null);
-        if (!token) {
-            setError('No token found');
-            return;
-        }
-        try {
-            const response = await fetch('http://localhost:8080/api/addresses/all', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                setCities(data);
-            } else {
-                setError('Failed to fetch cities');
-            }
-        } catch (error) {
-            console.error('Failed to fetch cities', error);
-            setError('Failed to fetch cities');
-        }
-    };
-
     const handleCategoryChange = (categoryId: number) => {
         setSelectedCategories((prevSelectedCategories) =>
             prevSelectedCategories.includes(categoryId)
@@ -135,7 +107,7 @@ const SearchPage = () => {
                 },
                 body: JSON.stringify({
                     city: city,
-                    sportId: selectedCategories.length > 0 ? selectedCategories[0] : null, // Assuming only one sport category for simplicity
+                    sportIds: selectedCategories.length > 0 ? selectedCategories : null, // Pass all selected categories
                 }),
             });
 
@@ -158,10 +130,7 @@ const SearchPage = () => {
                 <input
                     type="text"
                     placeholder="Search cities"
-                    value={city}
                     onChange={handleCityChange}
-                    onFocus={fetchCities}
-                    onClick={() => setShowCityDropdown(true)}
                     className="search-input"
                 />
                 {showCityDropdown && (
