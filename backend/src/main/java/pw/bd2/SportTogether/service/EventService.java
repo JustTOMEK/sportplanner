@@ -97,4 +97,8 @@ public class EventService {
     public void deleteEvent(Integer id) {
         eventRepository.deleteById(id);
     }
+
+    public Optional<Event> getEventById(Integer id) {
+        return eventRepository.findById(id);
+    }
 }

@@ -18,7 +18,9 @@ import pw.bd2.SportTogether.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -83,6 +85,31 @@ public class EventController {
             return new ResponseEntity<>(participation, HttpStatus.OK);
         } catch (AccessDeniedException e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        }
+    }
+
+    @GetMapping("/{eventId}/status")
+    public ResponseEntity<String> getEventStatus(@PathVariable Integer eventId) {
+        Optional<Event> eventOptional = eventService.getEventById(eventId);
+
+        if (eventOptional.isPresent()) {
+            Event event = eventOptional.get();
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime startDate = event.getStart_date();
+            LocalDateTime endDate = event.getEnd_date();
+
+            String status;
+            if (now.isBefore(startDate)) {
+                status = "Before";
+            } else if (now.isAfter(endDate)) {
+                status = "After";
+            } else {
+                status = "During";
+            }
+
+            return new ResponseEntity<>(status, HttpStatus.OK);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 }
