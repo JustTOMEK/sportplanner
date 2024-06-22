@@ -134,7 +134,7 @@ const SearchPage = () => {
                     type="text"
                     placeholder="Search cities"
                     onChange={handleCityChange}
-                    className="search-input"
+                    className="myinput w-full mb-4"
                 />
                 <h2>Categories</h2>
                 <div className="categories-list">
