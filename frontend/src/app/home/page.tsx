@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import "../../Styles/HomePage.css";
+import withAuth from '../auth/component/withAuth';
 
 const HomePage = () => {
     const router = useRouter();
@@ -66,4 +67,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default withAuth(HomePage);

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import withAuth from '../../auth/component/withAuth';
 
 function EventPage({ onLogout }) {
     return (
@@ -11,4 +12,4 @@ function EventPage({ onLogout }) {
     );
 }
 
-export default EventPage;
+export default withAuth(EventPage);
