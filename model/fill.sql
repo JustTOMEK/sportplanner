@@ -21,3 +21,6 @@ INSERT INTO event (id, title, description, owner_id, sport_id, address_id, latit
 INSERT INTO event (id, title, description, owner_id, sport_id, address_id, latitude, longitude) VALUES (2, 'Basketball tournament', 'All skill levels welcome!', 2, 4, 2, 50.06365397844488, 19.9117641340657);
 INSERT INTO event (id, title, description, owner_id, sport_id, address_id) VALUES (3, 'Bike trip to the Kampinos National Park', 'Be prepared for the mud', 2, 11, 3);
 
+INSERT INTO participation (user_id, event_id) VALUES (2, 1);
+INSERT INTO participation (user_id, event_id) VALUES (1, 2);
+
