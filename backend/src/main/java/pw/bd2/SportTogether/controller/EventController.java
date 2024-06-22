@@ -122,6 +122,17 @@ public class EventController {
         }
     }
 
+    @DeleteMapping ("/removeParticipant")
+    public void removeParticipant(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO, HttpServletResponse response) throws IOException {
+        try {
+            eventService.removeParticipant(jwtService.extractUsername(jwt), participationDTO.getParticipantId(), participationDTO.getEventId());
+        } catch (EntityNotFoundException e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        } catch (AccessDeniedException e) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+        }
+    }
+
     @DeleteMapping ("/delete")
     public void deleteEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody Integer eventId, HttpServletResponse response) throws IOException {
         try {
