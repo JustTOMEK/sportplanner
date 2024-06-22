@@ -3,6 +3,7 @@ package pw.bd2.SportTogether.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -37,7 +38,11 @@ public class Event {
 
     private Double longitude;
 
-    public Event(String title, String description, User owner, Sport sport, Address address, Double latitude, Double longitude) {
+    private LocalDateTime start_date;
+
+    private LocalDateTime end_date;
+
+    public Event(String title, String description, User owner, Sport sport, Address address, Double latitude, Double longitude, LocalDateTime start_date, LocalDateTime end_date) {
         this.title = title;
         this.description = description;
         this.owner = owner;
@@ -45,5 +50,7 @@ public class Event {
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.start_date = start_date;
+        this.end_date = end_date;
     }
 }
