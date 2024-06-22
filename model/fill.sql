@@ -19,5 +19,5 @@ INSERT INTO address (id, country, city, street, building_number, postal_code) VA
 
 INSERT INTO event (id, title, description, owner_id, sport_id, address_id, latitude, longitude) VALUES (1, 'Amateur football match', 'Not only for professionals!', 1, 2, 1, 52.21294004217454, 21.011496065445016);
 INSERT INTO event (id, title, description, owner_id, sport_id, address_id, latitude, longitude) VALUES (2, 'Basketball tournament', 'All skill levels welcome!', 2, 4, 2, 50.06365397844488, 19.9117641340657);
-INSERT INTO event (id, title, description, owner_id, sport_id, address_id) VALUES (3, 'Bike trip', 'Riding in the Kampinos National Park\n(Be prepared for the mud)', 2, 11, 3);
+INSERT INTO event (id, title, description, owner_id, sport_id, address_id) VALUES (3, 'Bike trip to the Kampinos National Park', 'Be prepared for the mud', 2, 11, 3);
 
