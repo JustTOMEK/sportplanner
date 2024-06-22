@@ -121,8 +121,7 @@ const SearchPage = () => {
     };
 
     const handleEventClick = (eventId: number) => {
-        // router.push(`/event/view/${eventId}`);
-        router.push(`/event/view`);
+        router.push(`/event/view?id=${eventId}`);
     };
 
     return (
