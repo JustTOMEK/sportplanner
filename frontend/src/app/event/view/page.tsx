@@ -114,6 +114,7 @@ const EventViewPage = () => {
             if (response.ok) {
                 // You may handle success message or redirect here
                 alert('Successfully joined the event!');
+                router.push('/home');
             } else {
                 setError('Failed to join event');
             }
