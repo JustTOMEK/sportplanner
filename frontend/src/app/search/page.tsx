@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import "../../Styles/SearchPage.css";
 
 interface Sport {
@@ -27,6 +28,8 @@ const SearchPage = () => {
     const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
+
+    const router = useRouter();
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -117,6 +120,11 @@ const SearchPage = () => {
         }
     };
 
+    const handleEventClick = (eventId: number) => {
+        // router.push(`/event/view/${eventId}`);
+        router.push(`/event/view`);
+    };
+
     return (
         <div className="search-page-container">
             <div className="search-panel">
@@ -148,17 +156,17 @@ const SearchPage = () => {
             <div className="events-list">
                 <h2>Lista wydarzeń</h2>
                 <table className="events-table">
-                    <thead>
-                    <tr>
-                        <th>Event</th>
-                        <th>City</th>
-                    </tr>
-                    </thead>
                     <tbody>
                     {filteredEvents.map((event) => (
-                        <tr key={event.id}>
+                        <tr key={event.id}  className="event-row">
                             <td>{event.title}</td>
-                            <td>{event.address.city}</td>
+                            <td>
+                                <button
+                                    key={event.id}
+                                    onClick={() => handleEventClick(event.id)}
+                                    className="event-info-button"
+                                >More info</button>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
