@@ -1,15 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     async redirects() {
-      return [
-        {
-          source: '/',
-          destination: '/home',
-          permanent: true,
-        },
-      ];
+        return [
+            {
+                source: '/',
+                destination: '/home',
+                permanent: true,
+            },
+        ];
     },
-  };
-  
-  export default nextConfig;
-  
+
+    async rewrites() {
+        return [
+            {
+                source: '/event/view',
+                destination: '/event/view.tsx',
+            },
+        ];
+    },
+};
+
+export default nextConfig;

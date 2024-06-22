@@ -1,22 +1,25 @@
 package pw.bd2.SportTogether.controller;
 
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import pw.bd2.SportTogether.dto.EventDto;
 import pw.bd2.SportTogether.dto.EventFilterDTO;
 import pw.bd2.SportTogether.dto.ParticipationDTO;
 import pw.bd2.SportTogether.model.Participation;
-import pw.bd2.SportTogether.model.Sport;
+import pw.bd2.SportTogether.model.User;
 import pw.bd2.SportTogether.service.JwtService;
 import pw.bd2.SportTogether.model.Event;
 import pw.bd2.SportTogether.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,10 +36,46 @@ public class EventController {
     @Autowired
     private JwtService jwtService;
 
-    @GetMapping
-    public ResponseEntity<List<Event>> getAllEvents() {
-        List<Event> events = eventService.getAllEvents();
-        return new ResponseEntity<>(events, HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<Event> getEventById(@PathVariable Integer id) {
+        try {
+            Event event = eventService.getEventById(id);
+            return new ResponseEntity<>(event, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/participants")
+    public ResponseEntity<List<User>> getParticipantsFromEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody Integer eventId) {
+        try {
+            List<User> users = eventService.getParticipantsFromEvent(jwtService.extractUsername(jwt), eventId);
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (AccessDeniedException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        }
+    }
+
+    @GetMapping("/owned")
+    public ResponseEntity<List<Event>> getOwnedEvents(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+        try {
+            List<Event> events = eventService.getOwnedEvents(jwtService.extractUsername(jwt));
+            return new ResponseEntity<>(events, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/participating")
+    public ResponseEntity<List<Event>> getParticipantEvents(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+        try {
+            List<Event> events = eventService.getParticipantEvents(jwtService.extractUsername(jwt));
+            return new ResponseEntity<>(events, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @PostMapping("/search")
@@ -68,8 +107,8 @@ public class EventController {
         }
     }
 
-    @PostMapping("/addParticipant")
-    public ResponseEntity<Participation> addParticipant(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO) {
+    @PostMapping("/join")
+    public ResponseEntity<Participation> joinEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO) {
         try {
             Participation participation = eventService.addParticipant(jwtService.extractUsername(jwt), participationDTO.getEventId());
             return new ResponseEntity<>(participation, HttpStatus.OK);
@@ -78,22 +117,41 @@ public class EventController {
         }
     }
 
-    @DeleteMapping ("/removeParticipant")
-    public ResponseEntity<Participation> removeParticipant(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO) {
+    @DeleteMapping ("/leave")
+    public void leaveEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO, HttpServletResponse response) throws IOException {
         try {
-            Participation participation = eventService.removeParticipant(jwtService.extractUsername(jwt), participationDTO.getParticipationId());
-            return new ResponseEntity<>(participation, HttpStatus.OK);
-        } catch (AccessDeniedException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+            eventService.leaveEvent(jwtService.extractUsername(jwt), participationDTO.getEventId());
+        } catch (EntityNotFoundException e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 
-    @GetMapping("/{eventId}/status")
-    public ResponseEntity<String> getEventStatus(@PathVariable Integer eventId) {
-        Optional<Event> eventOptional = eventService.getEventById(eventId);
+    @DeleteMapping ("/removeParticipant")
+    public void removeParticipant(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO, HttpServletResponse response) throws IOException {
+        try {
+            eventService.removeParticipant(jwtService.extractUsername(jwt), participationDTO.getParticipantId(), participationDTO.getEventId());
+        } catch (EntityNotFoundException e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        } catch (AccessDeniedException e) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+        }
+    }
 
-        if (eventOptional.isPresent()) {
-            Event event = eventOptional.get();
+    @DeleteMapping ("/delete")
+    public void deleteEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody Integer eventId, HttpServletResponse response) throws IOException {
+        try {
+            eventService.deleteEvent(jwtService.extractUsername(jwt), eventId);
+        } catch (EntityNotFoundException e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        } catch (AccessDeniedException e) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+        }
+    }
+
+    @GetMapping("/{id}/status")
+    public ResponseEntity<String> getEventStatus(@PathVariable Integer id) {
+        try {
+            Event event = eventService.getEventById(id);
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime startDate = event.getStart_date();
             LocalDateTime endDate = event.getEnd_date();
@@ -108,7 +166,8 @@ public class EventController {
             }
 
             return new ResponseEntity<>(status, HttpStatus.OK);
-        } else {
+        }
+        catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }

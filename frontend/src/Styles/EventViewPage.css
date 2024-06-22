@@ -1,0 +1,24 @@
+.event-view-container {
+    padding: 20px;
+}
+
+.error-message {
+    color: red;
+}
+
+.loading-message {
+    font-size: 18px;
+    color: grey;
+}
+
+.event-details {
+    margin-top: 20px;
+}
+
+.event-details h2 {
+    margin-bottom: 10px;
+}
+
+.event-details p {
+    margin: 5px 0;
+}

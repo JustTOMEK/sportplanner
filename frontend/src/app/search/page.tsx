@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import "../../Styles/SearchPage.css";
 import withAuth from '../auth/component/withAuth';
 
@@ -27,10 +28,10 @@ const SearchPage = () => {
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [city, setCity] = useState<string | null>(null);
     const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
-    const [cities, setCities] = useState<Address[]>([]);
-    const [showCityDropdown, setShowCityDropdown] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
+
+    const router = useRouter();
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -77,34 +78,6 @@ const SearchPage = () => {
     }, [token]);
 
 
-    // Pobieranie miast z backendu
-    const fetchCities = async () => {
-        setError(null);
-        if (!token) {
-            setError('No token found');
-            return;
-        }
-        try {
-            const response = await fetch('http://localhost:8080/api/addresses/all', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                setCities(data);
-            } else {
-                setError('Failed to fetch cities');
-            }
-        } catch (error) {
-            console.error('Failed to fetch cities', error);
-            setError('Failed to fetch cities');
-        }
-    };
-
     const handleCategoryChange = (categoryId: number) => {
         setSelectedCategories((prevSelectedCategories) =>
             prevSelectedCategories.includes(categoryId)
@@ -117,10 +90,6 @@ const SearchPage = () => {
         setCity(event.target.value);
     };
 
-    const handleCitySelect = (city: string) => {
-        setCity(city);
-        setShowCityDropdown(false);
-    };
 
     const filterEvents = async () => {
         setError(null);
@@ -137,7 +106,7 @@ const SearchPage = () => {
                 },
                 body: JSON.stringify({
                     city: city,
-                    sportId: selectedCategories.length > 0 ? selectedCategories[0] : null, // Assuming only one sport category for simplicity
+                    sportIds: selectedCategories.length > 0 ? selectedCategories : null,
                 }),
             });
 
@@ -153,6 +122,10 @@ const SearchPage = () => {
         }
     };
 
+    const handleEventClick = (eventId: number) => {
+        router.push(`/event/view?id=${eventId}`);
+    };
+
     return (
         <div className="search-page-container">
             <div className="search-panel">
@@ -160,25 +133,9 @@ const SearchPage = () => {
                 <input
                     type="text"
                     placeholder="Search cities"
-                    value={city || ""}
                     onChange={handleCityChange}
-                    onFocus={fetchCities}
-                    onClick={() => setShowCityDropdown(true)}
                     className="search-input"
                 />
-                {showCityDropdown && (
-                    <div className="city-dropdown">
-                        {cities.map((city) => (
-                            <div
-                                key={city.id}
-                                className="city-item"
-                                onClick={() => handleCitySelect(city.city)}
-                            >
-                                {city.city}
-                            </div>
-                        ))}
-                    </div>
-                )}
                 <h2>Categories</h2>
                 <div className="categories-list">
                     {sportsCategories.map((category) => (
@@ -200,17 +157,17 @@ const SearchPage = () => {
             <div className="events-list">
                 <h2>Lista wydarzeń</h2>
                 <table className="events-table">
-                    <thead>
-                    <tr>
-                        <th>Event</th>
-                        <th>City</th>
-                    </tr>
-                    </thead>
                     <tbody>
                     {filteredEvents.map((event) => (
-                        <tr key={event.id}>
+                        <tr key={event.id}  className="event-row">
                             <td>{event.title}</td>
-                            <td>{event.address.city}</td>
+                            <td>
+                                <button
+                                    key={event.id}
+                                    onClick={() => handleEventClick(event.id)}
+                                    className="event-info-button"
+                                >More info</button>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
