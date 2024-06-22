@@ -38,6 +38,26 @@ public class EventController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
+    @GetMapping("/owned")
+    public ResponseEntity<List<Event>> getOwnedEvents(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+        try {
+            List<Event> events = eventService.getOwnedEvents(jwtService.extractUsername(jwt));
+            return new ResponseEntity<>(events, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("participating")
+    public ResponseEntity<List<Event>> getParticipantEvents(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+        try {
+            List<Event> events = eventService.getParticipantEvents(jwtService.extractUsername(jwt));
+            return new ResponseEntity<>(events, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
     @PostMapping("/search")
     public ResponseEntity<List<Event>> getFilteredEvents(@RequestBody EventFilterDTO eventFilterDTO) {
         List<Event> events = eventService.getFilteredEvents(eventFilterDTO.getSportIds(), eventFilterDTO.getCity());
