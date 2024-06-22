@@ -38,7 +38,8 @@ public class SportService {
         return sportRepository.save(new Sport(sportName));
     }
 
-    public void deleteSport(Integer id) {
+    public void deleteSport(Integer id, String username) {
+        adminOnly(username);
         sportRepository.deleteById(id);
     }
 
