@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +14,21 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 @Service
 public class JwtService {
     private static  final String SECRET_KEY = "4C65426A463D3127392A5E443274574A39212C4D4B64414B25432E553A";
+    private Map<String, Date> tokenBlacklist = new ConcurrentHashMap<>();
+
     public String extractUsername(String token) {
         token = token.substring(7);
         return extractClaim(token, Claims::getSubject);
+    }
+
+    private Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
@@ -48,7 +56,7 @@ public class JwtService {
 
     public  boolean isTokenValid(String token, UserDetails userDetails){
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token) && !isTokenBlacklisted(token);
     }
 
     private boolean isTokenExpired(String token) {
@@ -72,5 +80,22 @@ public class JwtService {
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public void invalidateToken(String token) {
+        token = token.substring(7); // Remove "Bearer " prefix
+        Date expirationDate = extractExpiration(token);
+        tokenBlacklist.put(token, expirationDate);
+    }
+
+    private boolean isTokenBlacklisted(String token) {
+        token = token.substring(7);
+        return tokenBlacklist.containsKey(token);
+    }
+
+    @Scheduled(fixedRate = 3600000) // Run every hour
+    public void cleanUpBlacklistedTokens() {
+        Date now = new Date();
+        tokenBlacklist.entrySet().removeIf(entry -> entry.getValue().before(now));
     }
 }
