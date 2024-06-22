@@ -1,15 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import  "../../../Styles/EventCreatePage.css";
+
+interface Sport {
+    id: number;
+    name: string;
+}
 
 function CreateEventPage({ onLogout }) {
     const router = useRouter();
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [sportId, setSportId] = useState('');
+    const [sportName, setSportName] = useState('');
+    const [sports, setSports] = useState<Sport[]>([]);
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
     const [street, setStreet] = useState('');
@@ -18,21 +24,66 @@ function CreateEventPage({ onLogout }) {
     const [postalCode, setPostalCode] = useState('');
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
-    const [error, setError] = useState<string | null>(null); // Specify the type of error state
+    const [token, setToken] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            setToken(storedToken);
+        }
+    }, []);
+
+    useEffect(() => {
+        const fetchSports = async () => {
+            setError(null);
+            if (!token) {
+                setError('No token found');
+                return;
+            }
+            try {
+                const response = await fetch('http://localhost:8080/api/sports/all', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setSports(data);
+                } else {
+                    setError('Failed to fetch sports');
+                }
+            } catch (error) {
+                console.error('Failed to fetch sports', error);
+                setError('Failed to fetch sports');
+            }
+        };
+
+        fetchSports();
+    }, [token]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const token = localStorage.getItem('token');
         if (!token) {
             setError('No token found');
+            return;
+        }
+
+        const selectedSport = sports.find(sport => sport.name === sportName);
+        if (!selectedSport) {
+            setError('Invalid sport selected');
             return;
         }
 
         const eventDto = {
             title,
             description,
-            sportId,
+            sportId: selectedSport.id,
             country,
             city,
             street,
@@ -55,7 +106,6 @@ function CreateEventPage({ onLogout }) {
 
             if (response.ok) {
                 const eventData = await response.json();
-                // router.push(`/event/view?id=${eventData.id}`);
                 router.push('/home');
             } else {
                 setError('Failed to create event');
@@ -82,8 +132,13 @@ function CreateEventPage({ onLogout }) {
                 </label>
                 <br />
                 <label>
-                    Sport ID:
-                    <input type="number" value={sportId} onChange={(e) => setSportId(e.target.value)} required />
+                    Sport:
+                    <select value={sportName} onChange={(e) => setSportName(e.target.value)} required>
+                        <option value="">Select a sport</option>
+                        {sports.map((sport: Sport) => (
+                            <option key={sport.id} value={sport.name}>{sport.name}</option>
+                        ))}
+                    </select>
                 </label>
                 <br />
                 <label>
