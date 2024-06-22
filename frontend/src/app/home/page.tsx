@@ -104,14 +104,14 @@ const HomePage = () => {
                     {participantEvents.length > 0 ? (
                         <table className="events-table">
                             <tbody>
-                            {participantEvents.map(event => (
-                                <tr key={event.id}>
-                                    <td>{event.title}</td>
-                                    <td>
-                                        <button onClick={() => handleMoreInfo(event.id)} className="more-info-button">More Info</button>
-                                    </td>
-                                </tr>
-                            ))}
+                                {participantEvents.map(event => (
+                                    <tr key={event.id}>
+                                        <td>{event.title}</td>
+                                        <td>
+                                            <button onClick={() => handleMoreInfo(event.id)} className="more-info-button">More Info</button>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     ) : (
@@ -121,13 +121,18 @@ const HomePage = () => {
                 <div className="events-header events-header_2">
                     <h2>Events you are hosting:</h2>
                     {ownedEvents.length > 0 ? (
-                        <ul className="owned-events-list">
-                            {ownedEvents.map(event => (
-                                <li key={event.id}>
-                                    {event.title}
-                                </li>
-                            ))}
-                        </ul>
+                        <table className="owned-events-table">
+                            <tbody>
+                                {ownedEvents.map(event => (
+                                    <tr key={event.id}>
+                                        <td>{event.title}</td>
+                                        <td>
+                                            <button onClick={() => handleMoreInfo(event.id)} className="more-info-button">More Info</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     ) : (
                         <p>No events found.</p>
                     )}
