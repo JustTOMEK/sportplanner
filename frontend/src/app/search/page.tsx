@@ -134,7 +134,7 @@ const SearchPage = () => {
                     type="text"
                     placeholder="Search cities"
                     onChange={handleCityChange}
-                    className="search-input"
+                    className="myinput w-full mb-4"
                 />
                 <h2>Categories</h2>
                 <div className="categories-list">
@@ -152,7 +152,12 @@ const SearchPage = () => {
                     ))}
                 </div>
                 {error && <p className="error-message">{error}</p>}
-                <button onClick={filterEvents} className="filter-button">Filter</button>
+                <button
+                    onClick={filterEvents}
+                    className="mybutton-green"
+                >
+                    Filter
+                </button>
             </div>
             <div className="events-list">
                 <h2>Lista wydarzeń</h2>

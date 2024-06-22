@@ -1,0 +1,32 @@
+.mylist-container {
+    @apply overflow-y-auto overflow-x-hidden max-h-[calc(100vh-150px)] w-full;
+}
+
+.mylist-entry {
+    @apply bg-gray-50 shadow-md flex items-center justify-between rounded-md w-full mr-2 mb-2 p-3 hover:bg-slate-200 transition duration-150 ease-in-out;
+}
+
+.myinput {
+    @apply rounded border border-[#c9c9c9] p-2;
+}
+
+.mybutton {
+    @apply text-white rounded px-4 py-2 transition duration-150 ease-in-out;
+}
+
+.mybutton-blue {
+    @apply mybutton bg-[#3498db] hover:bg-[#2980b9]
+}
+
+.mybutton-green {
+    @apply mybutton bg-green-500 hover:bg-green-700
+}
+
+.mybutton-red {
+    @apply mybutton bg-red-500 hover:bg-red-700
+}
+
+.mybutton-orange {
+    @apply mybutton bg-orange-500 hover:bg-orange-600
+}
+
