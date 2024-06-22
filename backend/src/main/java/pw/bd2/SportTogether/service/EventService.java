@@ -41,10 +41,10 @@ public class EventService {
         return eventRepository.findAll();
     }
 
-    public List<Event> getFilteredEvents(Integer sportId, String city) {
+    public List<Event> getFilteredEvents(List<Integer> sportIds, String city) {
         List<Event> events = eventRepository.findAll();
-        if (sportId != null){
-            events.removeIf(event -> !event.getSport().getId().equals(sportId));
+        if (sportIds != null){
+            events.removeIf(event -> !sportIds.contains(event.getSport().getId()));
         }
         if (city != null) {
             events.removeIf(event -> !event.getAddress().getCity().equals(city));

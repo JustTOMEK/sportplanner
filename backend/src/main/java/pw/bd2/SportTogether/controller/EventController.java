@@ -8,6 +8,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import pw.bd2.SportTogether.dto.EventDto;
+import pw.bd2.SportTogether.dto.EventFilterDTO;
 import pw.bd2.SportTogether.dto.ParticipationDTO;
 import pw.bd2.SportTogether.model.Participation;
 import pw.bd2.SportTogether.model.Sport;
@@ -37,8 +38,8 @@ public class EventController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Event>> getFilteredEvents(@RequestBody EventDto eventDto) {
-        List<Event> events = eventService.getFilteredEvents(eventDto.getSportId(), eventDto.getCity());
+    public ResponseEntity<List<Event>> getFilteredEvents(@RequestBody EventFilterDTO eventFilterDTO) {
+        List<Event> events = eventService.getFilteredEvents(eventFilterDTO.getSportIds(), eventFilterDTO.getCity());
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
