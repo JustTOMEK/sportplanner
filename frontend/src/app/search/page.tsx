@@ -25,8 +25,6 @@ const SearchPage = () => {
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [city, setCity] = useState<string | null>(null);
     const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
-    const [cities, setCities] = useState<Address[]>([]);
-    const [showCityDropdown, setShowCityDropdown] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
 
@@ -87,10 +85,6 @@ const SearchPage = () => {
         setCity(event.target.value);
     };
 
-    const handleCitySelect = (city: string) => {
-        setCity(city);
-        setShowCityDropdown(false);
-    };
 
     const filterEvents = async () => {
         setError(null);
@@ -107,7 +101,7 @@ const SearchPage = () => {
                 },
                 body: JSON.stringify({
                     city: city,
-                    sportIds: selectedCategories.length > 0 ? selectedCategories : null, // Pass all selected categories
+                    sportIds: selectedCategories.length > 0 ? selectedCategories : null,
                 }),
             });
 
@@ -133,19 +127,6 @@ const SearchPage = () => {
                     onChange={handleCityChange}
                     className="search-input"
                 />
-                {showCityDropdown && (
-                    <div className="city-dropdown">
-                        {cities.map((city) => (
-                            <div
-                                key={city.id}
-                                className="city-item"
-                                onClick={() => handleCitySelect(city.city)}
-                            >
-                                {city.city}
-                            </div>
-                        ))}
-                    </div>
-                )}
                 <h2>Categories</h2>
                 <div className="categories-list">
                     {sportsCategories.map((category) => (
