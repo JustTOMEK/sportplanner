@@ -1,3 +1,16 @@
+CREATE TABLE user (
+    id       INTEGER AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(20) NOT NULL UNIQUE,
+    email    VARCHAR(50) UNIQUE,
+    password VARCHAR(512) NOT NULL,
+    role     ENUM('USER','ADMIN')
+);
+
+CREATE TABLE sport (
+    id   INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL UNIQUE
+);
+
 CREATE TABLE address (
     id              INTEGER AUTO_INCREMENT PRIMARY KEY,
     country         VARCHAR(50) NOT NULL,
@@ -17,48 +30,20 @@ CREATE TABLE event (
     address_id        INTEGER NOT NULL,
     latitude          DOUBLE,
     longitude         DOUBLE,
-    modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT event_user_fk FOREIGN KEY (owner_id) REFERENCES user (id),
+    CONSTRAINT event_sport_fk FOREIGN KEY (sport_id) REFERENCES sport (id),
+    CONSTRAINT event_address_fk FOREIGN KEY (address_id) REFERENCES address (id)
 );
 
 CREATE TABLE participation (
     id       INTEGER AUTO_INCREMENT PRIMARY KEY,
     user_id  INTEGER NOT NULL,
     event_id INTEGER NOT NULL,
-    UNIQUE (user_id, event_id)
+    UNIQUE (user_id, event_id),
+    CONSTRAINT participation_user_fk FOREIGN KEY (user_id) REFERENCES user (id),
+    CONSTRAINT participation_event_fk FOREIGN KEY (event_id) REFERENCES event (id)
 );
-
-CREATE TABLE sport (
-    id   INTEGER AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(20) NOT NULL UNIQUE
-);
-
-CREATE TABLE user (
-    id       INTEGER AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(20) NOT NULL UNIQUE,
-    email    VARCHAR(50) UNIQUE,
-    password VARCHAR(512) NOT NULL,
-    role     ENUM('USER','ADMIN')
-);
-
-ALTER TABLE event
-    ADD CONSTRAINT event_address_fk FOREIGN KEY (address_id)
-        REFERENCES address (id);
-
-ALTER TABLE event
-    ADD CONSTRAINT event_sport_fk FOREIGN KEY (sport_id)
-        REFERENCES sport (id);
-
-ALTER TABLE event
-    ADD CONSTRAINT event_user_fk FOREIGN KEY (owner_id)
-        REFERENCES user (id);
-
-ALTER TABLE participation
-    ADD CONSTRAINT participation_event_fk FOREIGN KEY (event_id)
-        REFERENCES event (id);
-
-ALTER TABLE participation
-    ADD CONSTRAINT participation_user_fk FOREIGN KEY (user_id)
-        REFERENCES user (id);
 
 
 DELIMITER //
