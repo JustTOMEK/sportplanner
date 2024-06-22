@@ -16,9 +16,9 @@ public class EventDto {
 
     private String street;
 
-    private Integer building_number;
+    private String building_number;
 
-    private Integer flat_number;
+    private String flat_number;
 
     private String postal_code;
 

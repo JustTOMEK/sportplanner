@@ -1,10 +1,11 @@
 package pw.bd2.SportTogether.controller;
 
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import pw.bd2.SportTogether.dto.EventDto;
@@ -16,6 +17,7 @@ import pw.bd2.SportTogether.model.Event;
 import pw.bd2.SportTogether.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -63,8 +65,8 @@ public class EventController {
         }
     }
 
-    @PostMapping("/addParticipant")
-    public ResponseEntity<Participation> addParticipant(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO) {
+    @PostMapping("/join")
+    public ResponseEntity<Participation> joinEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO) {
         try {
             Participation participation = eventService.addParticipant(jwtService.extractUsername(jwt), participationDTO.getEventId());
             return new ResponseEntity<>(participation, HttpStatus.OK);
@@ -73,13 +75,12 @@ public class EventController {
         }
     }
 
-    @DeleteMapping ("/removeParticipant")
-    public ResponseEntity<Participation> removeParticipant(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO) {
+    @DeleteMapping ("/leave")
+    public void leaveEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO, HttpServletResponse response) throws IOException {
         try {
-            Participation participation = eventService.removeParticipant(jwtService.extractUsername(jwt), participationDTO.getParticipationId());
-            return new ResponseEntity<>(participation, HttpStatus.OK);
-        } catch (AccessDeniedException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+            eventService.leaveEvent(jwtService.extractUsername(jwt), participationDTO.getEventId());
+        } catch (EntityNotFoundException e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 }

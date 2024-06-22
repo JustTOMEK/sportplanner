@@ -3,7 +3,6 @@ package pw.bd2.SportTogether.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import pw.bd2.SportTogether.model.*;
 import pw.bd2.SportTogether.repository.*;
@@ -72,8 +71,8 @@ public class EventService {
                              String country,
                              String city,
                              String street,
-                             Integer building_number,
-                             Integer flat_number,
+                             String building_number,
+                             String flat_number,
                              String postal_code,
                              Double latitude,
                              Double longitude) {
@@ -93,16 +92,15 @@ public class EventService {
         return participationRepository.save(new Participation(participant, event));
     }
 
-    public Participation removeParticipant(String username, Integer participationId){
-        User remover = userRepository.findByUsername(username).orElseThrow(
+    public void leaveEvent(String username, Integer eventId){
+        User user = userRepository.findByUsername(username).orElseThrow(
                 () -> new EntityNotFoundException("User not in database"));
-        Participation participation = participationRepository.findById(participationId).orElseThrow(
-                () -> new EntityNotFoundException("Participation not in database"));
-        if (participation.getUser().getId().equals(remover.getId()) || participation.getEvent().getOwner().getId().equals(remover.getId())) {
-            participationRepository.delete(participation);
-            return participation;
-        }
-        throw new AccessDeniedException("User is not allowed to remove this participant.");
+        List<Participation> participations = participationRepository.findByUser(user);
+        Participation participation = participations.stream()
+                .filter(p -> p.getEvent().getId().equals(eventId)).findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("User is not participating in the event"));
+
+        participationRepository.delete(participation);
     }
 
 
