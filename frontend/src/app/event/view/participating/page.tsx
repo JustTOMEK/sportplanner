@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import "../../../Styles/EventViewPage.css";
-import withAuth from '../../auth/component/withAuth';
+import "../../../../Styles/ViewPatricipatingEventPage.css";
+import withAuth from '../../../auth/component/withAuth';
 
 interface User {
     id: number;
@@ -38,11 +38,11 @@ interface Event {
     longitude: number;
 }
 
-const EventViewPage = () => {
+const ViewParticipatingEventPage = () => {
     const [event, setEvent] = useState<Event | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
-    const [isJoining, setIsJoining] = useState<boolean>(false);
+    const [isLeaving, setIsLeaving] = useState<boolean>(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -77,7 +77,7 @@ const EventViewPage = () => {
                 });
 
                 if (response.ok) {
-                    const data = await response.json();
+                    const data: Event = await response.json();
                     setEvent(data);
                 } else {
                     setError('Failed to fetch event');
@@ -93,18 +93,18 @@ const EventViewPage = () => {
         }
     }, [token]);
 
-    const joinEvent = async () => {
+    const leaveEvent = async () => {
         if (!event) {
             setError('No event data available');
             return;
         }
 
-        setIsJoining(true);
+        setIsLeaving(true);
         setError(null);
 
         try {
-            const response = await fetch('http://localhost:8080/api/events/join', {
-                method: 'POST',
+            const response = await fetch('http://localhost:8080/api/events/leave', {
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
@@ -113,17 +113,16 @@ const EventViewPage = () => {
             });
 
             if (response.ok) {
-                // You may handle success message or redirect here
-                alert('Successfully joined the event!');
+                alert('Successfully left the event!');
                 router.push('/home');
             } else {
-                setError('Failed to join event');
+                setError('Failed to leave event');
             }
         } catch (error) {
-            console.error('Failed to join event', error);
-            setError('Failed to join event');
+            console.error('Failed to leave event', error);
+            setError('Failed to leave event');
         } finally {
-            setIsJoining(false);
+            setIsLeaving(false);
         }
     };
 
@@ -146,11 +145,11 @@ const EventViewPage = () => {
                 <p><strong>Location:</strong> {event.address.street}, {event.address.city}, {event.address.postal_code}, {event.address.country}</p>
                 <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
             </div>
-            <button onClick={joinEvent} className="join-button" disabled={isJoining}>
-                {isJoining ? 'Joining...' : 'Join Event'}
+            <button onClick={leaveEvent} className="leave-button" disabled={isLeaving}>
+                {isLeaving ? 'Leaving...' : 'Leave Event'}
             </button>
         </div>
     );
 }
 
-export default withAuth(EventViewPage);
+export default withAuth(ViewParticipatingEventPage);

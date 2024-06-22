@@ -1,0 +1,88 @@
+.event-view-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.error-message {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.loading-message {
+    font-size: 18px;
+    color: grey;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.event-details {
+    margin-top: 20px;
+}
+
+.event-details h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #333;
+}
+
+.event-details p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.participants-section {
+    margin-top: 20px;
+}
+
+.participants-section h2 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #333;
+}
+
+.participants-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.participants-section ul li {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.participants-section p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.delete-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #ff7875;
+}
+
+.delete-button:disabled {
+    background-color: #d0d0d0;
+    cursor: not-allowed;
+}
