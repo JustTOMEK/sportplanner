@@ -98,6 +98,13 @@ const HomePage = () => {
                 Search events
             </button>
 
+            <button
+                className="mybutton-blue absolute bottom-3 right-3"
+                onClick={() => handleCreateEvent()}
+            >
+                Create event
+            </button>
+
             <div className="events-container">
                 <div className="events-header events-header_1">
                     <h2>Events you are attending:</h2>
@@ -136,12 +143,6 @@ const HomePage = () => {
                     ) : (
                         <p>No events found.</p>
                     )}
-                    <button
-                        className="mybutton-blue absolute bottom-3 right-3"
-                        onClick={() => handleCreateEvent()}
-                    >
-                        Create event
-                    </button>
                 </div>
             </div>
         </div>
