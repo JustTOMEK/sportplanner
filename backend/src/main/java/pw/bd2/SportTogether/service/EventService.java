@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -34,6 +35,23 @@ public class EventService {
 
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
+    }
+
+    public List<Event> getOwnedEvents(String username) {
+        User owner = userRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
+        List<Event> events = eventRepository.findAll();
+        events.removeIf(event -> !event.getOwner().equals(owner));
+        return events;
+    }
+
+    public List<Event> getParticipantEvents(String username) {
+        User participant = userRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
+        List<Participation> participations = participationRepository.findByUser(participant);
+        return participations.stream()
+                .map(Participation::getEvent)
+                .collect(Collectors.toList());
     }
 
     public List<Event> getFilteredEvents(List<Integer> sportIds, String city) {
@@ -86,6 +104,7 @@ public class EventService {
         }
         throw new AccessDeniedException("User is not allowed to remove this participant.");
     }
+
 
     public void deleteEvent(Integer id) {
         eventRepository.deleteById(id);
