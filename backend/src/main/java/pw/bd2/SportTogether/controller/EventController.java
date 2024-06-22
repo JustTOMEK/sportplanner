@@ -33,12 +33,6 @@ public class EventController {
     @Autowired
     private JwtService jwtService;
 
-    @GetMapping
-    public ResponseEntity<List<Event>> getAllEvents() {
-        List<Event> events = eventService.getAllEvents();
-        return new ResponseEntity<>(events, HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Integer id) {
         try {

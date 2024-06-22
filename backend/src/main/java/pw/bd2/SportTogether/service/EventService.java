@@ -33,10 +33,6 @@ public class EventService {
     @Autowired
     private ParticipationRepository participationRepository;
 
-    public List<Event> getAllEvents() {
-        return eventRepository.findAll();
-    }
-
     public Event getEventById(Integer id) {
         return eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Event not found with id " + id));
     }
