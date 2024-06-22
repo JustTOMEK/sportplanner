@@ -45,13 +45,19 @@ public class EventService {
         return events;
     }
 
-    public List<User> getParticipantsFromEvent(Integer eventId) {
+    public List<User> getParticipantsFromEvent(String username, Integer eventId) throws AccessDeniedException {
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
         Event event = eventRepository.findById(eventId).orElseThrow(
                 () -> new EntityNotFoundException("Event not in database"));
         List<Participation> participations = participationRepository.findByEvent(event);
-        return participations.stream()
+        List<User> participants =  participations.stream()
                 .map(Participation::getUser)
-                .collect(Collectors.toList());
+                .toList();
+        if(participants.contains(user) || event.getOwner().equals(user)){
+            return participants;
+        }
+        throw new AccessDeniedException("You have to be a participant to see other participants");
     }
 
 

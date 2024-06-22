@@ -12,6 +12,7 @@ import pw.bd2.SportTogether.dto.EventDto;
 import pw.bd2.SportTogether.dto.EventFilterDTO;
 import pw.bd2.SportTogether.dto.ParticipationDTO;
 import pw.bd2.SportTogether.model.Participation;
+import pw.bd2.SportTogether.model.User;
 import pw.bd2.SportTogether.service.JwtService;
 import pw.bd2.SportTogether.model.Event;
 import pw.bd2.SportTogether.service.EventService;
@@ -40,6 +41,18 @@ public class EventController {
             return new ResponseEntity<>(event, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/participants")
+    public ResponseEntity<List<User>> getParticipantsFromEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody Integer eventId) {
+        try {
+            List<User> users = eventService.getParticipantsFromEvent(jwtService.extractUsername(jwt), eventId);
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (AccessDeniedException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
     }
 
