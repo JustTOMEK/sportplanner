@@ -59,7 +59,7 @@ export default function Register() {
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
           required
-          className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
+          className="myinput mb-2 w-80"
         />
         <input
           type="password"
@@ -67,16 +67,19 @@ export default function Register() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
-          className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
+          className="myinput mb-4 w-80"
         />
-        <button type="submit" className="mb-4 p-2 bg-brand-quaternary text-white rounded-md w-80">
+        <button
+          type="submit"
+          className="mybutton-blue mb-4 w-80"
+        >
           Register
         </button>
       </form>
       {error && <p className="text-red-500">{error}</p>}
       <button
         onClick={() => router.push('/auth/signin')}
-        className="mb-4 p-2 bg-brand-primary text-white rounded-md w-80"
+        className="mybutton-orange mb-4 w-80"
       >
         Already have an account? Sign In
       </button>

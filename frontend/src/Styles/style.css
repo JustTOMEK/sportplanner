@@ -1,3 +1,7 @@
+.myinput {
+    @apply rounded border border-[#c9c9c9] p-2;
+}
+
 .mybutton {
     @apply text-white rounded px-4 py-2 transition duration-150 ease-in-out;
 }
@@ -13,3 +17,8 @@
 .mybutton-red {
     @apply mybutton bg-red-500 hover:bg-red-700
 }
+
+.mybutton-orange {
+    @apply mybutton bg-orange-500 hover:bg-orange-600
+}
+

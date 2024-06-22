@@ -46,26 +46,26 @@ export default function SignIn() {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
+          className="myinput mb-2 w-80"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="mb-4 p-2 border border-brand-tertiary rounded-md w-80"
+          className="myinput mb-4 w-80"
         />
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <button
           type="submit"
-          className="mb-4 p-2 bg-brand-quaternary text-white rounded-md w-80"
+          className="mybutton-blue mb-4 w-80"
         >
           Login
         </button>
       </form>
       <button
         onClick={() => router.push('/auth/register')}
-        className="mb-4 p-2 bg-brand-primary text-white rounded-md w-80"
+        className="mybutton-orange mb-4 w-80"
       >
         Register if you are new
       </button>
