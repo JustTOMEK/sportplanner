@@ -59,8 +59,8 @@ public class EventService {
                              String country,
                              String city,
                              String street,
-                             Integer building_number,
-                             Integer flat_number,
+                             String building_number,
+                             String flat_number,
                              String postal_code,
                              Double latitude,
                              Double longitude) {

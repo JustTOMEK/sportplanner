@@ -3,8 +3,8 @@ CREATE TABLE address (
     country         VARCHAR(50) NOT NULL,
     city            VARCHAR(50) NOT NULL,
     street          VARCHAR(50),
-    building_number INTEGER,
-    flat_number     INTEGER,
+    building_number VARCHAR(10),
+    flat_number     VARCHAR(10),
     postal_code     VARCHAR(10)
 );
 

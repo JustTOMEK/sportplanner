@@ -23,13 +23,13 @@ public class Address {
 
     private String street;
 
-    private Integer building_number;
+    private String building_number;
 
-    private Integer flat_number;
+    private String flat_number;
 
     private String postal_code;
 
-    public Address(String country, String city, String street, Integer building_number, Integer flat_number, String postal_code) {
+    public Address(String country, String city, String street, String building_number, String flat_number, String postal_code) {
         this.country = country;
         this.city = city;
         this.street = street;
