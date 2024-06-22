@@ -1,35 +1,12 @@
+/* HomePage.css */
 
-.logout_button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-    padding: 10px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.header {
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
-.search_button {
-    position: absolute;
-    top: 0;
-    margin: 10px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.create_event_button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 10px;
-    padding: 10px;
+.logout_button, .search_button, .create_event_button {
+    padding: 10px 20px;
     background-color: #008CBA;
     color: white;
     border: none;
@@ -37,26 +14,75 @@
     cursor: pointer;
 }
 
-.events_header_1, .events_header_2 {
-    font-size: 1.5rem;
-    margin: 20px 0;
+.logout_button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.search_button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.create_event_button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .events-container {
     display: flex;
     width: 100%;
     justify-content: space-around;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .events-header {
     width: 45%;
 }
 
-.events-header_1 {
+.events-header_1, .events-header_2 {
     text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
-.events-header_2 {
-    text-align: center;
+.events-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.events-table td, .events-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.events-table th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: normal;
+}
+
+.owned-events-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.owned-events-list li {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.more-info-button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
