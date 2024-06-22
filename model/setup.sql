@@ -38,11 +38,11 @@ CREATE TABLE event (
 
 CREATE TABLE participation (
     id       INTEGER AUTO_INCREMENT PRIMARY KEY,
-    user_id  INTEGER NOT NULL,
     event_id INTEGER NOT NULL,
+    user_id  INTEGER NOT NULL,
     UNIQUE (user_id, event_id),
-    CONSTRAINT participation_user_fk FOREIGN KEY (user_id) REFERENCES user (id),
-    CONSTRAINT participation_event_fk FOREIGN KEY (event_id) REFERENCES event (id) ON DELETE CASCADE
+    CONSTRAINT participation_event_fk FOREIGN KEY (event_id) REFERENCES event (id) ON DELETE CASCADE,
+    CONSTRAINT participation_user_fk FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
 
