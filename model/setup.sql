@@ -33,7 +33,7 @@ CREATE TABLE event (
     modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT event_user_fk FOREIGN KEY (owner_id) REFERENCES user (id),
     CONSTRAINT event_sport_fk FOREIGN KEY (sport_id) REFERENCES sport (id),
-    CONSTRAINT event_address_fk FOREIGN KEY (address_id) REFERENCES address (id) ON DELETE CASCADE
+    CONSTRAINT event_address_fk FOREIGN KEY (address_id) REFERENCES address (id)
 );
 
 CREATE TABLE participation (
@@ -82,6 +82,13 @@ BEGIN
         SET msg = 'A user cannot sign up for the event that they own.';
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg;
     END IF;
+END //
+
+CREATE TRIGGER delete_address_after_event
+AFTER DELETE ON event
+FOR EACH ROW
+BEGIN
+    DELETE FROM address WHERE id = OLD.address_id;
 END //
 
 DELIMITER ;
