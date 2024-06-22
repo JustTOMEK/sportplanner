@@ -48,7 +48,7 @@ CREATE TABLE participation (
 
 DELIMITER //
 
-CREATE TRIGGER before_sport_delete
+CREATE TRIGGER change_deleted_sport_to_other
 BEFORE DELETE ON sport
 FOR EACH ROW
 BEGIN
