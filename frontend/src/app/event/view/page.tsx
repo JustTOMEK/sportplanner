@@ -41,6 +41,7 @@ const EventViewPage = () => {
     const [event, setEvent] = useState<Event | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
+    const [isJoining, setIsJoining] = useState<boolean>(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -91,6 +92,39 @@ const EventViewPage = () => {
         }
     }, [token]);
 
+    const joinEvent = async () => {
+        if (!event) {
+            setError('No event data available');
+            return;
+        }
+
+        setIsJoining(true);
+        setError(null);
+
+        try {
+            const response = await fetch('http://localhost:8080/api/events/join', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ eventId: event.id }),
+            });
+
+            if (response.ok) {
+                // You may handle success message or redirect here
+                alert('Successfully joined the event!');
+            } else {
+                setError('Failed to join event');
+            }
+        } catch (error) {
+            console.error('Failed to join event', error);
+            setError('Failed to join event');
+        } finally {
+            setIsJoining(false);
+        }
+    };
+
     if (error) {
         return <div className="error-message">{error}</div>;
     }
@@ -110,6 +144,9 @@ const EventViewPage = () => {
                 <p><strong>Location:</strong> {event.address.street}, {event.address.city}, {event.address.postal_code}, {event.address.country}</p>
                 <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
             </div>
+            <button onClick={joinEvent} className="join-button" disabled={isJoining}>
+                {isJoining ? 'Joining...' : 'Join Event'}
+            </button>
         </div>
     );
 }
