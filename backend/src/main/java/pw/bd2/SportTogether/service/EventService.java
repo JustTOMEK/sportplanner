@@ -33,10 +33,6 @@ public class EventService {
     @Autowired
     private ParticipationRepository participationRepository;
 
-    public List<Event> getAllEvents() {
-        return eventRepository.findAll();
-    }
-
     public Event getEventById(Integer id) {
         return eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Event not found with id " + id));
     }
@@ -48,6 +44,23 @@ public class EventService {
         events.removeIf(event -> !event.getOwner().equals(owner));
         return events;
     }
+
+    public List<User> getParticipantsFromEvent(String username, Integer eventId) throws AccessDeniedException {
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
+        Event event = eventRepository.findById(eventId).orElseThrow(
+                () -> new EntityNotFoundException("Event not in database"));
+        List<Participation> participations = participationRepository.findByEvent(event);
+        List<User> participants =  participations.stream()
+                .map(Participation::getUser)
+                .toList();
+        if(participants.contains(user) || event.getOwner().equals(user)){
+            return participants;
+        } else {
+            throw new AccessDeniedException("You have to be a participant to see other participants");
+        }
+    }
+
 
     public List<Event> getParticipantEvents(String username) {
         User participant = userRepository.findByUsername(username).orElseThrow(
@@ -110,6 +123,23 @@ public class EventService {
                 .orElseThrow(() -> new EntityNotFoundException("User is not participating in the event"));
 
         participationRepository.delete(participation);
+    }
+
+    public void removeParticipant(String username, Integer userId, Integer eventId) throws AccessDeniedException {
+        User remover = userRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
+        Event event = eventRepository.findById(eventId).orElseThrow(
+                () -> new EntityNotFoundException("Event not in database"));
+        if (remover.equals(event.getOwner())) {
+            List<Participation> participations = participationRepository.findByEvent(event);
+            for (Participation participation : participations) {
+                if (participation.getUser().getId().equals(userId)) {
+                    participationRepository.delete(participation);
+                }
+            }
+        } else {
+            throw new AccessDeniedException("Only owner can remove participants");
+        }
     }
 
 

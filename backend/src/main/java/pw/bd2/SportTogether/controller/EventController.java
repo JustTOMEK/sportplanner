@@ -12,6 +12,7 @@ import pw.bd2.SportTogether.dto.EventDto;
 import pw.bd2.SportTogether.dto.EventFilterDTO;
 import pw.bd2.SportTogether.dto.ParticipationDTO;
 import pw.bd2.SportTogether.model.Participation;
+import pw.bd2.SportTogether.model.User;
 import pw.bd2.SportTogether.service.JwtService;
 import pw.bd2.SportTogether.model.Event;
 import pw.bd2.SportTogether.service.EventService;
@@ -33,12 +34,6 @@ public class EventController {
     @Autowired
     private JwtService jwtService;
 
-    @GetMapping
-    public ResponseEntity<List<Event>> getAllEvents() {
-        List<Event> events = eventService.getAllEvents();
-        return new ResponseEntity<>(events, HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Integer id) {
         try {
@@ -46,6 +41,18 @@ public class EventController {
             return new ResponseEntity<>(event, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/participants")
+    public ResponseEntity<List<User>> getParticipantsFromEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody Integer eventId) {
+        try {
+            List<User> users = eventService.getParticipantsFromEvent(jwtService.extractUsername(jwt), eventId);
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (AccessDeniedException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
     }
 
@@ -112,6 +119,17 @@ public class EventController {
             eventService.leaveEvent(jwtService.extractUsername(jwt), participationDTO.getEventId());
         } catch (EntityNotFoundException e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping ("/removeParticipant")
+    public void removeParticipant(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody ParticipationDTO participationDTO, HttpServletResponse response) throws IOException {
+        try {
+            eventService.removeParticipant(jwtService.extractUsername(jwt), participationDTO.getParticipantId(), participationDTO.getEventId());
+        } catch (EntityNotFoundException e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        } catch (AccessDeniedException e) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
         }
     }
 

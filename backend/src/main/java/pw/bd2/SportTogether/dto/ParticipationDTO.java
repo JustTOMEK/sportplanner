@@ -5,4 +5,6 @@ import lombok.Getter;
 @Getter
 public class ParticipationDTO {
     private Integer eventId;
+
+    private Integer participantId;
 }
