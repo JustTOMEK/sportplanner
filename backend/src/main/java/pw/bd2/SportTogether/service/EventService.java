@@ -56,8 +56,9 @@ public class EventService {
                 .toList();
         if(participants.contains(user) || event.getOwner().equals(user)){
             return participants;
+        } else {
+            throw new AccessDeniedException("You have to be a participant to see other participants");
         }
-        throw new AccessDeniedException("You have to be a participant to see other participants");
     }
 
 
@@ -122,6 +123,23 @@ public class EventService {
                 .orElseThrow(() -> new EntityNotFoundException("User is not participating in the event"));
 
         participationRepository.delete(participation);
+    }
+
+    public void removeParticipant(String username, Integer userId, Integer eventId) throws AccessDeniedException {
+        User remover = userRepository.findByUsername(username).orElseThrow(
+                () -> new EntityNotFoundException("User not in database"));
+        Event event = eventRepository.findById(eventId).orElseThrow(
+                () -> new EntityNotFoundException("Event not in database"));
+        if (remover.equals(event.getOwner())) {
+            List<Participation> participations = participationRepository.findByEvent(event);
+            for (Participation participation : participations) {
+                if (participation.getUser().getId().equals(userId)) {
+                    participationRepository.delete(participation);
+                }
+            }
+        } else {
+            throw new AccessDeniedException("Only owner can remove participants");
+        }
     }
 
 
