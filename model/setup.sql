@@ -31,8 +31,8 @@ CREATE TABLE event (
     latitude          DOUBLE,
     longitude         DOUBLE,
     modification_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    start_date        TIMESTAMP NOT NULL,
-    end_date          TIMESTAMP NOT NULL,
+    start_date        TIMESTAMP,
+    end_date          TIMESTAMP,
     CONSTRAINT event_user_fk FOREIGN KEY (owner_id) REFERENCES user (id),
     CONSTRAINT event_sport_fk FOREIGN KEY (sport_id) REFERENCES sport (id),
     CONSTRAINT event_address_fk FOREIGN KEY (address_id) REFERENCES address (id)
