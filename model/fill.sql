@@ -15,7 +15,7 @@ INSERT INTO sport (id, name) VALUES (11, 'Cycling');
 
 INSERT INTO address (id, country, city, street, building_number, postal_code) VALUES (1, 'Poland', 'Warsaw', 'ul. Stefana Batorego', '10a', '02-591');
 INSERT INTO address (id, country, city, street, building_number, postal_code) VALUES (2, 'Poland', 'Cracow', 'ul. Władysława Reymonta', '20', '30-059');
-INSERT INTO address (id, country, city, street, building_number, postal_code) VALUES (2, 'Poland', 'Warsaw', 'ul. Jana Kasprowicza', '119a', '01-949');
+INSERT INTO address (id, country, city, street, building_number, postal_code) VALUES (3, 'Poland', 'Warsaw', 'ul. Jana Kasprowicza', '119a', '01-949');
 
 INSERT INTO event (id, title, description, owner_id, sport_id, address_id, latitude, longitude) VALUES (1, 'Amateur football match', 'Not only for professionals!', 1, 2, 1, 52.21294004217454, 21.011496065445016);
 INSERT INTO event (id, title, description, owner_id, sport_id, address_id, latitude, longitude) VALUES (2, 'Basketball tournament', 'All skill levels welcome!', 2, 4, 2, 50.06365397844488, 19.9117641340657);
