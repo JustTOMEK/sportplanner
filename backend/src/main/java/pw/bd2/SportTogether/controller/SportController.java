@@ -1,6 +1,5 @@
 package pw.bd2.SportTogether.controller;
 
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,12 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
-import pw.bd2.SportTogether.model.User;
 import pw.bd2.SportTogether.service.JwtService;
 import pw.bd2.SportTogether.model.Sport;
 import pw.bd2.SportTogether.service.SportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import pw.bd2.SportTogether.service.UserService;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,9 +26,6 @@ public class SportController {
 
     @Autowired
     private JwtService jwtService;
-
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/all")
     public ResponseEntity<List<Sport>> getAllSports() {

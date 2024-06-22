@@ -11,7 +11,6 @@ import pw.bd2.SportTogether.dto.EventDto;
 import pw.bd2.SportTogether.dto.EventFilterDTO;
 import pw.bd2.SportTogether.dto.ParticipationDTO;
 import pw.bd2.SportTogether.model.Participation;
-import pw.bd2.SportTogether.model.Sport;
 import pw.bd2.SportTogether.service.JwtService;
 import pw.bd2.SportTogether.model.Event;
 import pw.bd2.SportTogether.service.EventService;

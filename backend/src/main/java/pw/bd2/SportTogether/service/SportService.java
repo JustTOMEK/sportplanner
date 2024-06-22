@@ -4,8 +4,6 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pw.bd2.SportTogether.model.Role;
 import pw.bd2.SportTogether.model.Sport;
@@ -14,10 +12,6 @@ import pw.bd2.SportTogether.repository.SportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import pw.bd2.SportTogether.repository.UserRepository;
 
-import java.security.SecureRandom;
-import java.time.LocalDateTime;
-import java.util.Base64;
-import java.util.Optional;
 import java.util.List;
 
 
