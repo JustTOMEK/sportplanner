@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import "../../../../Styles/ViewNewEventPage.css";
+import "../../../../Styles/ViewEventPage.css";
 import withAuth from '../../../auth/component/withAuth';
 
 interface User {
@@ -146,7 +146,11 @@ const ViewNewEventPage = () => {
                 <p><strong>Location:</strong> {event.address.street}, {event.address.city}, {event.address.postal_code}, {event.address.country}</p>
                 <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
             </div>
-            <button onClick={joinEvent} className="join-button" disabled={isJoining}>
+            <button
+                onClick={joinEvent}
+                className="mybutton-blue w-100 !py-3 mt-4"
+                disabled={isJoining}
+            >
                 {isJoining ? 'Joining...' : 'Join Event'}
             </button>
         </div>

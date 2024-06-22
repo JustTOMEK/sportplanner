@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import "../../../../Styles/ViewPatricipatingEventPage.css";
+import "../../../../Styles/ViewEventPage.css";
 import withAuth from '../../../auth/component/withAuth';
 
 interface User {
@@ -145,7 +145,11 @@ const ViewParticipatingEventPage = () => {
                 <p><strong>Location:</strong> {event.address.street}, {event.address.city}, {event.address.postal_code}, {event.address.country}</p>
                 <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
             </div>
-            <button onClick={leaveEvent} className="leave-button" disabled={isLeaving}>
+            <button
+                onClick={leaveEvent}
+                className="mybutton-blue w-100 !py-3 mt-4"
+                disabled={isLeaving}
+            >
                 {isLeaving ? 'Leaving...' : 'Leave Event'}
             </button>
         </div>

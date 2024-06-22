@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import "../../../../Styles/ViewNewEventPage.css";
+import "../../../../Styles/ViewEventPage.css";
 import withAuth from '../../../auth/component/withAuth';
 
 interface User {
@@ -187,7 +187,10 @@ const ViewHostingEventPage = () => {
                     <p>No participants yet.</p>
                 )}
             </div>
-            <button onClick={deleteEvent} className="delete-button">
+            <button
+                onClick={deleteEvent}
+                className="mybutton-blue w-100 !py-3 mt-4"
+            >
                 Delete Event
             </button>
         </div>
