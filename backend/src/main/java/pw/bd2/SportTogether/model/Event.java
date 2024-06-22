@@ -38,6 +38,8 @@ public class Event {
 
     private Double longitude;
 
+    private LocalDateTime modification_date;
+
     private LocalDateTime start_date;
 
     private LocalDateTime end_date;
