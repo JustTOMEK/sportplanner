@@ -52,6 +52,7 @@ export default function Register() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-brand-secondary">
+            <h2 className="text-3xl mb-4">Register</h2>
             <form onSubmit={handleSubmit} className="flex flex-col items-center">
                 <input
                     type="text"
@@ -67,7 +68,7 @@ export default function Register() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     required
-                    className="myinput mb-4 w-80"
+                    className="myinput mb-2 w-80"
                 />
                 <button
                     type="submit"

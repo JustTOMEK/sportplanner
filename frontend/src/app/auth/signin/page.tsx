@@ -40,6 +40,8 @@ export default function SignIn() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-brand-secondary">
+            <h2 className="text-4xl mb-4">Welcome to Sport Together</h2>
+            <h3 className="text-2xl mb-4">Sign in</h3>
             <form onSubmit={handleLogin} className="flex flex-col items-center">
                 <input
                     type="text"
@@ -53,7 +55,7 @@ export default function SignIn() {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="myinput mb-4 w-80"
+                    className="myinput mb-2 w-80"
                 />
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <button
@@ -67,7 +69,7 @@ export default function SignIn() {
                 onClick={() => router.push('/auth/register')}
                 className="mybutton-orange mb-4 w-80"
             >
-                Register if you are new
+                Register here
             </button>
         </div>
     );
