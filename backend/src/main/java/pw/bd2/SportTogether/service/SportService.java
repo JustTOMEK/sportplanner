@@ -38,14 +38,6 @@ public class SportService {
         return sportRepository.save(new Sport(sportName));
     }
 
-    public Optional<Sport> getSportById(Integer id) {
-        return sportRepository.findById(id);
-    }
-
-    public Sport saveSport(Sport sport) {
-        return sportRepository.save(sport);
-    }
-
     public void deleteSport(Integer id) {
         sportRepository.deleteById(id);
     }

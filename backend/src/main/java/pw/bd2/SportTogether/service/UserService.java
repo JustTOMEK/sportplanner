@@ -20,8 +20,4 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
-    public Optional<User> findByUsername(String username){
-        return userRepository.findByUsername(username);
-    }
 }

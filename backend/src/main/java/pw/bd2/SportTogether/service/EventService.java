@@ -92,14 +92,6 @@ public class EventService {
         throw new AccessDeniedException("User is not allowed to remove this participant.");
     }
 
-    public Optional<Event> getEventById(Integer id) {
-        return eventRepository.findById(id);
-    }
-
-    public Event saveEvent(Event address) {
-        return eventRepository.save(address);
-    }
-
     public void deleteEvent(Integer id) {
         eventRepository.deleteById(id);
     }

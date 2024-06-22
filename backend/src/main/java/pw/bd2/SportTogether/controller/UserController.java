@@ -14,8 +14,4 @@ import pw.bd2.SportTogether.service.JwtService;
 @RequestMapping("/api/users")
 public class UserController {
     private final JwtService jwtService;
-    @GetMapping
-    public ResponseEntity<String> sayHello(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
-        return ResponseEntity.ok(jwtService.extractUsername(jwt));
-    }
 }
