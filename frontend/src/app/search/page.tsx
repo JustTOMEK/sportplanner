@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import "../../Styles/SearchPage.css";
+import withAuth from '../auth/component/withAuth';
+
 
 interface Sport {
     id: number;
@@ -218,4 +220,4 @@ const SearchPage = () => {
     );
 }
 
-export default SearchPage;
+export default withAuth(SearchPage);

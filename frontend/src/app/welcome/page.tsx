@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import withAuth from '../auth/component/withAuth';
+
 
 function WelcomePage({ onLogout }) {
     return (
@@ -11,4 +13,4 @@ function WelcomePage({ onLogout }) {
     );
 }
 
-export default WelcomePage;
+export default withAuth(WelcomePage);
