@@ -1,3 +1,11 @@
+.mylist-container {
+    @apply overflow-y-auto overflow-x-hidden max-h-[calc(100vh-150px)] w-full;
+}
+
+.mylist-entry {
+    @apply bg-gray-50 shadow-md flex items-center justify-between rounded-md w-full mr-2 mb-2 p-3 hover:bg-slate-200 transition duration-150 ease-in-out;
+}
+
 .myinput {
     @apply rounded border border-[#c9c9c9] p-2;
 }

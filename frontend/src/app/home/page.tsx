@@ -106,49 +106,46 @@ const HomePage = () => {
             </button>
 
             <div className="events-container">
-                <div className="events-header events-header_1">
+                <div className="events-header">
                     <h2>Events you are attending:</h2>
                     {participantEvents.length > 0 ? (
-                        <table className="events-table">
-                            <tbody>
-                                {participantEvents.map(event => (
-                                    <tr key={event.id}>
-                                        <td>{event.title}</td>
-                                        <td>
-                                            <button
-                                                onClick={() => handleMoreInfo(event.id)}
-                                                className="mybutton-green"
-                                            >
-                                                More Info
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        <div className="mylist-container">
+                            {participantEvents.map(event => (
+                                <div className="mylist-entry">
+                                    <span>
+                                        {event.title}
+                                    </span>
+                                    <button
+                                        onClick={() => handleMoreInfo(event.id)}
+                                        className="mybutton-green"
+                                    >
+                                        More Info
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     ) : (
                         <p>No events found.</p>
                     )}
                 </div>
-                <div className="events-header events-header_2">
+                <div className="events-header">
                     <h2>Events you are hosting:</h2>
                     {ownedEvents.length > 0 ? (
-                        <table className="owned-events-table">
-                            <tbody>
-                                {ownedEvents.map(event => (
-                                    <tr key={event.id}>
-                                        <td>{event.title}</td>
-                                        <td>
-                                            <button
-                                                onClick={() => handleMoreInfo(event.id)}
-                                                className="mybutton-green">
-                                                More Info
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        <div className="mylist-container">
+                            {participantEvents.map(event => (
+                                <div className="mylist-entry">
+                                    <span>
+                                        {event.title}
+                                    </span>
+                                    <button
+                                        onClick={() => handleMoreInfo(event.id)}
+                                        className="mybutton-green"
+                                    >
+                                        More Info
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     ) : (
                         <p>No events found.</p>
                     )}
