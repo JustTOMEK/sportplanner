@@ -37,6 +37,10 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    public Event getEventById(Integer id) {
+        return eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Event not found with id " + id));
+    }
+
     public List<Event> getOwnedEvents(String username) {
         User owner = userRepository.findByUsername(username).orElseThrow(
                 () -> new EntityNotFoundException("User not in database"));
@@ -55,7 +59,7 @@ public class EventService {
     }
 
     public List<Event> getFilteredEvents(List<Integer> sportIds, String city) {
-        final String city_lowercase = city == null ? city : city.toLowerCase();
+        final String city_lowercase = city.toLowerCase();
         List<Event> events = eventRepository.findAll();
         if (sportIds != null){
             events.removeIf(event -> !sportIds.contains(event.getSport().getId()));

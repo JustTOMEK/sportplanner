@@ -39,6 +39,16 @@ public class EventController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Event> getEventById(@PathVariable Integer id) {
+        try {
+            Event event = eventService.getEventById(id);
+            return new ResponseEntity<>(event, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
     @GetMapping("/owned")
     public ResponseEntity<List<Event>> getOwnedEvents(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
         try {
