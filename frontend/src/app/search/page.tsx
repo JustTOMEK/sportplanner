@@ -27,7 +27,7 @@ interface City {
 const SearchPage = () => {
     const [sportsCategories, setSportsCategories] = useState<Sport[]>([]);
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
-    const [city, setCity] = useState('');
+    const [city, setCity] = useState(null);
     const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
     const [cities, setCities] = useState<City[]>([]);
     const [showCityDropdown, setShowCityDropdown] = useState(false);
