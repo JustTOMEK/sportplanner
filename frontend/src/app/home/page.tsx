@@ -97,60 +97,72 @@ const HomePage = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-brand-secondary">
-            <h1 className="header">Home page</h1>
+            <h1>Home page</h1>
             <button
-                className="logout_button"
+                className="mybutton-blue absolute top-3 right-3"
                 onClick={() => handleLogout()}
             >
                 Sign out
             </button>
 
             <button
-                className="search_button"
+                className="mybutton-blue absolute top-3 left-3"
                 onClick={() => router.push('/search')}
             >
                 Search events
             </button>
 
+            <button
+                className="mybutton-blue absolute bottom-3 right-3"
+                onClick={() => handleCreateEvent()}
+            >
+                Create event
+            </button>
+
             <div className="events-container">
-                <div className="events-header events-header_1">
+                <div className="events-header">
                     <h2>Events you are attending:</h2>
                     {participantEvents.length > 0 ? (
-                        <table className="events-table">
-                            <tbody>
+                        <div className="mylist-container">
                             {participantEvents.map(event => (
-                                <tr key={event.id}>
-                                    <td>{event.title}</td>
-                                    <td>
-                                        <button onClick={() => handleMoreInfo(event.id)} className="more-info-button">More Info</button>
-                                    </td>
-                                </tr>
+                                <div className="mylist-entry">
+                                    <span>
+                                        {event.title}
+                                    </span>
+                                    <button
+                                        onClick={() => handleMoreInfo(event.id)}
+                                        className="mybutton-green"
+                                    >
+                                        More Info
+                                    </button>
+                                </div>
                             ))}
-                            </tbody>
-                        </table>
+                        </div>
                     ) : (
                         <p>No events found.</p>
                     )}
                 </div>
-                <div className="events-header events-header_2">
+                <div className="events-header">
                     <h2>Events you are hosting:</h2>
                     {ownedEvents.length > 0 ? (
-                        <ul className="owned-events-list">
+                        <div className="mylist-container">
                             {ownedEvents.map(event => (
-                                <li key={event.id}>
-                                    {event.title}
-                                </li>
+                                <div className="mylist-entry">
+                                    <span>
+                                        {event.title}
+                                    </span>
+                                    <button
+                                        onClick={() => handleMoreInfo(event.id)}
+                                        className="mybutton-green"
+                                    >
+                                        More Info
+                                    </button>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     ) : (
                         <p>No events found.</p>
                     )}
-                    <button
-                        className="create_event_button"
-                        onClick={() => handleCreateEvent()}
-                    >
-                        Create event
-                    </button>
                 </div>
             </div>
         </div>

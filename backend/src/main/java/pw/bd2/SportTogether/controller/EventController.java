@@ -46,10 +46,37 @@ public class EventController {
         }
     }
 
-    @GetMapping("/participants")
-    public ResponseEntity<List<User>> getParticipantsFromEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody Integer eventId) {
+    @GetMapping("/{id}/role")
+    public ResponseEntity<String> getEventRole(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @PathVariable Integer id) {
         try {
-            List<User> users = eventService.getParticipantsFromEvent(jwtService.extractUsername(jwt), eventId);
+            String username = jwtService.extractUsername(jwt);
+            String owner = eventService.getEventById(id).getOwner().getUsername();
+
+            String role = "";
+            if (username.equals(owner)) {
+                role = "owner";
+            }
+            else {
+                try {
+                    List<User> participants = eventService.getParticipantsFromEvent(username, id);
+                    if (participants.stream().anyMatch(p -> p.getUsername().equals(username))) {
+                        role = "participant";
+                    }
+                } catch (AccessDeniedException e) {
+                    role = "none";
+                }
+            }
+
+            return ResponseEntity.status(HttpStatus.OK).body(role);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @GetMapping("/{id}/participants")
+    public ResponseEntity<List<User>> getParticipantsFromEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @PathVariable Integer id) {
+        try {
+            List<User> users = eventService.getParticipantsFromEvent(jwtService.extractUsername(jwt), id);
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
