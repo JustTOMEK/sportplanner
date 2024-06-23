@@ -20,10 +20,15 @@ const HomePage = () => {
         const storedToken = localStorage.getItem('token');
         if (storedToken) {
             setToken(storedToken);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (token) {
             fetchParticipantEvents();
             fetchOwnedEvents();
         }
-    }, []);
+    }, [token]);
 
     const handleLogout = async () => {
         const response = await fetch('http://localhost:8080/api/auth/logout', {
