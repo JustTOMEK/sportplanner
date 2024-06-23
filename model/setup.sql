@@ -3,7 +3,8 @@ CREATE TABLE user (
     username VARCHAR(20) NOT NULL UNIQUE,
     email    VARCHAR(50) UNIQUE,
     password VARCHAR(512) NOT NULL,
-    role     ENUM('USER','ADMIN')
+    role     ENUM('USER','ADMIN'),
+    profile_picture  TINYBLOB
 );
 
 CREATE TABLE sport (
