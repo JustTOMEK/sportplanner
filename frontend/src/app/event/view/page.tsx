@@ -47,6 +47,7 @@ const ViewEventPage = () => {
     const [isLeaving, setIsLeaving] = useState<boolean>(false);
     const [isJoining, setIsJoining] = useState<boolean>(false);
     const router = useRouter();
+    const [mapUrl, setMapUrl] = useState<string | null>(null);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -128,6 +129,14 @@ const ViewEventPage = () => {
     }, [token]);
 
     useEffect(() => {
+        if (event && event.latitude && event.longitude) {
+            const url = `https://www.google.com/maps/embed/v1/place?key=AIzaSyDSu9lCeABtITI1suM98VZl2jabENT7vVc&q=${event.latitude},${event.longitude}&zoom=15`;
+            setMapUrl(url);
+            console.log('Map URL set:', url);
+        }
+    }, [event]);
+
+    useEffect(() => {
         const fetchParticipants = async () => {
             const query = new URLSearchParams(window.location.search);
             const eventId = query.get('id');
@@ -163,7 +172,6 @@ const ViewEventPage = () => {
             fetchParticipants();
         }
     }, [role]);
-
 
     const leaveEvent = async () => {
         if (!event) {
@@ -280,6 +288,18 @@ const ViewEventPage = () => {
                 <p><strong>Organizer:</strong> {event.owner.username}</p>
                 <p><strong>Location:</strong> {event.address.street} {event.address.building_number}, {event.address.postal_code} {event.address.city}, {event.address.country}</p>
                 <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
+                {mapUrl && (
+                <div style={{ width: '100%', height: '400px' }}>
+                <iframe
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    style={{ border: 0 }}
+                    src={mapUrl}
+                    allowFullScreen
+                ></iframe>
+                </div>
+                )}
             </div>
 
             {role === "owner" &&
