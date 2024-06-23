@@ -1,3 +1,5 @@
+// ViewEventPage Component
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -36,6 +38,9 @@ interface Event {
     address: Address;
     latitude: number;
     longitude: number;
+    modification_date: string;
+    start_date: string;
+    end_date: string;
 }
 
 const ViewEventPage = () => {
@@ -120,7 +125,7 @@ const ViewEventPage = () => {
             } catch (error) {
                 console.error('Failed to fetch role', error);
             }
-        }
+        };
 
         if (token) {
             fetchEvent();
@@ -270,6 +275,12 @@ const ViewEventPage = () => {
         }
     };
 
+    const editEvent = () => {
+        if (event) {
+            router.push(`/event/edit?id=${event.id}`);
+        }
+    };
+
     if (error) {
         return <div className="error-message">{error}</div>;
     }
@@ -291,6 +302,9 @@ const ViewEventPage = () => {
                 {event.latitude && event.longitude &&
                     <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
                 }
+                <p><strong>Start Date:</strong> {new Date(event.start_date).toLocaleString()}</p>
+                <p><strong>End Date:</strong> {new Date(event.end_date).toLocaleString()}</p>
+                <p><strong>Last Modified:</strong> {new Date(event.modification_date).toLocaleString()}</p>
             </div>
 
             {mapUrl && (
@@ -318,31 +332,41 @@ const ViewEventPage = () => {
                 </div>
             }
 
-            
-            {role === "owner" ?
-                <button
-                    onClick={deleteEvent}
-                    className="mybutton-blue w-100 !py-3 mt-4"
-                >
-                    Delete Event
-                </button>
-            : (role === "participant" ?
+            <div className="action-buttons">
+                {role === "owner" &&
                     <button
-                        onClick={leaveEvent}
+                        onClick={editEvent}
                         className="mybutton-blue w-100 !py-3 mt-4"
-                        disabled={isLeaving}
                     >
-                        {isLeaving ? 'Leaving...' : 'Leave Event'}
+                        Edit Event
                     </button>
-                :
+                }
+
+                {role === "owner" ?
                     <button
-                        onClick={joinEvent}
+                        onClick={deleteEvent}
                         className="mybutton-blue w-100 !py-3 mt-4"
-                        disabled={isJoining}
                     >
-                        {isJoining ? 'Joining...' : 'Join Event'}
+                        Delete Event
                     </button>
-            )}
+                    : (role === "participant" ?
+                            <button
+                                onClick={leaveEvent}
+                                className="mybutton-blue w-100 !py-3 mt-4"
+                                disabled={isLeaving}
+                            >
+                                {isLeaving ? 'Leaving...' : 'Leave Event'}
+                            </button>
+                            :
+                            <button
+                                onClick={joinEvent}
+                                className="mybutton-blue w-100 !py-3 mt-4"
+                                disabled={isJoining}
+                            >
+                                {isJoining ? 'Joining...' : 'Join Event'}
+                            </button>
+                    )}
+            </div>
         </div>
     );
 }

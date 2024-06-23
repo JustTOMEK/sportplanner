@@ -95,6 +95,10 @@ const HomePage = () => {
         router.push('/event/create');
     };
 
+    const handleMyAccount = () => {
+        router.push(`/profile`);
+    };
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-brand-secondary">
             <h1>Home page</h1>
@@ -113,6 +117,13 @@ const HomePage = () => {
             </button>
 
             <button
+                className="mybutton-blue absolute top-3 right-30"
+                onClick={() => handleMyAccount()}
+            >
+                My Account
+            </button>
+
+            <button
                 className="mybutton-blue absolute bottom-3 right-3"
                 onClick={() => handleCreateEvent()}
             >
@@ -125,7 +136,7 @@ const HomePage = () => {
                     {participantEvents.length > 0 ? (
                         <div className="mylist-container">
                             {participantEvents.map(event => (
-                                <div className="mylist-entry">
+                                <div className="mylist-entry" key={event.id}>
                                     <span>
                                         {event.title}
                                     </span>
@@ -147,7 +158,7 @@ const HomePage = () => {
                     {ownedEvents.length > 0 ? (
                         <div className="mylist-container">
                             {ownedEvents.map(event => (
-                                <div className="mylist-entry">
+                                <div className="mylist-entry" key={event.id}>
                                     <span>
                                         {event.title}
                                     </span>

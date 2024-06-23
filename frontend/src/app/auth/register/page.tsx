@@ -8,10 +8,56 @@ export default function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
+    const [passwordError, setPasswordError] = useState<string | null>(null);
+    const [usernameError, setUsernameError] = useState<string | null>(null);
+
+    const validatePassword = (password: string) => {
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasMinLength = password.length >= 5;
+        const hasMaxLength = password.length <= 20;
+
+        if (!hasUpperCase) {
+            setPasswordError('Password must contain at least one uppercase letter.');
+            return false;
+        } else if (!hasNumber) {
+            setPasswordError('Password must contain at least one number.');
+            return false;
+        } else if (!hasMinLength) {
+            setPasswordError('Password must be at least 5 characters long.');
+            return false;
+        } else if (!hasMaxLength) {
+            setPasswordError('Password must be at most 20 characters long.');
+            return false;
+        } else if (password.includes(' ')) {
+            setPasswordError('Password cannot contain spaces.');
+            return false;
+        }
+        setPasswordError(null);
+        return true;
+    };
+
+    const validateUsername = (username: string) => {
+        const hasMaxLength = username.length <= 20;
+
+        if (!hasMaxLength) {
+            setUsernameError('Username must be at most 20 characters long.');
+            return false;
+        }
+        setUsernameError(null);
+        return true;
+    };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setError(null);
+
+        const isUsernameValid = validateUsername(username);
+        const isPasswordValid = validatePassword(password);
+
+        if (!isUsernameValid || !isPasswordValid) {
+            return;
+        }
 
         try {
             const registerResponse = await fetch('http://localhost:8080/api/auth/register', {
@@ -61,7 +107,9 @@ export default function Register() {
                     placeholder="Username"
                     required
                     className="myinput mb-2 w-80"
+                    maxLength={20}
                 />
+                {usernameError && <p className="text-red-500 mb-2">{usernameError}</p>}
                 <input
                     type="password"
                     value={password}
@@ -70,6 +118,7 @@ export default function Register() {
                     required
                     className="myinput mb-2 w-80"
                 />
+                {passwordError && <p className="text-red-500 mb-2">{passwordError}</p>}
                 <button
                     type="submit"
                     className="mybutton-blue mb-4 w-80"

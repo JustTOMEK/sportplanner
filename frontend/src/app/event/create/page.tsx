@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import  "../../../Styles/EventCreatePage.css";
+import "../../../Styles/EventCreatePage.css";
 
 interface Sport {
     id: number;
@@ -24,8 +24,11 @@ function CreateEventPage({ onLogout }) {
     const [postalCode, setPostalCode] = useState('');
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [token, setToken] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [dateError, setDateError] = useState<string | null>(null); // New state for date-specific errors
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -65,12 +68,40 @@ function CreateEventPage({ onLogout }) {
         fetchSports();
     }, [token]);
 
+    const handleStartDateChange = (e) => {
+        const newStartDate = e.target.value;
+        const currentDate = new Date().toISOString().slice(0, 16); // Get current date and time, truncate seconds and milliseconds
+
+        if (new Date(newStartDate) <= new Date(currentDate)) {
+            setDateError('Start date must be after the current date and time');
+        } else if (new Date(newStartDate) >= new Date(endDate)) {
+            setDateError('Start date must be before end date');
+        } else {
+            setDateError(null);
+        }
+        setStartDate(newStartDate);
+    };
+
+    const handleEndDateChange = (e) => {
+        const newEndDate = e.target.value;
+        if (new Date(startDate) >= new Date(newEndDate)) {
+            setDateError('End date must be after start date');
+        } else {
+            setDateError(null);
+        }
+        setEndDate(newEndDate);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!token) {
             setError('No token found');
+            return;
+        }
+
+        if (new Date(startDate) >= new Date(endDate)) {
+            setDateError('End date must be after start date');
             return;
         }
 
@@ -92,6 +123,9 @@ function CreateEventPage({ onLogout }) {
             postal_code: postalCode,
             latitude,
             longitude,
+            start_date: startDate,
+            end_date: endDate,
+            modification_date: new Date().toISOString(), // Set the current date and time
         };
 
         try {
@@ -181,7 +215,19 @@ function CreateEventPage({ onLogout }) {
                     <input type="text" value={longitude} onChange={(e) => setLongitude(e.target.value)} required />
                 </label>
                 <br />
-                <button type="submit">Add Event</button>
+                <label>
+                    Start Date:
+                    <input type="datetime-local" value={startDate} onChange={handleStartDateChange} required />
+                    {dateError && <div className="error-message">{dateError}</div>}
+                </label>
+                <br />
+                <label>
+                    End Date:
+                    <input type="datetime-local" value={endDate} onChange={handleEndDateChange} required />
+                    {dateError && <div className="error-message">{dateError}</div>}
+                </label>
+                <br />
+                <button type="submit" disabled={error !== null}>Add Event</button>
             </form>
         </div>
     );

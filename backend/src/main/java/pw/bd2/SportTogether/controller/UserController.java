@@ -1,21 +1,20 @@
 package pw.bd2.SportTogether.controller;
 
-import lombok.RequiredArgsConstructor;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.HttpStatus;
+import java.io.IOException;
+import java.util.Base64;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.http.MediaType;
-import java.io.IOException;
-import java.util.Base64;
 
 import pw.bd2.SportTogether.dto.FileDto;
+import pw.bd2.SportTogether.model.User;
 import pw.bd2.SportTogether.service.JwtService;
 import pw.bd2.SportTogether.service.UserService;
 
@@ -29,6 +28,17 @@ public class UserController {
 
     @Autowired
     private JwtService jwtService;
+
+    @GetMapping("/me")
+    public ResponseEntity<User> getCurrentUser(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
+        try {
+            String username = jwtService.extractUsername(jwt);
+            User user = userService.findByUsername(username);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
     @PostMapping("/upload-profile-picture")
     public ResponseEntity<?> uploadProfilePicture(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody FileDto file) {
