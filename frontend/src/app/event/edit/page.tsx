@@ -46,6 +46,7 @@ const EditEventPage = () => {
     const [sports, setSports] = useState<Sport[]>([]);
     const [errors, setErrors] = useState<{ [key: string]: string | null }>({});
     const [token, setToken] = useState<string | null>(null);
+    const [participants, setParticipants] = useState<User[]>([]); // State for participants
     const router = useRouter();
 
     useEffect(() => {
@@ -118,9 +119,37 @@ const EditEventPage = () => {
             }
         };
 
+        const fetchParticipants = async () => {
+            const query = new URLSearchParams(window.location.search);
+            const eventId = query.get('id');
+            if (!eventId || !token) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/events/${eventId}/participants`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const data: User[] = await response.json();
+                    setParticipants(data);
+                } else {
+                    console.error('Failed to fetch participants', response.statusText);
+                }
+            } catch (error) {
+                console.error('Failed to fetch participants', error);
+            }
+        };
+
         if (token) {
             fetchEvent();
             fetchSports();
+            fetchParticipants();
         }
     }, [token]);
 
@@ -285,6 +314,24 @@ const EditEventPage = () => {
                 <button type="submit">Save</button>
                 <button type="button" onClick={handleDiscardChanges}>Discard Changes</button>
             </form>
+            <div>
+                {participants.length > 0 ? (
+                    <div>
+                        <h2>Participants:</h2>
+                        <table>
+                            <tbody>
+                            {participants.map(participant => (
+                                <tr key={participant.id}>
+                                    <td>{participant.username}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+                ) : (
+                    <div>No participants yet.</div>
+                )}
+            </div>
         </div>
     );
 };
