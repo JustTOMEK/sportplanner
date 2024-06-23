@@ -1,3 +1,5 @@
+// ViewEventPage Component
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -122,7 +124,7 @@ const ViewEventPage = () => {
             } catch (error) {
                 console.error('Failed to fetch role', error);
             }
-        }
+        };
 
         if (token) {
             fetchEvent();
@@ -166,7 +168,6 @@ const ViewEventPage = () => {
             fetchParticipants();
         }
     }, [role]);
-
 
     const leaveEvent = async () => {
         if (!event) {
@@ -265,6 +266,12 @@ const ViewEventPage = () => {
         }
     };
 
+    const editEvent = () => {
+        if (event) {
+            router.push(`/event/edit?id=${event.id}`);
+        }
+    };
+
     if (error) {
         return <div className="error-message">{error}</div>;
     }
@@ -303,30 +310,41 @@ const ViewEventPage = () => {
                 </div>
             }
 
-            {role === "owner" ?
-                <button
-                    onClick={deleteEvent}
-                    className="mybutton-blue w-100 !py-3 mt-4"
-                >
-                    Delete Event
-                </button>
-                : (role === "participant" ?
-                        <button
-                            onClick={leaveEvent}
-                            className="mybutton-blue w-100 !py-3 mt-4"
-                            disabled={isLeaving}
-                        >
-                            {isLeaving ? 'Leaving...' : 'Leave Event'}
-                        </button>
-                        :
-                        <button
-                            onClick={joinEvent}
-                            className="mybutton-blue w-100 !py-3 mt-4"
-                            disabled={isJoining}
-                        >
-                            {isJoining ? 'Joining...' : 'Join Event'}
-                        </button>
-                )}
+            <div className="action-buttons">
+                {role === "owner" &&
+                    <button
+                        onClick={editEvent}
+                        className="mybutton-blue w-100 !py-3 mt-4"
+                    >
+                        Edit Event
+                    </button>
+                }
+
+                {role === "owner" ?
+                    <button
+                        onClick={deleteEvent}
+                        className="mybutton-blue w-100 !py-3 mt-4"
+                    >
+                        Delete Event
+                    </button>
+                    : (role === "participant" ?
+                            <button
+                                onClick={leaveEvent}
+                                className="mybutton-blue w-100 !py-3 mt-4"
+                                disabled={isLeaving}
+                            >
+                                {isLeaving ? 'Leaving...' : 'Leave Event'}
+                            </button>
+                            :
+                            <button
+                                onClick={joinEvent}
+                                className="mybutton-blue w-100 !py-3 mt-4"
+                                disabled={isJoining}
+                            >
+                                {isJoining ? 'Joining...' : 'Join Event'}
+                            </button>
+                    )}
+            </div>
         </div>
     );
 }
