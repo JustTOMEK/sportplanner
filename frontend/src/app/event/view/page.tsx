@@ -278,7 +278,7 @@ const ViewEventPage = () => {
                 <h2>Details</h2>
                 <p><strong>Sport:</strong> {event.sport.name}</p>
                 <p><strong>Organizer:</strong> {event.owner.username}</p>
-                <p><strong>Location:</strong> {event.address.street}, {event.address.city}, {event.address.postal_code}, {event.address.country}</p>
+                <p><strong>Location:</strong> {event.address.street} {event.address.building_number}, {event.address.postal_code} {event.address.city}, {event.address.country}</p>
                 <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
             </div>
 
