@@ -1,0 +1,82 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{a4wide}
+\usepackage{polski}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+
+\usepackage[utf8]{inputenc} 
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\usepackage{float}
+\usepackage{relsize}
+\usepackage{subcaption}
+\usepackage{tabularx}
+
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage[skip=10pt plus1pt, indent=0pt]{parskip}
+\usepackage{indentfirst}
+
+\title{Bazy danych 2 \\
+Dokumentacja projektu}
+\author{Dominika Boguszewska \\
+Piotr Lenczewski \\
+Michał Machnikowski \\
+Jakub Pęk \\
+Tomasz Truszkowski}
+\date{Semestr 24L}
+
+\begin{document}
+
+\maketitle
+
+\section{Temat projektu}
+
+Postanowiliśmy stworzyć aplikację służącą szukaniu osób w celu wspólnego uprawiania sportu. Użytkownicy mogą stworzyć wydarzenie, w którym deklarują miejsce, dzień oraz interesujący ich sport. Także mogą zapisać się na wcześniej utworzone wydarzenie po wyszukaniu takich, które ich interesują.
+
+\section{Wymagania aplikacji}
+
+\subsection{Wymagania funkcjonalne}
+
+\begin{itemize}
+    \item Użytkownik może stworzyć konto.
+    \item Przy tworzeniu konta wymagane jest ustawienie silnego hasła.
+    \item Po utworzeniu konta wysyłany jest email z potwierdzeniem do użytkownika.
+    \item Użytkownik może zalogować się na swoje konto.
+    \item Użytkownik może ustawić swoje zdjęcie profilowe.
+    \item Użytkownik może ustawić opis swojego profilu.
+    \item Użytkownik może dodać własne ogłoszenia z parametrami: rodzaj sportu, liczba poszukiwanych osób, miejsce, czas (jednorazowe czy cykliczne), dodatkowy opis.
+    \item Użytkownik może wyszukiwać oferty według podanych kryteriów (np. rodzaj sportu, miejsce, czas).
+\end{itemize}
+ 
+\subsection{Wymagania niefunkcjonalne}
+
+\begin{itemize}
+    \item Aplikacja działa na systemie operacyjnym Linux.
+    \item Aplikacja działa na systemie operacyjnym Windows.
+    \item Każda strona aplikacji musi się załadować w przeciągu 2 sekund.
+    \item Aplikacja powinna wytrzymać X użytkowników bez strat jakości.
+    \item Email wysłany do użytkownika po utworzeniu konta musi do niego dojść w przeciągu 10 minut.
+\end{itemize}
+
+\section{Model pojęciowy (E-R)}
+
+\section{Model relacyjny bazy danych}
+
+\section{Zdenormalizowany model relacyjny bazy danych}
+
+\section{Wykorzystane technologie}
+
+\begin{itemize}
+    \item MySQL
+    \item Java
+    \item Spring Boot
+    \item Next.js
+\end{itemize}
+
+\section{Sposób uruchomienia aplikacji}
+
+\end{document}
