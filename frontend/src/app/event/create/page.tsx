@@ -207,12 +207,12 @@ function CreateEventPage({ onLogout }) {
                 <br />
                 <label>
                     Latitude:
-                    <input type="text" value={latitude} onChange={(e) => setLatitude(e.target.value)} required />
+                    <input type="text" value={latitude} onChange={(e) => setLatitude(e.target.value)} />
                 </label>
                 <br />
                 <label>
                     Longitude:
-                    <input type="text" value={longitude} onChange={(e) => setLongitude(e.target.value)} required />
+                    <input type="text" value={longitude} onChange={(e) => setLongitude(e.target.value)} />
                 </label>
                 <br />
                 <label>
