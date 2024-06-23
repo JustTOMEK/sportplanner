@@ -4,7 +4,7 @@ CREATE TABLE user (
     email    VARCHAR(50) UNIQUE,
     password VARCHAR(512) NOT NULL,
     role     ENUM('USER','ADMIN'),
-    profile_picture  TINYBLOB
+    profile_picture  BLOB
 );
 
 CREATE TABLE sport (
