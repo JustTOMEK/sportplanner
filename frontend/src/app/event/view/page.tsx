@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import "../../../../Styles/ViewEventPage.css";
-import withAuth from '../../../auth/component/withAuth';
+import "../../../Styles/ViewEventPage.css";
+import withAuth from '../../auth/component/withAuth';
 
 interface User {
     id: number;
@@ -38,12 +38,14 @@ interface Event {
     longitude: number;
 }
 
-const ViewHostingEventPage = () => {
+const ViewEventPage = () => {
     const [event, setEvent] = useState<Event | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [token, setToken] = useState<string | null>(null);
-    const [isJoining, setIsJoining] = useState<boolean>(false);
+    const [role, setRole] = useState<string | null>(null);
     const [participants, setParticipants] = useState<User[]>([]);
+    const [isLeaving, setIsLeaving] = useState<boolean>(false);
+    const [isJoining, setIsJoining] = useState<boolean>(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -89,6 +91,43 @@ const ViewHostingEventPage = () => {
             }
         };
 
+        const fetchRole = async () => {
+            const query = new URLSearchParams(window.location.search);
+            const eventId = query.get('id');
+            if (!eventId) {
+                return;
+            }
+
+            if (!token) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8080/api/events/${eventId}/role`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    setRole(await response.text());
+                } else {
+                    console.error('Failed to fetch role', response.statusText);
+                }
+            } catch (error) {
+                console.error('Failed to fetch role', error);
+            }
+        }
+
+        if (token) {
+            fetchEvent();
+            fetchRole();
+        }
+    }, [token]);
+
+    useEffect(() => {
         const fetchParticipants = async () => {
             const query = new URLSearchParams(window.location.search);
             const eventId = query.get('id');
@@ -120,11 +159,44 @@ const ViewHostingEventPage = () => {
             }
         };
 
-        if (token) {
-            fetchEvent();
+        if (role === "owner") {
             fetchParticipants();
         }
-    }, [token]);
+    }, [role]);
+
+
+    const leaveEvent = async () => {
+        if (!event) {
+            setError('No event data available');
+            return;
+        }
+
+        setIsLeaving(true);
+        setError(null);
+
+        try {
+            const response = await fetch('http://localhost:8080/api/events/leave', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ eventId: event.id }),
+            });
+
+            if (response.ok) {
+                alert('Successfully left the event!');
+                router.push('/home');
+            } else {
+                setError('Failed to leave event');
+            }
+        } catch (error) {
+            console.error('Failed to leave event', error);
+            setError('Failed to leave event');
+        } finally {
+            setIsLeaving(false);
+        }
+    };
 
     const deleteEvent = async () => {
         if (!event) {
@@ -156,6 +228,40 @@ const ViewHostingEventPage = () => {
         }
     };
 
+    const joinEvent = async () => {
+        if (!event) {
+            setError('No event data available');
+            return;
+        }
+
+        setIsJoining(true);
+        setError(null);
+
+        try {
+            const response = await fetch('http://localhost:8080/api/events/join', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ eventId: event.id }),
+            });
+
+            if (response.ok) {
+                // You may handle success message or redirect here
+                alert('Successfully joined the event!');
+                router.push('/home');
+            } else {
+                setError('Failed to join event');
+            }
+        } catch (error) {
+            console.error('Failed to join event', error);
+            setError('Failed to join event');
+        } finally {
+            setIsJoining(false);
+        }
+    };
+
     if (error) {
         return <div className="error-message">{error}</div>;
     }
@@ -175,26 +281,49 @@ const ViewHostingEventPage = () => {
                 <p><strong>Location:</strong> {event.address.street}, {event.address.city}, {event.address.postal_code}, {event.address.country}</p>
                 <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
             </div>
-            <div className="participants-section">
-                <h2>Participants</h2>
-                {participants.length > 0 ? (
-                    <ul>
-                        {participants.map((participant) => (
-                            <li key={participant.id}>{participant.username}</li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No participants yet.</p>
-                )}
-            </div>
-            <button
-                onClick={deleteEvent}
-                className="mybutton-blue w-100 !py-3 mt-4"
-            >
-                Delete Event
-            </button>
+
+            {role === "owner" &&
+                <div className="participants-section">
+                    <h2>Participants</h2>
+                    {participants.length > 0 ? (
+                        <ul>
+                            {participants.map((participant) => (
+                                <li key={participant.id}>{participant.username}</li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No participants yet.</p>
+                    )}
+                </div>
+            }
+
+            
+            {role === "owner" ?
+                <button
+                    onClick={deleteEvent}
+                    className="mybutton-blue w-100 !py-3 mt-4"
+                >
+                    Delete Event
+                </button>
+            : (role === "participant" ?
+                    <button
+                        onClick={leaveEvent}
+                        className="mybutton-blue w-100 !py-3 mt-4"
+                        disabled={isLeaving}
+                    >
+                        {isLeaving ? 'Leaving...' : 'Leave Event'}
+                    </button>
+                :
+                    <button
+                        onClick={joinEvent}
+                        className="mybutton-blue w-100 !py-3 mt-4"
+                        disabled={isJoining}
+                    >
+                        {isJoining ? 'Joining...' : 'Join Event'}
+                    </button>
+            )}
         </div>
     );
 }
 
-export default withAuth(ViewHostingEventPage);
+export default withAuth(ViewEventPage);

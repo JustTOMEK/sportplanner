@@ -73,12 +73,8 @@ const HomePage = () => {
         }
     };
 
-    const handleMoreInfo1 = (eventId: number) => {
-        router.push(`/event/view/participating?id=${eventId}`);
-    };
-
-    const handleMoreInfo2 = (eventId: number) => {
-        router.push(`/event/view/hosting?id=${eventId}`);
+    const handleMoreInfo = (eventId: number) => {
+        router.push(`/event/view?id=${eventId}`);
     };
 
     const handleCreateEvent = () => {
@@ -120,7 +116,7 @@ const HomePage = () => {
                                         {event.title}
                                     </span>
                                     <button
-                                        onClick={() => handleMoreInfo1(event.id)}
+                                        onClick={() => handleMoreInfo(event.id)}
                                         className="mybutton-green"
                                     >
                                         More Info
@@ -142,7 +138,7 @@ const HomePage = () => {
                                         {event.title}
                                     </span>
                                     <button
-                                        onClick={() => handleMoreInfo2(event.id)}
+                                        onClick={() => handleMoreInfo(event.id)}
                                         className="mybutton-green"
                                     >
                                         More Info

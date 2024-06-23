@@ -123,7 +123,7 @@ const SearchPage = () => {
     };
 
     const handleEventClick = (eventId: number) => {
-        router.push(`/event/view/join?id=${eventId}`);
+        router.push(`/event/view?id=${eventId}`);
     };
 
     return (

@@ -46,6 +46,33 @@ public class EventController {
         }
     }
 
+    @GetMapping("/{id}/role")
+    public ResponseEntity<String> getEventRole(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @PathVariable Integer id) {
+        try {
+            String username = jwtService.extractUsername(jwt);
+            String owner = eventService.getEventById(id).getOwner().getUsername();
+
+            String role = "";
+            if (username.equals(owner)) {
+                role = "owner";
+            }
+            else {
+                try {
+                    List<User> participants = eventService.getParticipantsFromEvent(username, id);
+                    if (participants.stream().anyMatch(p -> p.getUsername().equals(username))) {
+                        role = "participant";
+                    }
+                } catch (AccessDeniedException e) {
+                    role = "none";
+                }
+            }
+
+            return ResponseEntity.status(HttpStatus.OK).body(role);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
     @GetMapping("/{id}/participants")
     public ResponseEntity<List<User>> getParticipantsFromEvent(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @PathVariable Integer id) {
         try {
