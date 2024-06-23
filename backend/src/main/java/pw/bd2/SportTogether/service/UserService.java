@@ -3,13 +3,11 @@ package pw.bd2.SportTogether.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import pw.bd2.SportTogether.model.User;
 import pw.bd2.SportTogether.repository.UserRepository;
-import pw.bd2.SportTogether.model.*;
-import pw.bd2.SportTogether.repository.*;
 
 
 @Service
