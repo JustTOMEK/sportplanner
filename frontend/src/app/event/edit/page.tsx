@@ -196,6 +196,35 @@ const EditEventPage = () => {
         });
     };
 
+    const handleRemoveParticipant = async (participantId: number) => {
+        if (!token || !event) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/events/removeParticipant`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ eventId: event.id, participantId }),
+            });
+
+            if (response.ok) {
+                // Refresh participants list after removal
+                // fetchParticipants(); // Correct usage
+                alert('Participant removed successfully!');
+            } else {
+                console.error('Failed to remove participant', response.statusText);
+                alert('Failed to remove participant');
+            }
+        } catch (error) {
+            console.error('Failed to remove participant', error);
+            alert('Failed to remove participant');
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -323,6 +352,7 @@ const EditEventPage = () => {
                             {participants.map(participant => (
                                 <tr key={participant.id}>
                                     <td>{participant.username}</td>
+                                    <td><button onClick={() => handleRemoveParticipant(participant.id)}>Remove</button></td>
                                 </tr>
                             ))}
                             </tbody>
