@@ -175,9 +175,20 @@ const EditEventPage = () => {
         setEvent(prevState => {
             if (!prevState) return null;
 
-            let updatedEvent = { ...prevState, [name]: value };
+            let updatedEvent = { ...prevState };
 
-            if (name === 'start_date' || name === 'end_date') {
+            if (name === 'sport') {
+                const selectedSport = sports.find(sport => sport.id.toString() === value);
+                if (selectedSport) {
+                    updatedEvent = {
+                        ...updatedEvent,
+                        sport: {
+                            id: selectedSport.id,
+                            name: selectedSport.name,
+                        },
+                    };
+                }
+            } else if (name === 'start_date' || name === 'end_date') {
                 const startDate = name === 'start_date' ? value : updatedEvent.start_date;
                 const endDate = name === 'end_date' ? value : updatedEvent.end_date;
                 const dateError = validateDates(startDate, endDate);
@@ -282,8 +293,8 @@ const EditEventPage = () => {
                 </label>
                 <label>
                     Sport:
-                    <select name="sport" value={event?.sport.id || ''} onChange={handleInputChange}>
-                        <option value={event?.sport.id}>{event?.sport.name}</option>
+                    <select name="sport" value={event?.sport.id.toString()} onChange={handleInputChange} required>
+                        <option value="">Select Sport</option>
                         {sports.map(sport => (
                             <option key={sport.id} value={sport.id}>{sport.name}</option>
                         ))}
