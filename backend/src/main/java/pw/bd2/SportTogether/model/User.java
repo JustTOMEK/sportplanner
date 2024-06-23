@@ -30,6 +30,7 @@ public class User implements UserDetails {
     private Role role;
 
     @Lob
+    @Column(columnDefinition = "blob")
     private byte[] profile_picture;
 
     @Override
