@@ -15,7 +15,12 @@ function WelcomePage({ onLogout }) {
         <div className="welcome-page">
             <h1>Welcome to the WelcomePage!</h1>
             <p>This is a sample welcome page for our application. Here you can find some basic information about our services and features.</p>
-            <button onClick={handleLoginClick}>Login</button>
+            <button
+                className="mybutton-blue"
+                onClick={handleLoginClick}
+            >
+                Login
+            </button>
         </div>
     );
 }
