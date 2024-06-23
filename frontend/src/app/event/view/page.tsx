@@ -36,6 +36,9 @@ interface Event {
     address: Address;
     latitude: number;
     longitude: number;
+    modification_date: string;
+    start_date: string;
+    end_date: string;
 }
 
 const ViewEventPage = () => {
@@ -280,6 +283,9 @@ const ViewEventPage = () => {
                 <p><strong>Organizer:</strong> {event.owner.username}</p>
                 <p><strong>Location:</strong> {event.address.street} {event.address.building_number}, {event.address.postal_code} {event.address.city}, {event.address.country}</p>
                 <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
+                <p><strong>Start Date:</strong> {new Date(event.start_date).toLocaleString()}</p>
+                <p><strong>End Date:</strong> {new Date(event.end_date).toLocaleString()}</p>
+                <p><strong>Last Modified:</strong> {new Date(event.modification_date).toLocaleString()}</p>
             </div>
 
             {role === "owner" &&
@@ -297,7 +303,6 @@ const ViewEventPage = () => {
                 </div>
             }
 
-            
             {role === "owner" ?
                 <button
                     onClick={deleteEvent}
@@ -305,23 +310,23 @@ const ViewEventPage = () => {
                 >
                     Delete Event
                 </button>
-            : (role === "participant" ?
-                    <button
-                        onClick={leaveEvent}
-                        className="mybutton-blue w-100 !py-3 mt-4"
-                        disabled={isLeaving}
-                    >
-                        {isLeaving ? 'Leaving...' : 'Leave Event'}
-                    </button>
-                :
-                    <button
-                        onClick={joinEvent}
-                        className="mybutton-blue w-100 !py-3 mt-4"
-                        disabled={isJoining}
-                    >
-                        {isJoining ? 'Joining...' : 'Join Event'}
-                    </button>
-            )}
+                : (role === "participant" ?
+                        <button
+                            onClick={leaveEvent}
+                            className="mybutton-blue w-100 !py-3 mt-4"
+                            disabled={isLeaving}
+                        >
+                            {isLeaving ? 'Leaving...' : 'Leave Event'}
+                        </button>
+                        :
+                        <button
+                            onClick={joinEvent}
+                            className="mybutton-blue w-100 !py-3 mt-4"
+                            disabled={isJoining}
+                        >
+                            {isJoining ? 'Joining...' : 'Join Event'}
+                        </button>
+                )}
         </div>
     );
 }
