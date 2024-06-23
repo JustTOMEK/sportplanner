@@ -282,25 +282,24 @@ const ViewEventPage = () => {
         <div className="event-view-container">
             <h1>{event.title}</h1>
             <p>{event.description}</p>
-            <div className="event-details">
+
+            <div className="event-details mb-2">
                 <h2>Details</h2>
                 <p><strong>Sport:</strong> {event.sport.name}</p>
                 <p><strong>Organizer:</strong> {event.owner.username}</p>
                 <p><strong>Location:</strong> {event.address.street} {event.address.building_number}, {event.address.postal_code} {event.address.city}, {event.address.country}</p>
                 <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
-                {mapUrl && (
-                <div style={{ width: '100%', height: '400px' }}>
-                <iframe
-                    width="100%"
-                    height="100%"
-                    frameBorder="0"
-                    style={{ border: 0 }}
-                    src={mapUrl}
-                    allowFullScreen
-                ></iframe>
-                </div>
-                )}
             </div>
+
+            {mapUrl && (
+                <div className="w-100 h-[400px] mb-2 rounded">
+                    <iframe
+                        className="w-100 h-100 rounded"
+                        allowFullScreen
+                        src={mapUrl}
+                    ></iframe>
+                </div>
+            )}
 
             {role === "owner" &&
                 <div className="participants-section">
