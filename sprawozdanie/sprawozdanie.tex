@@ -33,13 +33,17 @@ Tomasz Truszkowski}
 
 \maketitle
 
+\tableofcontents
+
+\newpage
+
 \section{Temat projektu}
 
 Postanowiliśmy stworzyć aplikację służącą szukaniu osób w celu wspólnego uprawiania sportu. Użytkownicy mogą stworzyć wydarzenie, w którym deklarują miejsce, dzień oraz interesujący ich sport. Także mogą zapisać się na wcześniej utworzone wydarzenie po wyszukaniu takich, które ich interesują.
 
 \section{Grupa docelowa aplikacji}
 
-Nasza aplikacja jest skierowana do osób, które są zainteresowanie aktywnością fizyczną i chcą znaleźć towarzyszy do wspólnego uprawiania sportu. A także dla organizatorów wydarzeń sportowych, którzy chcą łatwo znaleźć uczestników do owych wydarzeń.
+Nasza aplikacja jest skierowana do osób, które są zainteresowanie aktywnością fizyczną i chcą znaleźć towarzyszy do wspólnego uprawiania sportu. A także dla organizatorów wydarzeń sportowych, którzy chcą łatwo znaleźć uczestników do organizowanych wydarzeń.
 
 \section{Wymagania aplikacji}
 
@@ -70,21 +74,21 @@ Nasza aplikacja jest skierowana do osób, które są zainteresowanie aktywności
 
 \begin{figure} [H]
     \centering
-    \includegraphics[width=0.95\linewidth]{../model/model_er.png}
+    \includegraphics[width=0.95\linewidth]{model/model_er.png}
 \end{figure}
 
 \section{Model relacyjny bazy danych}
 
 \begin{figure} [H]
     \centering
-    \includegraphics[width=0.95\linewidth]{../model/model_rel.png}
+    \includegraphics[width=0.95\linewidth]{model/model_rel.png}
 \end{figure}
 
 \section{Zdenormalizowany model relacyjny bazy danych}
 
 \begin{figure} [H]
     \centering
-    \includegraphics[width=0.95\linewidth]{../model/model_denorm.png}
+    \includegraphics[width=0.95\linewidth]{model/model_denorm.png}
 \end{figure}
 
 Podczas procesu denormalizacji usunęliśmy tabelę \textit{Coordinates}, a jej atrybuty \textit{latitude} i \textit{longitude} przenieśliśmy do tabeli \textit{Event}.
@@ -98,10 +102,50 @@ Podczas procesu denormalizacji usunęliśmy tabelę \textit{Coordinates}, a jej 
     \item Next.js
 \end{itemize}
 
-\section{Sposób uruchomienia aplikacji}
-
 \section{Instrukcja użytkowania}
 
-Po otworzeniu aplikacji uruchamia się strona powitalna, z której można przejść do formularzy logowania się oraz rejestracji. Następnie użytkownik może zalogować się na już istniejące konto bądź stworzyć nowe. Po tym zostaje przeniesiony na stronę startową, gdzie są wyświetlane wydarzenia, w których uczestniczy oraz te, które organizuje. Może także stamtąd przejść na stronę służącą wyszukiwaniu wydarzeń, wyświetlić informacje o swoim koncie, przejść do formularza tworzenia nowego wydarzenia lub się wylogować.
+\subsection{Uruchomienie aplikacji}
+
+Po otworzeniu aplikacji uruchamia się strona powitalna, z której po kliknięciu przycisku \textit{Login} można przejść do formularzy logowania się oraz rejestracji. 
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/welcome.png}
+    \caption{Strona powitalna}
+\end{figure}
+
+\subsection{Logowanie się i rejestracja}
+
+Następnie użytkownik może zalogować się na już istniejące konto bądź stworzyć nowe. W przypadku rejestracji koniecznie jest podanie silnego hasła, czyli takiego, które składa się z co najmniej 5 znaków w tym co najmniej 1 dużej litery i co najmniej 1 cyfry.
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering,margin=2cm}
+        \begin{subfigure}{0.49\textwidth}
+            \includegraphics[width=\textwidth]{pages/login_page.png}
+            \caption{Formularz logowania się}
+        \end{subfigure}
+    \hfill
+        \begin{subfigure}{0.49\textwidth}
+            \includegraphics[width=\textwidth]{pages/register.png}
+            \caption{Formularz rejestracji}
+        \end{subfigure}
+\end{figure}
+
+Po tym zostaje przeniesiony na stronę startową, gdzie są wyświetlane wydarzenia, w których uczestniczy oraz te, które organizuje. Może także stamtąd przejść na stronę służącą wyszukiwaniu wydarzeń, wyświetlić informacje o swoim koncie, przejść do formularza tworzenia nowego wydarzenia lub się wylogować.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/home.png}
+    \caption{Strona startowa}
+\end{figure}
+
+\subsection{Konto użytkownika}
+
+\subsection{Zapisywanie się na wydarzenia}
+
+\subsection{Tworzenie nowych wydarzeń}
+
+\subsection{Wylogowanie się}
 
 \end{document}
