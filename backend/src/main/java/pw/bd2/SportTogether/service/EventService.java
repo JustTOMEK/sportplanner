@@ -251,6 +251,12 @@ public class EventService {
 
         addressRepository.save(existingAddress);
 
+        Sport existingSport = existingEvent.getSport();
+        Integer updatedSportId = updatedEvent.getSport().getId();
+        Sport updatedSport = sportRepository.findById(updatedSportId)
+            .orElseThrow(() -> new IllegalArgumentException("Sport not found"));
+        existingEvent.setSport(updatedSport);
+
         return eventRepository.save(existingEvent);
     }
 }
