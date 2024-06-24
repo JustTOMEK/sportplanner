@@ -7,9 +7,11 @@ export default function Register() {
     const router = useRouter();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [passwordError, setPasswordError] = useState<string | null>(null);
     const [usernameError, setUsernameError] = useState<string | null>(null);
+    const [emailError, setEmailError] = useState<string | null>(null);
 
     const validatePassword = (password: string) => {
         const hasUpperCase = /[A-Z]/.test(password);
@@ -48,14 +50,25 @@ export default function Register() {
         return true;
     };
 
+    const validateEmail = (email: string) => {
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            setEmailError('Invalid email format.');
+            return false;
+        }
+        setEmailError(null);
+        return true;
+    };
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setError(null);
 
         const isUsernameValid = validateUsername(username);
         const isPasswordValid = validatePassword(password);
+        const isEmailValid = validateEmail(email); // Validate email
 
-        if (!isUsernameValid || !isPasswordValid) {
+        if (!isUsernameValid || !isPasswordValid || !isEmailValid) {
             return;
         }
 
@@ -65,7 +78,7 @@ export default function Register() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({ username, password, email }), // Include email in payload
             });
 
             if (registerResponse.ok) {
@@ -119,6 +132,15 @@ export default function Register() {
                     className="myinput mb-2 w-80"
                 />
                 {passwordError && <p className="text-red-500 mb-2">{passwordError}</p>}
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                    required
+                    className="myinput mb-2 w-80"
+                />
+                {emailError && <p className="text-red-500 mb-2">{emailError}</p>}
                 <button
                     type="submit"
                     className="mybutton-blue mb-4 w-80"
