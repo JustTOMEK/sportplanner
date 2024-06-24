@@ -30,3 +30,6 @@
     @apply mybutton bg-orange-500 hover:bg-orange-600
 }
 
+.mybutton-gray {
+    @apply mybutton bg-gray-500 hover:bg-gray-600
+}

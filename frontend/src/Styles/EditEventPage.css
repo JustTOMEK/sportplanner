@@ -44,28 +44,7 @@
     resize: vertical;
 }
 
-.edit-event-container button {
-    padding: 10px 15px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-.edit-event-container button[type="button"] {
-    background-color: #6c757d;
-}
-
-.edit-event-container button:hover {
-    background-color: #0056b3;
-}
-
-.edit-event-container button[type="button"]:hover {
-    background-color: #5a6268;
-}
 
 .edit-event-container .error-message {
     color: #dc3545;

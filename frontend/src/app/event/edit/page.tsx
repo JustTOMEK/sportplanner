@@ -278,7 +278,7 @@ const EditEventPage = () => {
     return (
         <div className="edit-event-container">
             <h1>Edit Event</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="mb-4">
                 {errors.general && <div className="error-message">{errors.general}</div>}
                 <label>
                     Title:
@@ -350,9 +350,21 @@ const EditEventPage = () => {
                     <input type="datetime-local" name="end_date" value={event ? new Date(event.end_date).toISOString().slice(0, -1) : ''} onChange={handleInputChange} />
                     {errors.end_date && <div className="error-message">{errors.end_date}</div>}
                 </label>
-                <button type="submit">Save</button>
-                <button type="button" onClick={handleDiscardChanges}>Discard Changes</button>
+                <button
+                    type="submit"
+                    className="mybutton-blue !py-3"
+                >
+                    Save
+                </button>
+                <button
+                    type="button"
+                    className="mybutton-gray !py-3"
+                    onClick={handleDiscardChanges}
+                >
+                    Discard Changes
+                </button>
             </form>
+
             <div>
                 {participants.length > 0 ? (
                     <div>
@@ -362,7 +374,14 @@ const EditEventPage = () => {
                             {participants.map(participant => (
                                 <tr key={participant.id}>
                                     <td>{participant.username}</td>
-                                    <td><button onClick={() => handleRemoveParticipant(participant.id)}>Remove</button></td>
+                                    <td>
+                                        <button
+                                            className="mybutton-blue my-1 ml-4"
+                                            onClick={() => handleRemoveParticipant(participant.id)}
+                                        >
+                                            Remove
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                             </tbody>
