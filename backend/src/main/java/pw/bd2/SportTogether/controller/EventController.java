@@ -205,6 +205,9 @@ public class EventController {
             Event updated = eventService.updateEvent(id, updatedEvent);
             return ResponseEntity.status(HttpStatus.OK).body(updated);
         }
+        catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
