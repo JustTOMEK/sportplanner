@@ -17,6 +17,7 @@ const Profile = () => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const [profilePicture, setProfilePicture] = useState<string>(default_profile_pic.src); // Set default image initially
+    const [fileInput, setFileInput] = useState<HTMLInputElement | null>(null);
 
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -75,6 +76,37 @@ const Profile = () => {
         }
     };
 
+    const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            uploadProfilePicture(file);
+        }
+    };
+
+    const uploadProfilePicture = async (file: File) => {
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await fetch('http://localhost:8080/api/users/upload-profile-picture', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: formData,
+            });
+
+            if (response.ok) {
+                console.log('Profile picture uploaded successfully');
+                fetchProfilePicture(); // Update profile picture after successful upload
+            } else {
+                console.error('Failed to upload profile picture');
+            }
+        } catch (error) {
+            console.error('Failed to upload profile picture', error);
+        }
+    };
+
     if (!user) {
         return <div>Loading...</div>;
     }
@@ -87,6 +119,21 @@ const Profile = () => {
                 <p>Username: {user.username}</p>
                 <p>Email: {user.email}</p>
                 <p>Role: {user.role}</p>
+            </div>
+            <div>
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileInputChange}
+                    ref={(input) => setFileInput(input)}
+                    style={{ display: 'none' }}
+                />
+                <button
+                    className="mybutton-blue mt-4"
+                    onClick={() => fileInput?.click()} // Open file input dialog
+                >
+                    Upload Profile Picture
+                </button>
             </div>
             <button
                 className="mybutton-blue mt-4"
