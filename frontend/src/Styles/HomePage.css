@@ -10,3 +10,19 @@
 .events-header {
     width: 48%;
 }
+
+.profile-picture-container {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.profile-picture-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+}

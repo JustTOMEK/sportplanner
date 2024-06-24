@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import "../../Styles/HomePage.css";
 import withAuth from '../auth/component/withAuth';
+import default_profile_pic from "../../Images/default.png";
 
 interface Event {
     id: number;
@@ -14,6 +15,7 @@ const HomePage = () => {
     const router = useRouter();
     const [participantEvents, setParticipantEvents] = useState<Event[]>([]);
     const [ownedEvents, setOwnedEvents] = useState<Event[]>([]);
+    const [profilePicture, setProfilePicture] = useState<string>(default_profile_pic.src);
     const [token, setToken] = useState<string | null>(null);
 
     useEffect(() => {
@@ -27,8 +29,32 @@ const HomePage = () => {
         if (token) {
             fetchParticipantEvents();
             fetchOwnedEvents();
+            fetchProfilePicture();
         }
     }, [token]);
+
+    const fetchProfilePicture = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/api/users/get-profile-picture', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (response.ok) {
+                const imageBlob = await response.blob();
+                const imageObjectURL = URL.createObjectURL(imageBlob);
+                setProfilePicture(imageObjectURL);
+            } else if (response.status === 404) {
+                setProfilePicture(default_profile_pic.src); // Set to default image on 404
+            } else {
+                console.error('Failed to fetch profile picture');
+            }
+        } catch (error) {
+            console.error('Failed to fetch profile picture', error);
+        }
+    };
 
     const handleLogout = async () => {
         const response = await fetch('http://localhost:8080/api/auth/logout', {
@@ -120,6 +146,9 @@ const HomePage = () => {
                 className="mybutton-blue absolute top-3 right-30"
                 onClick={() => handleMyAccount()}
             >
+                <div className="profile-picture-container">
+                    <img src={profilePicture} alt="Profile" className="profile-picture" />
+                </div>
                 My Account
             </button>
 
