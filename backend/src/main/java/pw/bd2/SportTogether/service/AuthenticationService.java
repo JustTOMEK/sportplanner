@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,6 +24,7 @@ import pw.bd2.SportTogether.repository.UserRepository;
 @Transactional(rollbackOn = Exception.class)
 @RequiredArgsConstructor
 public class AuthenticationService {
+    private final EmailService emailService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -53,6 +55,9 @@ public class AuthenticationService {
                 .role(Role.USER)
                 .build();
         userRepository.save(user);
+
+        emailService.sendEmail(request.getEmail(), "SportTogether registration", "Congratulations!\nYou have been registered.");
+
         var jwt = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwt)
