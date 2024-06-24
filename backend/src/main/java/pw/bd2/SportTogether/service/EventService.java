@@ -178,6 +178,26 @@ public class EventService {
             existingEvent.setDescription(newDescription);
         }
 
+        Double newLatitude = updatedEvent.getLatitude();
+        if (newLatitude != null && !newLatitude.equals(existingEvent.getLatitude())) {
+            existingEvent.setLatitude(newLatitude);
+        }
+
+        Double newLongitude = updatedEvent.getLongitude();
+        if (newLongitude != null && !newLongitude.equals(existingEvent.getLongitude())) {
+            existingEvent.setLongitude(newLongitude);
+        }
+
+        LocalDateTime newStart_date = updatedEvent.getStart_date();
+        if (newStart_date != null && !newStart_date.equals(existingEvent.getStart_date())) {
+            existingEvent.setStart_date(newStart_date);
+        }
+
+        LocalDateTime newEnd_date = updatedEvent.getEnd_date();
+        if (newEnd_date != null && !newEnd_date.equals(existingEvent.getEnd_date())) {
+            existingEvent.setEnd_date(newEnd_date);
+        }
+
         return eventRepository.save(existingEvent);
     }
 }
