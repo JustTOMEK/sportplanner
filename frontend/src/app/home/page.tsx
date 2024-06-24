@@ -143,13 +143,21 @@ const HomePage = () => {
             </button>
 
             <button
-                className="mybutton-blue absolute top-3 right-30"
+                className="mybutton-blue absolute top-3 right-30 !p-2.5"
                 onClick={() => handleMyAccount()}
             >
-                <div className="profile-picture-container">
-                    <img src={profilePicture} alt="Profile" className="profile-picture" />
+                <div className="w-100 flex items-center justify-between gap-x-2.5">
+                    <img
+                        src={profilePicture}
+                        alt="Profile picture"
+                        className="w-[35px] h-[35px] rounded-full"
+                    />
+                    <span
+                        className=""
+                    >
+                        My Account
+                    </span>
                 </div>
-                My Account
             </button>
 
             <button
