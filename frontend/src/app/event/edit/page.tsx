@@ -177,7 +177,16 @@ const EditEventPage = () => {
 
             let updatedEvent = { ...prevState };
 
-            if (name === 'sport') {
+            if (name.startsWith('address.')) {
+                const addressField = name.split('.')[1];
+                updatedEvent = {
+                    ...updatedEvent,
+                    address: {
+                        ...updatedEvent.address,
+                        [addressField]: value,
+                    },
+                };
+            } else if (name === 'sport') {
                 const selectedSport = sports.find(sport => sport.id.toString() === value);
                 if (selectedSport) {
                     updatedEvent = {
@@ -198,14 +207,21 @@ const EditEventPage = () => {
                     const { start_date, end_date, ...rest } = errors;
                     setErrors(rest);
                 }
+                updatedEvent = {
+                    ...updatedEvent,
+                    [name]: value,
+                };
             } else {
-                const { [name]: removed, ...rest } = errors;
-                setErrors(rest);
+                updatedEvent = {
+                    ...updatedEvent,
+                    [name]: value,
+                };
             }
 
             return updatedEvent;
         });
     };
+
 
     const handleRemoveParticipant = async (participantId: number) => {
         if (!token || !event) {
