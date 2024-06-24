@@ -37,6 +37,10 @@ Tomasz Truszkowski}
 
 Postanowiliśmy stworzyć aplikację służącą szukaniu osób w celu wspólnego uprawiania sportu. Użytkownicy mogą stworzyć wydarzenie, w którym deklarują miejsce, dzień oraz interesujący ich sport. Także mogą zapisać się na wcześniej utworzone wydarzenie po wyszukaniu takich, które ich interesują.
 
+\section{Grupa docelowa aplikacji}
+
+Nasza aplikacja jest skierowana do osób, które są zainteresowanie aktywnością fizyczną i chcą znaleźć towarzyszy do wspólnego uprawiania sportu. A także dla organizatorów wydarzeń sportowych, którzy chcą łatwo znaleźć uczestników do owych wydarzeń.
+
 \section{Wymagania aplikacji}
 
 \subsection{Wymagania funkcjonalne}
@@ -64,9 +68,26 @@ Postanowiliśmy stworzyć aplikację służącą szukaniu osób w celu wspólneg
 
 \section{Model pojęciowy (E-R)}
 
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{../model/model_er.png}
+\end{figure}
+
 \section{Model relacyjny bazy danych}
 
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{../model/model_rel.png}
+\end{figure}
+
 \section{Zdenormalizowany model relacyjny bazy danych}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{../model/model_denorm.png}
+\end{figure}
+
+Podczas procesu denormalizacji usunęliśmy tabelę \textit{Coordinates}, a jej atrybuty \textit{latitude} i \textit{longitude} przenieśliśmy do tabeli \textit{Event}.
 
 \section{Wykorzystane technologie}
 
@@ -78,5 +99,9 @@ Postanowiliśmy stworzyć aplikację służącą szukaniu osób w celu wspólneg
 \end{itemize}
 
 \section{Sposób uruchomienia aplikacji}
+
+\section{Instrukcja użytkowania}
+
+Po otworzeniu aplikacji uruchamia się strona powitalna, z której można przejść do formularzy logowania się oraz rejestracji. Następnie użytkownik może zalogować się na już istniejące konto bądź stworzyć nowe. Po tym zostaje przeniesiony na stronę startową, gdzie są wyświetlane wydarzenia, w których uczestniczy oraz te, które organizuje. Może także stamtąd przejść na stronę służącą wyszukiwaniu wydarzeń, wyświetlić informacje o swoim koncie, przejść do formularza tworzenia nowego wydarzenia lub się wylogować.
 
 \end{document}
