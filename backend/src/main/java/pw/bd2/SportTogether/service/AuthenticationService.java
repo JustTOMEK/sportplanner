@@ -33,6 +33,7 @@ public class AuthenticationService {
     private static final int MIN_PASSWORD_LENGTH = 5;
     private static final int MAX_PASSWORD_LENGTH = 20;
     private static final int MAX_USERNAME_LENGTH = 20;
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
 
     public AuthenticationResponse register(RegisterRequest request) {
         Optional<User> optionalUser = userRepository.findByUsername(request.getUsername());
@@ -43,10 +44,12 @@ public class AuthenticationService {
 
         validateUsername(request.getUsername());
         validatePassword(request.getPassword());
+        validateEmail(request.getEmail());
 
         var user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .email(request.getEmail())
                 .role(Role.USER)
                 .build();
         userRepository.save(user);
@@ -77,6 +80,12 @@ public class AuthenticationService {
         }
         if (password.contains(" ")) {
             throw new IllegalArgumentException("Password cannot contain spaces.");
+        }
+    }
+
+    private void validateEmail(String email) {
+        if (!EMAIL_PATTERN.matcher(email).matches()) {
+            throw new IllegalArgumentException("Invalid email format.");
         }
     }
 
