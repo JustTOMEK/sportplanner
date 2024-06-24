@@ -31,7 +31,7 @@ interface Event {
     id: number;
     title: string;
     description: string;
-    owner: User;
+    owner?: User; // Make owner optional
     sport: Sport;
     address: Address;
     latitude: number;
@@ -109,7 +109,8 @@ const EditEventPage = () => {
 
                 if (response.ok) {
                     const data: Event = await response.json();
-                    setEvent(data);
+                    const { owner, ...eventData } = data;  // Exclude the owner field
+                    setEvent(eventData as Event);
                 } else {
                     setErrors({ general: 'Failed to fetch event' });
                 }
