@@ -84,11 +84,12 @@ public class EventService {
             events.removeIf(event -> !sportIds.contains(event.getSport().getId()));
         }
 
-        if (city != null) {
-            final String city_lowercase = city.toLowerCase();
-            events.removeIf(event -> !event.getAddress().getCity().toLowerCase().equals(city_lowercase));
+        if (city == null || city.isEmpty()) {
+            return events;
         }
 
+        final String city_lowercase = city.toLowerCase();
+        events.removeIf(event -> !event.getAddress().getCity().toLowerCase().equals(city_lowercase));
         return events;
     }
 
