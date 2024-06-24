@@ -114,8 +114,8 @@ const Profile = () => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-brand-secondary">
             <h1>Profile</h1>
+            <img src={profilePicture} alt="Profile Picture" className="profile-picture" />
             <div>
-                <img src={profilePicture} alt="Profile Picture" className="profile-picture" />
                 <p>Username: {user.username}</p>
                 <p>Email: {user.email}</p>
                 <p>Role: {user.role}</p>
