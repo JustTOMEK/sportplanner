@@ -56,6 +56,33 @@ const EditEventPage = () => {
         }
     }, []);
 
+    const fetchParticipants = async () => {
+        const query = new URLSearchParams(window.location.search);
+        const eventId = query.get('id');
+        if (!eventId || !token) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:8080/api/events/${eventId}/participants`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (response.ok) {
+                const data: User[] = await response.json();
+                setParticipants(data);
+            } else {
+                console.error('Failed to fetch participants', response.statusText);
+            }
+        } catch (error) {
+            console.error('Failed to fetch participants', error);
+        }
+    };
+
     useEffect(() => {
         const fetchEvent = async () => {
             const query = new URLSearchParams(window.location.search);
@@ -116,33 +143,6 @@ const EditEventPage = () => {
             } catch (error) {
                 console.error('Failed to fetch sports', error);
                 setErrors({ general: 'Failed to fetch sports' });
-            }
-        };
-
-        const fetchParticipants = async () => {
-            const query = new URLSearchParams(window.location.search);
-            const eventId = query.get('id');
-            if (!eventId || !token) {
-                return;
-            }
-
-            try {
-                const response = await fetch(`http://localhost:8080/api/events/${eventId}/participants`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
-                    },
-                });
-
-                if (response.ok) {
-                    const data: User[] = await response.json();
-                    setParticipants(data);
-                } else {
-                    console.error('Failed to fetch participants', response.statusText);
-                }
-            } catch (error) {
-                console.error('Failed to fetch participants', error);
             }
         };
 
@@ -212,9 +212,8 @@ const EditEventPage = () => {
             });
 
             if (response.ok) {
-                // Refresh participants list after removal
-                // fetchParticipants(); // Correct usage
                 alert('Participant removed successfully!');
+                fetchParticipants();
             } else {
                 console.error('Failed to remove participant', response.statusText);
                 alert('Failed to remove participant');
