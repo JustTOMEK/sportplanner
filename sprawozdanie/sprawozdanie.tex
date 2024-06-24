@@ -39,7 +39,7 @@ Tomasz Truszkowski}
 
 \section{Temat projektu}
 
-Postanowiliśmy stworzyć aplikację służącą szukaniu osób w celu wspólnego uprawiania sportu. Użytkownicy mogą stworzyć wydarzenie, w którym deklarują miejsce, dzień oraz interesujący ich sport. Także mogą zapisać się na wcześniej utworzone wydarzenie po wyszukaniu takich, które ich interesują.
+Postanowiliśmy stworzyć aplikację służącą szukaniu osób w celu wspólnego uprawiania sportu. Użytkownicy mogą stworzyć wydarzenie, w którym deklarują miejsce, czas oraz interesujący ich sport. A także mogą zapisać się na wcześniej utworzone wydarzenia po wyszukaniu takich, które ich interesują.
 
 \section{Grupa docelowa aplikacji}
 
@@ -74,21 +74,21 @@ Nasza aplikacja jest skierowana do osób, które są zainteresowanie aktywności
 
 \begin{figure} [H]
     \centering
-    \includegraphics[width=0.95\linewidth]{model/model_er.png}
+    \includegraphics[width=0.95\linewidth]{../model/model_er.png}
 \end{figure}
 
 \section{Model relacyjny bazy danych}
 
 \begin{figure} [H]
     \centering
-    \includegraphics[width=0.95\linewidth]{model/model_rel.png}
+    \includegraphics[width=0.95\linewidth]{../model/model_rel.png}
 \end{figure}
 
 \section{Zdenormalizowany model relacyjny bazy danych}
 
 \begin{figure} [H]
     \centering
-    \includegraphics[width=0.95\linewidth]{model/model_denorm.png}
+    \includegraphics[width=0.95\linewidth]{../model/model_denorm.png}
 \end{figure}
 
 Podczas procesu denormalizacji usunęliśmy tabelę \textit{Coordinates}, a jej atrybuty \textit{latitude} i \textit{longitude} przenieśliśmy do tabeli \textit{Event}.
@@ -106,7 +106,7 @@ Podczas procesu denormalizacji usunęliśmy tabelę \textit{Coordinates}, a jej 
 
 \subsection{Uruchomienie aplikacji}
 
-Po otworzeniu aplikacji uruchamia się strona powitalna, z której po kliknięciu przycisku \textit{Login} można przejść do formularzy logowania się oraz rejestracji. 
+Po wejściu na stronę internetową uruchamia się strona powitalna, z której po kliknięciu przycisku \textit{Login} można przejść do formularzy logowania się oraz rejestracji. 
 
 \begin{figure} [H]
     \centering
@@ -116,7 +116,7 @@ Po otworzeniu aplikacji uruchamia się strona powitalna, z której po kliknięci
 
 \subsection{Logowanie się i rejestracja}
 
-Następnie użytkownik może zalogować się na już istniejące konto bądź stworzyć nowe. W przypadku rejestracji koniecznie jest podanie silnego hasła, czyli takiego, które składa się z co najmniej 5 znaków w tym co najmniej 1 dużej litery i co najmniej 1 cyfry.
+Następnie użytkownik może zalogować się na już istniejące konto bądź stworzyć nowe. W przypadku rejestracji koniecznie jest podanie silnego hasła, czyli takiego, które składa się z co najmniej 5 znaków w tym co najmniej 1 dużej litery i co najmniej 1 cyfry. Po utworzeniu nowego konta do użytkownika jest wysyłany email z potwierdzeniem pomyślnej rejestracji.
 
 \begin{figure}[H]
     \centering
@@ -132,20 +132,118 @@ Następnie użytkownik może zalogować się na już istniejące konto bądź st
         \end{subfigure}
 \end{figure}
 
-Po tym zostaje przeniesiony na stronę startową, gdzie są wyświetlane wydarzenia, w których uczestniczy oraz te, które organizuje. Może także stamtąd przejść na stronę służącą wyszukiwaniu wydarzeń, wyświetlić informacje o swoim koncie, przejść do formularza tworzenia nowego wydarzenia lub się wylogować.
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/email.png}
+    \caption{Email potwierdzający pomyślną rejestrację}
+\end{figure}
+
+\subsection{Strona główna}
+
+Po tym zostaje przeniesiony na stronę główną, gdzie są wyświetlane wydarzenia, w których uczestniczy oraz te, które organizuje. Może także stamtąd przejść na stronę służącą wyszukiwaniu wydarzeń, wyświetlić informacje o swoim koncie, przejść do formularza tworzenia nowego wydarzenia lub się wylogować.
 
 \begin{figure} [H]
     \centering
     \includegraphics[width=1\linewidth]{pages/home.png}
-    \caption{Strona startowa}
+    \caption{Strona główna}
 \end{figure}
 
-\subsection{Konto użytkownika}
+\subsection{Profil użytkownika}
+
+Po kliknięciu guzika \textit{My Account} na stronie głównej, użytkownik zostaje przeniesiony na stronę swojego profilu, z której po kliknięciu guizka \textit{Upload Profile Picture} może zmienić swoje zdjęcie profilowe.
+
+\begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering,margin=2cm}
+        \begin{subfigure}{0.49\textwidth}
+            \includegraphics[width=\textwidth]{pages/account.png}
+            \caption{Profil użytkownika z domyślnym zdjęciem profilowym}
+        \end{subfigure}
+    \hfill
+        \begin{subfigure}{0.49\textwidth}
+            \includegraphics[width=\textwidth]{pages/account_with_profile_picture.png}
+            \caption{Profil użytkownika z własnym zdjęciem profilowym}
+        \end{subfigure}
+\end{figure}
+
+\subsection{Wyszukiwanie wydarzeń}
+
+Po kliknięciu guzika \textit{Search events} na stronie głównej, użytkownik zostaje przeniesiony na stronę służącą wyszukiwaniu wydarzeń sportowych. Domyślnie są wyświetlane wszystkie dostępne wydarzenia, na które użytkownik nie jest zapisany lub których nie organizuje, ale dzięki paskowi wyszukiwania można filtrować wydarzenia po interesującym użytkownika mieście, a dzięki checkboxom można filtrować wydarzenia po interesujących użytkownika sportach.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/search_events.png}
+    \caption{Wyszukiwanie wydarzeń}
+\end{figure}
 
 \subsection{Zapisywanie się na wydarzenia}
 
+Po kliknięciu guzika \textit{More info} na stronie służącej wyszukiwaniu wydarzeń, użytkownik zostaje przeniesiony na stronę wybranego wydarzenia. Może stamtąd odczytać szczegółowe informacje o wydarzeniu takie jak: opis wydarzenia, rodzaj sportu, login organizatora, miejsce wydarzenia, czas rozpoczęcia i zakończenia oraz datę ostatniej modyfikacji. Z tej strony użytkownik także może zapisać się na owe wydarzenie poprzez kliknięcie guzika \textit{Join Event}, po czym zostanie ukazany popup informujący o pomyślnym zapisu się oraz użytkownik zostanie przeniesiony na stronę główną.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/event.png}
+    \caption{Strona wydarzenia}
+\end{figure}
+
+\subsection{Wypisywanie się z wydarzenia}
+
+Aby wypisać się z wydarzenia, należy wejść na jego stronę ze strony głównej bądź ponownie ze strony służącej wyszukiwaniu wydarzeń, a następnie kliknąć guzik \textit{Leave Event}. Analogicznie jak w przypadku zapisywania się, zostanie ukazany popup informujący o pomyślnym wypisaniu się i użytkownik zostanie przeniesiony na stronę główną.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/event_leave.png}
+    \caption{Strona wydarzenia}
+\end{figure}
+
 \subsection{Tworzenie nowych wydarzeń}
 
+Po kliknięciu guzika \textit{Create event} na stronie głównej, użytkownik zostaje przeniesiony na stronę służącą tworzeniu wydarzeń. Po wypełnieniu wszystkich pół formularza i kliknięciu guzika \textit{Add Event}, wydarzenie zostanie utworzone, a użytkownik zostanie przeniesiony na stronę główną.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/create_event.png}
+    \caption{Formularz służący tworzeniu wydarzeń sportowych}
+\end{figure}
+
+\subsection{Edytowanie utworzonego wydarzenia}
+
+Aby edytować utworzone wydarzenie, należy wejść na jego stronę ze strony głównej, a następnie kliknąć guzik \textit{Edit Event}. Użytkownik zostanie przeniesiony do formularza edycji wydarzenia, gdzie może zmienić wybrane przez siebie pola. Może zapisać dokonane zmiany, klikając guzik \textit{Save} lub je odrzucić, klikając guzik \textit{Discard Changes}.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/my_event.png}
+    \caption{Strona utworzonego wydarzenia}
+\end{figure}
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/edit_event.png}
+    \caption{Formularz edycji}
+\end{figure}
+
+\subsection{Usuwanie uczestników z utworzonego wydarzenia}
+
+Aby usunąć zapisanego uczestnika z utworzonego wydarzenia, należy wejść do formularza edycji wydarzenia i kliknąć guzik \textit{Remove} przy loginie użytkownika, którego chce się usunąć, a następnie należy zapisać zmiany, klikając guzik \textit{Save}.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/edit_event.png}
+    \caption{Formularz edycji}
+\end{figure}
+
+\subsection{Usuwanie utworzonego wydarzenia}
+
+Aby usunąć utworzone wydarzenie, należy wejść na jego stronę ze strony głównej, a następnie kliknąć guzik \textit{Delete Event}, po czym zostanie ukazany popup informujący o pomyślnym usunięciu wydarzenia oraz użytkownik zostanie przeniesiony na stronę główną.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{pages/my_event.png}
+    \caption{Strona utworzonego wydarzenia}
+\end{figure}
+
 \subsection{Wylogowanie się}
+
+Aby się wylogować, należy kliknąć guzik \textit{Sign out} na stronie głównej.
 
 \end{document}
