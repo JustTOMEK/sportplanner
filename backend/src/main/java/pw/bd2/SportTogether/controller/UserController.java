@@ -41,13 +41,19 @@ public class UserController {
     }
 
     @PostMapping("/upload-profile-picture")
-    public ResponseEntity<?> uploadProfilePicture(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody FileDto file) {
+    public ResponseEntity<?> uploadProfilePicture(
+            @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt,
+            @RequestParam("file") MultipartFile file) {
         try {
-            byte[] profilePicture = Base64.getDecoder().decode(file.getFile());
+            if (file.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("File is empty");
+            }
+
+            byte[] profilePicture = file.getBytes();
             userService.setProfilePicture(jwtService.extractUsername(jwt), profilePicture);
             return ResponseEntity.ok().build();
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload profile picture");
         }
     }
 
