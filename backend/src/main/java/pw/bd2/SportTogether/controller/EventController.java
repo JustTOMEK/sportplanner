@@ -198,4 +198,15 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
+    @PutMapping("/{id}/update")
+    public ResponseEntity<Event> updateEvent(@PathVariable Integer id, @RequestBody Event updatedEvent) {
+        try {
+            Event updated = eventService.updateEvent(id, updatedEvent);
+            return ResponseEntity.status(HttpStatus.OK).body(updated);
+        }
+        catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 }

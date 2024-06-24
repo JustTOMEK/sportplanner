@@ -157,4 +157,27 @@ public class EventService {
             throw new AccessDeniedException("Only owner allowed to delete event.");
         }
     }
+
+    public Event updateEvent(Integer eventId, Event updatedEvent) {
+        Event existingEvent = eventRepository.findById(eventId)
+            .orElseThrow(() -> new IllegalArgumentException("Event not found"));
+
+        String newTitle = updatedEvent.getTitle();
+        if (newTitle != null && !newTitle.equals(existingEvent.getTitle())) {
+            if (updatedEvent.getTitle().isBlank()) {
+                throw new IllegalArgumentException("Event title cannot be empty");
+            }
+            existingEvent.setTitle(newTitle);
+        }
+
+        String newDescription = updatedEvent.getDescription();
+        if (newDescription != null && !newDescription.equals(existingEvent.getDescription())) {
+            if (updatedEvent.getDescription().isBlank()) {
+                newDescription = null;
+            }
+            existingEvent.setDescription(newDescription);
+        }
+
+        return eventRepository.save(existingEvent);
+    }
 }
