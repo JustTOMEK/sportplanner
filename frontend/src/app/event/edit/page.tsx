@@ -281,7 +281,7 @@ const EditEventPage = () => {
                 </label>
                 <label>
                     Sport:
-                    <select name="sport" value={event?.sport.id || ''} onChange={handleInputChange}>
+                    <select name="sport" value={event?.sport.id || ''} disabled>
                         <option value={event?.sport.id}>{event?.sport.name}</option>
                         {sports.map(sport => (
                             <option key={sport.id} value={sport.id}>{sport.name}</option>
