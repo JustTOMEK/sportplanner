@@ -198,6 +198,59 @@ public class EventService {
             existingEvent.setEnd_date(newEnd_date);
         }
 
+        Address existingAddress = existingEvent.getAddress();
+        Address updatedAddress = updatedEvent.getAddress();
+
+        String newStreet = updatedAddress.getStreet();
+        if (newStreet != null && !newStreet.equals(existingAddress.getStreet())) {
+            if (updatedAddress.getStreet().isBlank()) {
+                newStreet = null;
+            }
+            existingAddress.setStreet(newStreet);
+        }
+
+        String newBuilding_number = updatedAddress.getBuilding_number();
+        if (newBuilding_number != null && !newBuilding_number.equals(existingAddress.getBuilding_number())) {
+            if (updatedAddress.getBuilding_number().isBlank()) {
+                newBuilding_number = null;
+            }
+            existingAddress.setBuilding_number(newBuilding_number);
+        }
+
+        String newFlat_number = updatedAddress.getFlat_number();
+        if (newFlat_number != null && !newFlat_number.equals(existingAddress.getFlat_number())) {
+            if (updatedAddress.getFlat_number().isBlank()) {
+                newFlat_number = null;
+            }
+            existingAddress.setFlat_number(newFlat_number);
+        }
+
+        String newPostal_code = updatedAddress.getPostal_code();
+        if (newPostal_code != null && !newPostal_code.equals(existingAddress.getPostal_code())) {
+            if (updatedAddress.getPostal_code().isBlank()) {
+                newPostal_code = null;
+            }
+            existingAddress.setPostal_code(newPostal_code);
+        }
+
+        String newCity = updatedAddress.getCity();
+        if (newCity != null && !newCity.equals(existingAddress.getCity())) {
+            if (updatedAddress.getCity().isBlank()) {
+                throw new IllegalArgumentException("City cannot be empty");
+            }
+            existingAddress.setCity(newCity);
+        }
+
+        String newCountry = updatedAddress.getCountry();
+        if (newCountry != null && !newCountry.equals(existingAddress.getCountry())) {
+            if (updatedAddress.getCountry().isBlank()) {
+                throw new IllegalArgumentException("Country cannot be empty");
+            }
+            existingAddress.setCountry(newCountry);
+        }
+
+        addressRepository.save(existingAddress);
+
         return eventRepository.save(existingEvent);
     }
 }
