@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import "../../../Styles/ViewEventPage.css";
 import withAuth from '../../auth/component/withAuth';
+import { formatDate } from '../../utils';
 
 interface User {
     id: number;
@@ -302,9 +303,9 @@ const ViewEventPage = () => {
                 {event.latitude && event.longitude &&
                     <p><strong>Coordinates:</strong> {event.latitude}, {event.longitude}</p>
                 }
-                <p><strong>Start Date:</strong> {new Date(event.start_date).toLocaleString()}</p>
-                <p><strong>End Date:</strong> {new Date(event.end_date).toLocaleString()}</p>
-                <p><strong>Last Modified:</strong> {new Date(event.modification_date).toLocaleString()}</p>
+                <p><strong>Start Date:</strong> {formatDate(event.start_date)}</p>
+                <p><strong>End Date:</strong> {formatDate(event.end_date)}</p>
+                <p><strong>Last Modified:</strong> {formatDate(event.modification_date)}</p>
             </div>
 
             {mapUrl && (

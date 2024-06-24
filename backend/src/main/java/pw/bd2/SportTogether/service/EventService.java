@@ -72,8 +72,13 @@ public class EventService {
                 .collect(Collectors.toList());
     }
 
-    public List<Event> getFilteredEvents(List<Integer> sportIds, String city) {
+    public List<Event> getFilteredEvents(String username,List<Integer> sportIds, String city) {
         List<Event> events = eventRepository.findAll();
+        List<Event> participantEvents = getParticipantEvents(username);
+        List<Event> ownedEvents = getOwnedEvents(username);
+
+        events.removeAll(participantEvents);
+        events.removeAll(ownedEvents);
 
         if (sportIds != null) {
             events.removeIf(event -> !sportIds.contains(event.getSport().getId()));

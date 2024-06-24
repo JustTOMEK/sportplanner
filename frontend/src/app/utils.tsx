@@ -1,21 +1,13 @@
-import jwt from 'jsonwebtoken';
+export function formatDate(date_string: string): string {
+    const options: Intl.DateTimeFormatOptions = {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+    };
 
-export interface JwtPayload {
-    exp: number;
-    iat: number;
-    sub: string;
+    return new Intl.DateTimeFormat("pl-PL", options).format(new Date(date_string));
 }
 
-export const decodeJwt = (token: string): JwtPayload | null => {
-    try {
-        // Decode the token without verifying its signature
-        const decoded = jwt.decode(token);
-        if (decoded && typeof decoded === 'object') {
-            return decoded as JwtPayload;
-        }
-        return null;
-    } catch (error) {
-        console.error('Failed to decode JWT:', error);
-        return null;
-    }
-};

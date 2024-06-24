@@ -106,8 +106,8 @@ public class EventController {
     }
 
     @PostMapping("/search")
-    public ResponseEntity<List<Event>> getFilteredEvents(@RequestBody EventFilterDTO eventFilterDTO) {
-        List<Event> events = eventService.getFilteredEvents(eventFilterDTO.getSportIds(), eventFilterDTO.getCity());
+    public ResponseEntity<List<Event>> getFilteredEvents(@RequestHeader(HttpHeaders.AUTHORIZATION) String jwt, @RequestBody EventFilterDTO eventFilterDTO) {
+        List<Event> events = eventService.getFilteredEvents(jwtService.extractUsername(jwt), eventFilterDTO.getSportIds(), eventFilterDTO.getCity());
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 

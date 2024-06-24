@@ -31,7 +31,7 @@ interface Event {
     id: number;
     title: string;
     description: string;
-    owner: User;
+    owner?: User; // Make owner optional
     sport: Sport;
     address: Address;
     latitude: number;
@@ -109,7 +109,8 @@ const EditEventPage = () => {
 
                 if (response.ok) {
                     const data: Event = await response.json();
-                    setEvent(data);
+                    const { owner, ...eventData } = data;  // Exclude the owner field
+                    setEvent(eventData as Event);
                 } else {
                     setErrors({ general: 'Failed to fetch event' });
                 }
@@ -177,7 +178,16 @@ const EditEventPage = () => {
 
             let updatedEvent = { ...prevState };
 
-            if (name === 'sport') {
+            if (name.startsWith('address.')) {
+                const addressField = name.split('.')[1];
+                updatedEvent = {
+                    ...updatedEvent,
+                    address: {
+                        ...updatedEvent.address,
+                        [addressField]: value,
+                    },
+                };
+            } else if (name === 'sport') {
                 const selectedSport = sports.find(sport => sport.id.toString() === value);
                 if (selectedSport) {
                     updatedEvent = {
@@ -198,14 +208,21 @@ const EditEventPage = () => {
                     const { start_date, end_date, ...rest } = errors;
                     setErrors(rest);
                 }
+                updatedEvent = {
+                    ...updatedEvent,
+                    [name]: value,
+                };
             } else {
-                const { [name]: removed, ...rest } = errors;
-                setErrors(rest);
+                updatedEvent = {
+                    ...updatedEvent,
+                    [name]: value,
+                };
             }
 
             return updatedEvent;
         });
     };
+
 
     const handleRemoveParticipant = async (participantId: number) => {
         if (!token || !event) {
