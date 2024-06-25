@@ -55,9 +55,9 @@ Nasza aplikacja jest skierowana do osób, które są zainteresowanie aktywności
     \item Po utworzeniu konta wysyłany jest email z potwierdzeniem do użytkownika.
     \item Użytkownik może zalogować się na swoje konto.
     \item Użytkownik może ustawić swoje zdjęcie profilowe.
-    \item Użytkownik może ustawić opis swojego profilu.
-    \item Użytkownik może dodać własne ogłoszenia z parametrami: rodzaj sportu, liczba poszukiwanych osób, miejsce, czas (jednorazowe czy cykliczne), dodatkowy opis.
+    \item Użytkownik może dodać własne ogłoszenia z parametrami: rodzaj sportu, miejsce, czas, dodatkowy opis.
     \item Użytkownik może wyszukiwać oferty według podanych kryteriów (np. rodzaj sportu, miejsce, czas).
+    \item Użytkownik może zapisać się na wydarzenie.
 \end{itemize}
  
 \subsection{Wymagania niefunkcjonalne}
@@ -66,7 +66,6 @@ Nasza aplikacja jest skierowana do osób, które są zainteresowanie aktywności
     \item Aplikacja działa na systemie operacyjnym Linux.
     \item Aplikacja działa na systemie operacyjnym Windows.
     \item Każda strona aplikacji musi się załadować w przeciągu 2 sekund.
-    \item Aplikacja powinna wytrzymać X użytkowników bez strat jakości.
     \item Email wysłany do użytkownika po utworzeniu konta musi do niego dojść w przeciągu 10 minut.
 \end{itemize}
 
@@ -150,7 +149,7 @@ Po tym zostaje przeniesiony na stronę główną, gdzie są wyświetlane wydarze
 
 \subsection{Profil użytkownika}
 
-Po kliknięciu guzika \textit{My Account} na stronie głównej, użytkownik zostaje przeniesiony na stronę swojego profilu, z której po kliknięciu guizka \textit{Upload Profile Picture} może zmienić swoje zdjęcie profilowe.
+Po kliknięciu przycisku \textit{My Account} na stronie głównej, użytkownik zostaje przeniesiony na stronę swojego profilu, gdzie za pomocą przycisku \textit{Upload Profile Picture} może zmienić swoje zdjęcie profilowe.
 
 \begin{figure}[H]
     \centering
@@ -168,7 +167,7 @@ Po kliknięciu guzika \textit{My Account} na stronie głównej, użytkownik zost
 
 \subsection{Wyszukiwanie wydarzeń}
 
-Po kliknięciu guzika \textit{Search events} na stronie głównej, użytkownik zostaje przeniesiony na stronę służącą wyszukiwaniu wydarzeń sportowych. Domyślnie są wyświetlane wszystkie dostępne wydarzenia, na które użytkownik nie jest zapisany lub których nie organizuje, ale dzięki paskowi wyszukiwania można filtrować wydarzenia po interesującym użytkownika mieście, a dzięki checkboxom można filtrować wydarzenia po interesujących użytkownika sportach.
+Po kliknięciu przycisku \textit{Search events} na stronie głównej, użytkownik zostaje przeniesiony na stronę służącą wyszukiwaniu wydarzeń sportowych. Domyślnie są wyświetlane wszystkie dostępne wydarzenia, na które użytkownik nie jest zapisany lub których nie organizuje, ale dzięki paskowi wyszukiwania można filtrować wydarzenia po interesującym użytkownika mieście, a dzięki checkboxom można filtrować wydarzenia po interesujących użytkownika sportach.
 
 \begin{figure} [H]
     \centering
@@ -178,7 +177,7 @@ Po kliknięciu guzika \textit{Search events} na stronie głównej, użytkownik z
 
 \subsection{Zapisywanie się na wydarzenia}
 
-Po kliknięciu guzika \textit{More info} na stronie służącej wyszukiwaniu wydarzeń, użytkownik zostaje przeniesiony na stronę wybranego wydarzenia. Może stamtąd odczytać szczegółowe informacje o wydarzeniu takie jak: opis wydarzenia, rodzaj sportu, login organizatora, miejsce wydarzenia, czas rozpoczęcia i zakończenia oraz datę ostatniej modyfikacji. Z tej strony użytkownik także może zapisać się na owe wydarzenie poprzez kliknięcie guzika \textit{Join Event}, po czym zostanie ukazany popup informujący o pomyślnym zapisu się oraz użytkownik zostanie przeniesiony na stronę główną.
+Po kliknięciu przycisku \textit{More info} obok tytułu wydarzenia, użytkownik zostaje przeniesiony na stronę wybranego wydarzenia. Może stamtąd odczytać szczegółowe informacje o wydarzeniu takie jak: opis wydarzenia, rodzaj sportu, login organizatora, miejsce wydarzenia, czas rozpoczęcia i zakończenia oraz datę ostatniej modyfikacji. Z tej strony użytkownik także może zapisać się na owe wydarzenie poprzez kliknięcie przycisku \textit{Join Event}, po czym zostanie ukazany popup informujący o pomyślnym zapisu się oraz użytkownik zostanie przeniesiony na stronę główną.
 
 \begin{figure} [H]
     \centering
@@ -188,7 +187,7 @@ Po kliknięciu guzika \textit{More info} na stronie służącej wyszukiwaniu wyd
 
 \subsection{Wypisywanie się z wydarzenia}
 
-Aby wypisać się z wydarzenia, należy wejść na jego stronę ze strony głównej bądź ponownie ze strony służącej wyszukiwaniu wydarzeń, a następnie kliknąć guzik \textit{Leave Event}. Analogicznie jak w przypadku zapisywania się, zostanie ukazany popup informujący o pomyślnym wypisaniu się i użytkownik zostanie przeniesiony na stronę główną.
+Aby wypisać się z wydarzenia, należy wejść w jego szczegóły ze strony głównej (z sekcji \textit{Events you are attending}), a następnie kliknąć przycisk \textit{Leave Event}. Analogicznie jak w przypadku zapisywania się, zostanie ukazany popup informujący o pomyślnym wypisaniu się i użytkownik zostanie przeniesiony na stronę główną.
 
 \begin{figure} [H]
     \centering
@@ -198,7 +197,7 @@ Aby wypisać się z wydarzenia, należy wejść na jego stronę ze strony głów
 
 \subsection{Tworzenie nowych wydarzeń}
 
-Po kliknięciu guzika \textit{Create event} na stronie głównej, użytkownik zostaje przeniesiony na stronę służącą tworzeniu wydarzeń. Po wypełnieniu wszystkich pół formularza i kliknięciu guzika \textit{Add Event}, wydarzenie zostanie utworzone, a użytkownik zostanie przeniesiony na stronę główną.
+Po kliknięciu przycisku \textit{Create event} na stronie głównej, użytkownik zostaje przeniesiony na stronę służącą tworzeniu wydarzeń. Po wypełnieniu pól formularza i kliknięciu przycisku \textit{Add Event}, wydarzenie zostanie utworzone, a użytkownik zostanie przeniesiony na stronę główną.
 
 \begin{figure} [H]
     \centering
@@ -208,7 +207,7 @@ Po kliknięciu guzika \textit{Create event} na stronie głównej, użytkownik zo
 
 \subsection{Edytowanie utworzonego wydarzenia}
 
-Aby edytować utworzone wydarzenie, należy wejść na jego stronę ze strony głównej, a następnie kliknąć guzik \textit{Edit Event}. Użytkownik zostanie przeniesiony do formularza edycji wydarzenia, gdzie może zmienić wybrane przez siebie pola. Może zapisać dokonane zmiany, klikając guzik \textit{Save} lub je odrzucić, klikając guzik \textit{Discard Changes}.
+Aby edytować utworzone wydarzenie, należy wejść na jego stronę ze strony głównej (z sekcji \textit{Events you are hosting}), a następnie kliknąć przycisk \textit{Edit Event}. Użytkownik zostanie przeniesiony do formularza edycji wydarzenia, gdzie może zmienić jego szczegóły poprzez edycję wartości pól. Może zapisać dokonane zmiany za pomocą przycisku \textit{Save} lub je odrzucić za pomocą przycisku \textit{Discard Changes}.
 
 \begin{figure} [H]
     \centering
@@ -224,7 +223,7 @@ Aby edytować utworzone wydarzenie, należy wejść na jego stronę ze strony g�
 
 \subsection{Usuwanie uczestników z utworzonego wydarzenia}
 
-Aby usunąć zapisanego uczestnika z utworzonego wydarzenia, należy wejść do formularza edycji wydarzenia i kliknąć guzik \textit{Remove} przy loginie użytkownika, którego chce się usunąć, a następnie należy zapisać zmiany, klikając guzik \textit{Save}.
+Aby usunąć zapisanego uczestnika z utworzonego wydarzenia, należy wejść do formularza edycji wydarzenia i kliknąć przycisk \textit{Remove} przy wybranym użytkowniku.
 
 \begin{figure} [H]
     \centering
@@ -234,7 +233,7 @@ Aby usunąć zapisanego uczestnika z utworzonego wydarzenia, należy wejść do 
 
 \subsection{Usuwanie utworzonego wydarzenia}
 
-Aby usunąć utworzone wydarzenie, należy wejść na jego stronę ze strony głównej, a następnie kliknąć guzik \textit{Delete Event}, po czym zostanie ukazany popup informujący o pomyślnym usunięciu wydarzenia oraz użytkownik zostanie przeniesiony na stronę główną.
+Aby usunąć utworzone wydarzenie, należy wejść na jego stronę, a następnie kliknąć przycisk \textit{Delete Event}, po czym zostanie ukazany popup informujący o pomyślnym usunięciu wydarzenia, po czym użytkownik zostanie przeniesiony na stronę główną.
 
 \begin{figure} [H]
     \centering
@@ -244,6 +243,6 @@ Aby usunąć utworzone wydarzenie, należy wejść na jego stronę ze strony gł
 
 \subsection{Wylogowanie się}
 
-Aby się wylogować, należy kliknąć guzik \textit{Sign out} na stronie głównej.
+Aby się wylogować, należy kliknąć przycisk \textit{Sign out} na stronie głównej.
 
 \end{document}
