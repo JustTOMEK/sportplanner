@@ -245,4 +245,146 @@ Aby usunąć utworzone wydarzenie, należy wejść na jego stronę, a następnie
 
 Aby się wylogować, należy kliknąć przycisk \textit{Sign out} na stronie głównej.
 
+\section{Scenariusze testowe}
+
+\subsection{Tworzenie turnieju piłkarskiego}
+
+Pan Marek chce zorganizować turniej piłkarski. Wydarzenie ma odbyć się w Warszawie na stadionie KS Ursus 3 września 2024 roku o 15:00. Pan Marek potrzebuje platformy na, której mógłby ogłosić swój turniej. Postanawia skorzystać z aplikacji SportTogether. Operuje na systemie Windows. Oto jego kolejne kroki:
+
+\begin{enumerate}
+    \item Rejestracja
+
+    Aby się zarejestrować Pan Marek podaje login, hasło oraz mail. 
+    
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario1/image.png}
+    \caption{Strona rejestracji}
+    \end{figure}
+
+    Po udanej rejestracji ukazuje się strona główna użytkownika. Na maila zostaje również wysłany komunikat o udanej rejestracji.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario1/image 1.png}
+    \caption{Strona główna użytkownika}
+    \end{figure}
+    
+    \item Dodanie wydarzenia
+
+    Po wcisnięciu przycisku "Create event" ukazuje się strona dodawania wydarzenia. Pan Marek uzupełnia niezbędne dane.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=1\linewidth]{Scenario1/image 2.png}
+    \caption{Strona dodawania wydarzenia}
+    \end{figure}
+
+    \newpage
+    
+    \item Sprawdzenie poprawności stworzonego wydarzenia
+
+    Po wciśnięciu przycisku "Add Event" Pan Marek zostaje spowrotem przekierowany na stronę główną. Tam pojawiło się stworzone wydarzenie.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario1/image 3.png}
+    \caption{Strona główna użytkownika z utworznym wydarzeniem}
+    \end{figure}
+
+    Po wejściu w wydarzenie pokauje się podgląd wydarzenia. Dane zgadzają się z tymi podanymi prez Pana Marka.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario1/image 4.png}
+    \caption{Podgląd wydarzenia}
+    \end{figure}
+    
+    \item Obserwacja pierwszego zapisanego użytkownika
+
+    Po upływie pewnego czasu Pan Marek zaobserwował pierwszego użytkownika, który zapisał się na jego wydarzenie.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario1/image 5.png}
+    \caption{Podgląd wydarzenia z pierwszym zapisanym użytkownikiem}
+    \end{figure}
+
+    \item Czas ładowania stron
+
+    Średni czas ładowania strony dla Pana Marka wynosi 1.57s.
+    
+\end{enumerate}
+
+\subsection{Zapisanie się na turniej piłkarski}
+
+    Pan Adam jest pasjonatem piłki nożnej. Szuka wydarzenia w którym mógłby wziąć udział. Postanawia skorzystać z aplikacji SportTogether.Operuje na systemie Linux. Oto jego kolejne kroki:
+
+\begin{enumerate}
+    \item Rejestracja
+
+    Aplikacja sprawdza czy hasło spełnia kryteria bezpieczeństwa oraz czy mail jest poprawny.
+
+    \begin{figure}[H]
+    \centering
+    \captionsetup{justification=centering,margin=2cm}
+        \begin{subfigure}{0.49\textwidth}
+            \includegraphics[width=\textwidth]{Scenario2/image.png}
+            \caption{Formularz rejestracji niepoprawny mail}
+        \end{subfigure}
+    \hfill
+        \begin{subfigure}{0.49\textwidth}
+            \includegraphics[width=\textwidth]{Scenario2/image 1.png}
+            \caption{Formularz rejestracji słabe hasło}
+        \end{subfigure}
+    \end{figure}
+
+    \newpage
+
+    \item Wyszukiwanie wydarzenia
+
+    Po podaniu silnego hasła i poprawnego maila Pan Adam został przekierowany na stronę główną.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario2/image 3.png}
+    \caption{Strona główna}
+    \end{figure}
+
+    Po kliknięciu przycisku "Search events" ukazuje się strona wyszukiwania wydarzeń.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario2/image 4.png}
+    \caption{Strona wyszukiwania wydarzeń}
+    \end{figure}
+
+    Pan Adam zainteresował się wydarzeniem "Turniej piłkarski". Po kliknięciu "More info" ukazała się strona wydarzenia.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario2/image 5.png}
+    \caption{Strona wydarzenia}
+    \end{figure}
+
+    \item Dołączenie do wydarzenia
+
+    Szczegóły wydarzenia odpowiadają Panu Adamowi. Aby dołączyć do wydarzenia Pan Adam klika przycisk "Join Event". Wyświetlił się komunikat o poprawnym zapisaniu na wydarzenie.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario2/image 6.png}
+    \caption{Strona wydarzenia komunikat o dodaniu użytkownika do wydarzenia}
+    \end{figure}
+
+    Po wciśnięciu przycisku "Ok" Pan Adam został przekierowany do strony głównej gdzie widnieje wydarzenie na które został zapisany.
+
+    \begin{figure} [H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Scenario2/image 7.png}
+    \caption{Strona główna z wydarzeniem na które użytkownik jest zapisany}
+    \end{figure}
+    
+\end{enumerate}
+
 \end{document}
