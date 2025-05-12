@@ -1,4 +1,7 @@
 # Projekt BD2 – SportTogether
+
+Projekt stworzony przez grupę, której byłem częścią na studiach. Aplikacja internetowa do umawiania się na wyhdarzenia sportowe.
+
 ## Modele ER i relacyjny
 W celu otworzenia modelu należy uruchomić Oracle SQL Developer, a następnie otworzyć model poprzez File -> Data Modeler -> Open
 
